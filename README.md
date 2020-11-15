@@ -1,5 +1,5 @@
 # mysql-stuff
- A simple web interface. The Backend is built entirely on golang
+ A simple web interface. The Backend is built entirely on golang, mySql database used.
 
 ### starting the server
 ![starting the app](https://github.com/IamNator/mysql-stuff/blob/main/media/RunningTheWebApp.PNG)
