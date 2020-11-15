@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/IamNator/Projects/mysql-stuff/load_data"
+	"github.com/IamNator/Projects/mysql-golang-web/controllers"
 	_ "github.com/go-sql-driver/mysql"
 	"net/http"
 )

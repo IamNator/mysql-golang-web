@@ -1,9 +1,10 @@
-package load_data
+package controllers
 
 import (
 	"database/sql"
 	"fmt"
 	//"golang.org/x/net/html"
+	"github.com/IamNator/mysql-golang-web/models"
 	"net/http"
 	"strconv"
 )
@@ -19,8 +20,8 @@ func Index(w http.ResponseWriter, req *http.Request) {
 	rows, err := db.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
 	check(err)
 
-	var s, fname, lname, phone_number string
-	var id int
+	var s string
+	var user models.User
 	s = `<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -56,14 +57,14 @@ func Index(w http.ResponseWriter, req *http.Request) {
 				<tbody>`
 
 	for rows.Next() {
-		err = rows.Scan(&fname, &lname, &phone_number, &id)
+		err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
 		check(err)
-		idStr := strconv.Itoa(id)
+		idStr := strconv.Itoa(user.ID)
 
 		s += `  <tr>
-				   <td>` + fname + `</td>
-				   <td>` + lname + `</td>
-				   <td>` + phone_number + `</td>
+				   <td>` + user.Fname + `</td>
+				   <td>` + user.Lname + `</td>
+				   <td>` + user.Phone_number + `</td>
 				   <td>` + idStr + `</td>
 		        </tr>`
 	}
