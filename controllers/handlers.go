@@ -38,7 +38,7 @@ func Index(w http.ResponseWriter, req *http.Request) {
 		</head>
 		<body>
 			<p>
-				<a href="~/insert">
+				<a href="/insert">
 					Click here to Populate 
 				</a>
 			</p>
@@ -117,7 +117,7 @@ func Delete(w http.ResponseWriter, req *http.Request) {
 		</head>
 		<body>
 			<p>
-				<a href="~80/index">
+				<a href="/index">
 					Click here to return to table 
 				</a>
 			</p>
@@ -136,10 +136,11 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	var fname = req.FormValue("fname")
-	var lname = req.FormValue("lname")
-	var phone_number = req.FormValue("phone_number")
-	var id, _ = strconv.Atoi(req.FormValue("id"))
+	var user models.User
+	user.Fname = req.FormValue("fname")
+	user.Lname = req.FormValue("lname")
+	user.Phone_number = req.FormValue("phone_number")
+	user.ID, _ = strconv.Atoi(req.FormValue("id"))
 
 	if req.FormValue("fname") != "" && req.FormValue("lname") != "" && req.FormValue("phone_number") != "" && req.FormValue("id") != "" {
 
@@ -149,7 +150,7 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 		stmt, err := db.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
 	VALUES (?,?,?,?)`)
 
-		_, err = stmt.Exec(fname, lname, phone_number, id)
+		_, err = stmt.Exec(user.Fname, user.Lname, user.Phone_number, user.ID)
 		check(err)
 		db.Close() //#######################
 
@@ -230,7 +231,7 @@ func Insert(w http.ResponseWriter, req *http.Request) {
 				</head>
 				<body>
 					<p>
-						<a href="~80/index"> 
+						<a href="/index"> 
 							Click here to view filed table
 						</a>
 					</p>
