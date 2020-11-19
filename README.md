@@ -1,5 +1,7 @@
 # mysql-stuff
+
  Major updates coming soon!
+
  A simple web interface. The Backend is built entirely on golang, mySql database used.
 
 ### starting the server
