@@ -11,15 +11,33 @@ import (
 	//"strconv"
 )
 
-func Fetch(w http.ResponseWriter, req *http.Request) {
+//const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
+type DBData struct {
+	DBType, DBName, User, Host, Password string
+	Session                              *sql.DB
+}
 
-	db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
-	check(err)
+func (db DBData) OpenDB() (*sql.DB, error) {
+	return sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
+}
 
-	err = db.Ping()
-	check(err)
+func (db DBData) CloseDB() string {
+	err := db.Session.Close()
+	if err != nil {
+		return fmt.Sprintf("%v", err)
+	} else {
+		return fmt.Sprintln("Data base closed")
+	}
+}
 
-	rows, err := db.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
+func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
+
+	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
+	// check(err)
+
+	db.Session.Ping()
+
+	rows, err := db.Session.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
 	check(err)
 
 	var user models.User
@@ -32,7 +50,7 @@ func Fetch(w http.ResponseWriter, req *http.Request) {
 		users = append(users, user)
 	}
 	json.NewEncoder(w).Encode(users) //Sends an array of user information
-	db.Close()
+	//	db.Close()
 }
 
 func Delete(writer http.ResponseWriter, req *http.Request) {
