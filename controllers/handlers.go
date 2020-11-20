@@ -4,12 +4,13 @@ import (
 	"database/sql"
 	"fmt"
 	//"golang.org/x/net/html"
+	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
 	"net/http"
 	"strconv"
 )
 
-func Index(w http.ResponseWriter, req *http.Request) {
+func Fetch(w http.ResponseWriter, req *http.Request) {
 
 	db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
 	check(err)
@@ -20,22 +21,16 @@ func Index(w http.ResponseWriter, req *http.Request) {
 	rows, err := db.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
 	check(err)
 
-	var s string
 	var user models.User
+	var users []models.User
 
 	for rows.Next() {
 		err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
 		check(err)
-		idStr := strconv.Itoa(user.ID)
 
-		s += `  <tr>
-				   <td>` + user.Fname + `</td>
-				   <td>` + user.Lname + `</td>
-				   <td>` + user.Phone_number + `</td>
-				   <td>` + idStr + `</td>
-		        </tr>`
+		users = append(users, user)
 	}
-	fmt.Fprintln(w, s)
+	json.NewEncoder(w).Encode(users) //Sends an array of user information
 	db.Close()
 }
 
@@ -60,7 +55,7 @@ func Delete(w http.ResponseWriter, req *http.Request) {
 
 }
 
-func FormHandler(w http.ResponseWriter, req *http.Request) {
+func Update(w http.ResponseWriter, req *http.Request) {
 
 	if err := req.ParseForm(); err != nil {
 		fmt.Fprintf(w, "ParseForm() err: %v", err)
