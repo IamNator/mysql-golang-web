@@ -8,7 +8,7 @@ import (
 	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"net/http"
-	"strconv"
+	//"strconv"
 )
 
 func Fetch(w http.ResponseWriter, req *http.Request) {
@@ -65,12 +65,9 @@ func Update(w http.ResponseWriter, req *http.Request) {
 	}
 
 	var user models.User
-	user.Fname = req.FormValue("fname")
-	user.Lname = req.FormValue("lname")
-	user.Phone_number = req.FormValue("phone_number")
-	user.ID, _ = strconv.Atoi(req.FormValue("id"))
+	json.NewDecoder(req.Body).Decode(user)
 
-	if req.FormValue("fname") != "" && req.FormValue("lname") != "" && req.FormValue("phone_number") != "" && req.FormValue("id") != "" {
+	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
 
 		db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
 		check(err)
@@ -93,11 +90,6 @@ func Update(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(w, `Please fill in all the fields `)
 	}
 
-}
-
-func Insert(w http.ResponseWriter, req *http.Request) {
-
-	fmt.Fprintln(w, `Successful`)
 }
 
 func check(err error) {
