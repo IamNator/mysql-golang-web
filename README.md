@@ -1,5 +1,8 @@
 # mysql-stuff
 
+Contributors : Emmanueloluwatobi2000@gmail.com - FrontEnd
+             : natverior1@gmail.com - BackEnd
+
  Major updates coming soon!
 
  A simple web interface. The Backend is built entirely on golang, mySql database used.
