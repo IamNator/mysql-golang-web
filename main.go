@@ -20,9 +20,9 @@ func main() {
 	myRouter.Handle("/css/bootstrap.min.css", fileServer)
 	myRouter.Handle("/js/bootstrap.min.js", fileServer)
 
-	myRouter.HandleFunc("/fetch", controllers.Fetch)
-	myRouter.HandleFunc("/update", controllers.Update)
-	myRouter.HandleFunc("/delete", controllers.Delete)
+	myRouter.HandleFunc("/api/fetch", controllers.Fetch)
+	myRouter.HandleFunc("/api/update", controllers.Update)
+	myRouter.HandleFunc("/api/delete", controllers.Delete)
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
 
 }
