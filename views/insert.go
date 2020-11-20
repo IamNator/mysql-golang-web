@@ -1,7 +1,6 @@
 package views
 
 import (
-	//"golang.org/x/net/html"
 	"html/template"
 	"net/http"
 )
