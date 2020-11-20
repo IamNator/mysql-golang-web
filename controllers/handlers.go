@@ -65,7 +65,7 @@ func Update(w http.ResponseWriter, req *http.Request) {
 	}
 
 	var user models.User
-	json.NewDecoder(req.Body).Decode(user)
+	json.NewDecoder(req.Body).Decode(&user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
 
