@@ -1,7 +1,7 @@
 # mysql-stuff
 
-Contributors : Emmanueloluwatobi2000@gmail.com - FrontEnd
-             : natverior1@gmail.com - BackEnd
+###  Contributors : Emmanueloluwatobi2000@gmail.com - FrontEnd                            
+###               : natverior1@gmail.com - BackEnd
 
  Major updates coming soon!
 
