@@ -6,6 +6,7 @@ import (
 	//"golang.org/x/net/html"
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -34,9 +35,9 @@ func Fetch(w http.ResponseWriter, req *http.Request) {
 	db.Close()
 }
 
-func Delete(w http.ResponseWriter, req *http.Request) {
+func Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
+		fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
 
@@ -51,7 +52,8 @@ func Delete(w http.ResponseWriter, req *http.Request) {
 	check(err)
 	db.Close() //#######################
 
-	fmt.Fprintf(w, `Delete successful`)
+	writer.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(writer).Encode("\"delete\":\"successful\"")
 
 }
 
@@ -100,6 +102,6 @@ func Insert(w http.ResponseWriter, req *http.Request) {
 
 func check(err error) {
 	if err != nil {
-		fmt.Printf("%+v\n", err)
+		log.Printf("%+v\n", err)
 	}
 }
