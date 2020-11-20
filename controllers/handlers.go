@@ -13,7 +13,7 @@ import (
 
 //const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
 type DBData struct {
-	DBType, DBName, User, Host, Password string
+	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
 }
 
@@ -53,7 +53,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	//	db.Close()
 }
 
-func Delete(writer http.ResponseWriter, req *http.Request) {
+func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
 		fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
@@ -61,21 +61,21 @@ func Delete(writer http.ResponseWriter, req *http.Request) {
 
 	del_id := req.FormValue("Del_id")
 
-	db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
-	check(err)
+	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
+	// check(err)
 
-	stmt, err := db.Prepare(`DELETE FROM phonenumber WHERE id = ? ;`)
+	stmt, err := db.Session.Prepare(`DELETE FROM phonenumber WHERE id = ? ;`)
 
 	_, err = stmt.Exec(del_id)
 	check(err)
-	db.Close() //#######################
+	//db.Close() //#######################
 
 	writer.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(writer).Encode("\"delete\":\"successful\"")
 
 }
 
-func Update(w http.ResponseWriter, req *http.Request) {
+func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 
 	if err := req.ParseForm(); err != nil {
 		fmt.Fprintf(w, "ParseForm() err: %v", err)
@@ -87,15 +87,12 @@ func Update(w http.ResponseWriter, req *http.Request) {
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
 
-		db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
-		check(err)
-
-		stmt, err := db.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
+		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
 	VALUES (?,?,?,?)`)
 
 		_, err = stmt.Exec(user.Fname, user.Lname, user.Phone_number, user.ID)
 		check(err)
-		db.Close() //#######################
+		//	db.Close() //#######################
 
 		if err != nil {
 			fmt.Fprintln(w, err)

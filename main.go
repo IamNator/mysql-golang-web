@@ -10,7 +10,23 @@ import (
 	"net/http"
 )
 
+// mt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
+
+// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
+// check(err)
+
 func main() {
+	dbData := controllers.DBData{
+		"mysql",          //Type
+		"root",           //User
+		"299792458m/s",   //Password
+		"127.0.0.1:3306", //Host
+		"test",           //DBName
+		nil,              //Session
+	}
+
+	db, _ := dbData.OpenDB()
+	dbData.Session = db
 
 	myRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("./"))
@@ -21,9 +37,11 @@ func main() {
 	myRouter.Handle("/css/bootstrap.min.css", fileServer)
 	myRouter.Handle("/js/bootstrap.min.js", fileServer)
 
-	myRouter.HandleFunc("/api/fetch", controllers.Fetch).Methods("GET")
-	myRouter.HandleFunc("/api/update", controllers.Update).Methods("POST")
-	myRouter.HandleFunc("/api/delete", controllers.Delete).Methods("DELETE")
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")
+	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")
+	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
+
+	defer dbData.CloseDB()
 
 }
