@@ -25,8 +25,8 @@ func main() {
 		nil,              //Session
 	}
 
-	db, _ := dbData.OpenDB()
-	dbData.Session = db
+	// db, _ := dbData.OpenDB()
+	// dbData.Session = db
 
 	myRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("./"))

@@ -1,15 +1,12 @@
 package controllers
 
 import (
-	"database/sql"
-	"fmt"
-	//"golang.org/x/net/html"
 	"encoding/json"
+	"fmt"
 	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"net/http"
 	"os"
-	//"strconv"
 )
 
 // //const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
@@ -35,22 +32,20 @@ func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
 	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
 	// check(err)
-	os.OpenFile("data.json", O_CREATE || O_READ || O_WRITE)
-
-	db.Session.Ping()
-
-	rows, err := db.Session.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
-	check(err)
+	file, _ := os.Open("data.json")
+	defer file.Close()
 
 	var user models.User
 	var users []models.User
 
-	for rows.Next() {
-		err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
-		check(err)
+	json.NewDecoder(file).Decode(&users)
 
-		users = append(users, user)
-	}
+	// for rows.Next() {
+	// 	err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
+	// 	check(err)
+
+	// 	users = append(users, user)
+	// }
 	json.NewEncoder(w).Encode(users) //Sends an array of user information
 	//	db.Close()
 }
@@ -61,19 +56,11 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	del_id := req.FormValue("Del_id")
-
-	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
-	// check(err)
-
-	stmt, err := db.Session.Prepare(`DELETE FROM phonenumber WHERE id = ? ;`)
-
-	_, err = stmt.Exec(del_id)
-	check(err)
-	//db.Close() //#######################
+	del_id := req.FormValue("id")
 
 	writer.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(writer).Encode("\"delete\":\"successful\"")
+	s := "{\"deleted\":\"successfully\"}"
+	json.NewEncoder(writer).Encode(s)
 
 }
 
@@ -84,33 +71,18 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
+	defer file.Close()
+
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
-
-		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
-	VALUES (?,?,?,?)`)
-
-		_, err = stmt.Exec(user.Fname, user.Lname, user.Phone_number, user.ID)
-		check(err)
-		//	db.Close() //#######################
-
-		if err != nil {
-			fmt.Fprintln(w, err)
-		} else {
-			fmt.Println("\nData Successfully Added")
-		}
-
+		json.NewEncoder(file).Encode(&user)
+		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
 	} else {
 		fmt.Fprintf(w, `Please fill in all the fields `)
 	}
 
-}
-
-func check(err error) {
-	if err != nil {
-		log.Printf("%+v\n", err)
-	}
 }
