@@ -76,10 +76,13 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	defer file.Close()
 
 	var user models.User
+	var users []models.User
 	json.NewDecoder(req.Body).Decode(&user)
+	json.NewDecoder(file).Decode(&users)
+	users = append(users, user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
-		json.NewEncoder(file).Encode(&user)
+		json.NewEncoder(file).Encode(&users)
 		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
 	} else {
