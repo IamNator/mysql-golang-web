@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	//"sync"
 )
 
 // //const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
@@ -72,13 +73,15 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
+	file, _ := os.OpenFile("data.json", os.O_WRITE, os.ModePerm)
 	defer file.Close()
 
 	var user models.User
-	users := make([]models.User, 100)
+	var users []models.User
+
 	json.NewDecoder(req.Body).Decode(&user)
 	json.NewDecoder(file).Decode(&users)
+
 	users = append(users, user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
