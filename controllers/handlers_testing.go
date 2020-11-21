@@ -76,7 +76,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	defer file.Close()
 
 	var user models.User
-	var users []models.User
+	users := make([]models.User, 100)
 	json.NewDecoder(req.Body).Decode(&user)
 	json.NewDecoder(file).Decode(&users)
 	users = append(users, user)
