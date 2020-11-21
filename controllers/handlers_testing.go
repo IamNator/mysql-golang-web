@@ -10,29 +10,8 @@ import (
 	//"sync"
 )
 
-// //const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
-// type DBData struct {
-// 	DBType, User, Password, Host, DBName string
-// 	Session                              *sql.DB
-// }
-
-// func (db DBData) OpenDB() (*sql.DB, error) {
-// 	return sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
-// }
-
-// func (db DBData) CloseDB() string {
-// 	err := db.Session.Close()
-// 	if err != nil {
-// 		return fmt.Sprintf("%v", err)
-// 	} else {
-// 		return fmt.Sprintln("Data base closed")
-// 	}
-// }
-
 func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
-	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
-	// check(err)
 	file, _ := os.Open("data.json")
 	defer file.Close()
 
@@ -41,12 +20,6 @@ func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
 	json.NewDecoder(file).Decode(&users)
 
-	// for rows.Next() {
-	// 	err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
-	// 	check(err)
-
-	// 	users = append(users, user)
-	// }
 	json.NewEncoder(w).Encode(&users) //Sends an array of user information
 	log.Println("Data fetched")
 	//	db.Close()
@@ -73,7 +46,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	file, _ := os.OpenFile("data.json", os.O_WRITE, os.ModePerm)
+	file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	defer file.Close()
 
 	var user models.User
@@ -85,6 +58,10 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	users = append(users, user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
+		file.Close()
+		os.Remove("data.json")
+		file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
+
 		json.NewEncoder(file).Encode(&users)
 		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
