@@ -35,7 +35,7 @@ func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 	file, _ := os.Open("data.json")
 	defer file.Close()
 
-	var user models.User
+	//var user models.User
 	var users []models.User
 
 	json.NewDecoder(file).Decode(&users)
@@ -46,7 +46,8 @@ func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
 	// 	users = append(users, user)
 	// }
-	json.NewEncoder(w).Encode(users) //Sends an array of user information
+	json.NewEncoder(w).Encode(&users) //Sends an array of user information
+	log.Println("Data fetched")
 	//	db.Close()
 }
 
@@ -56,7 +57,7 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	del_id := req.FormValue("id")
+	//del_id := req.FormValue("id")
 
 	writer.Header().Set("Content-Type", "application/json")
 	s := "{\"deleted\":\"successfully\"}"
