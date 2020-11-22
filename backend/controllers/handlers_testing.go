@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/IamNator/mysql-golang-web/backend/models"
+	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"net/http"
 	"os"
@@ -46,8 +46,6 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 			users = append(users, user)
 			json.NewEncoder(filee).Encode(&users)
 			filee.Close()
-			s := "{\"deleted\":\"successfully\"}"
-			json.NewEncoder(writer).Encode(s)
 			break
 		}
 	}

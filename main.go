@@ -25,8 +25,8 @@ func main() {
 		nil,              //Session
 	}
 
-	db, _ := dbData.OpenDB()
-	dbData.Session = db
+	// db, _ := dbData.OpenDB()
+	// dbData.Session = db
 
 	myRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("./"))
@@ -37,9 +37,9 @@ func main() {
 	myRouter.Handle("/css/bootstrap.min.css", fileServer)
 	myRouter.Handle("/js/bootstrap.min.js", fileServer)
 
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")
-	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")
-	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")
+	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
+	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
 
 	defer dbData.CloseDB()
