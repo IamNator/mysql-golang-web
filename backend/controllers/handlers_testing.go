@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/IamNator/mysql-golang-web/models"
+	"github.com/IamNator/mysql-golang-web/backend/models"
 	"log"
 	"net/http"
 	"os"
@@ -12,7 +12,7 @@ import (
 
 func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
-	file, _ := os.Open("data.json")
+	file, _ := os.Open("backend/data.json")
 	defer file.Close()
 
 	//var user models.User
@@ -35,14 +35,14 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	var users []models.User
 	json.NewDecoder(req.Body).Decode(&user)
 
-	file, _ := os.Open("data.json")
+	file, _ := os.Open("backend/data.json")
 	json.NewDecoder(file).Decode(&users)
 
 	for _, values := range users {
 		if values.ID == user.ID {
 			file.Close()
-			os.Remove("data.json")
-			filee, _ := os.Open("data.json")
+			os.Remove("backend/data.json")
+			filee, _ := os.Open("backend/data.json")
 			users = append(users, user)
 			json.NewEncoder(filee).Encode(&users)
 			filee.Close()
@@ -63,7 +63,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
+	file, _ := os.OpenFile("backend/data.json", os.O_CREATE, os.ModePerm)
 	defer file.Close()
 
 	var user models.User
@@ -83,7 +83,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
 		file.Close()
-		os.Remove("data.json")
+		os.Remove("backend/data.json")
 		file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 
 		json.NewEncoder(file).Encode(&users)
