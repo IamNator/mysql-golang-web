@@ -72,6 +72,13 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 	json.NewDecoder(file).Decode(&users)
 
+	for _, values := range users {
+		if values.ID == user.ID {
+			fmt.Fprintf(w, `Dupliacate id detected`)
+			return
+		}
+	}
+
 	users = append(users, user)
 
 	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
