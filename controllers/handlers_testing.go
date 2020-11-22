@@ -38,12 +38,12 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	file, _ := os.Open("data.json")
 	json.NewDecoder(file).Decode(&users)
 
-	for _, values := range users {
+	for i, values := range users {
 		if values.ID == user.ID {
 			file.Close()
 			os.Remove("data.json")
 			filee, _ := os.Open("data.json")
-			users = append(users, user)
+			users = append(users[i:], users[i+1:]...)
 			json.NewEncoder(filee).Encode(&users)
 			filee.Close()
 			break
