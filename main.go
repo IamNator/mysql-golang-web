@@ -29,9 +29,7 @@ func main() {
 	// dbData.Session = db
 
 	myRouter := mux.NewRouter()
-	fileServer := http.FileServer(http.Dir("./"))
-
-	fmt.Println("server running...@localhost:9080")
+	go fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 
@@ -41,6 +39,6 @@ func main() {
 	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
 
-	defer dbData.CloseDB()
+	//defer dbData.CloseDB()
 
 }
