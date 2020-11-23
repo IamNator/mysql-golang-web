@@ -34,8 +34,7 @@ func main() {
 	fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	myRouter.Handle("/css/bootstrap.min.css", fileServer)
-	myRouter.Handle("/js/bootstrap.min.js", fileServer)
+
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")
 	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
