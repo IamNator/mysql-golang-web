@@ -22,6 +22,12 @@
         </p>
         <div id="myData"></div>
         <script>
+
+
+            //     </tbody>
+            //     </table>
+        </script>
+        <script>
             let url = "/api/fetch"
             fetch(url, {
                 method:"GET",
@@ -37,30 +43,22 @@
                 });
             function appendData(data) {
                 let mainContainer = document.getElementById("myData");
+                // mainContainer.append(document.appendChild(` <table class="table table-bordered" style="width:65%" >
+                // <thead>
+                // <tr>
+                // <th scope="col">fname</th>
+                // <th scope="col">lname</th>
+                // <th scope="col">phone_number</th>
+                // <th scope="col">id</th>
+                // </tr>
+                // </thead>
+                // <tbody>`))
                 for (let i = 0; i < data.length; i++) {
-                    let div = document.createElement("div");
-                    div.innerHTML = data[i].fname + ' ' + data[i].lname+ ' ' + data[i].phone_number + ' ' + data[i].id;
-                    mainContainer.appendChild(div);
+                    let tableRowElement = document.createElement("tr");
+                    tableRowElement.innerHTML = '<td>' +  data[i].fname + ' </td><td>' + data[i].lname+ ' </td><td>' + data[i].phone_number + ' </td><td>' + data[i].id + ' </td>';
+                    mainContainer.appendChild(tableRowElement);
                 }
                 //https://howtocreateapps.com/fetch-and-display-json-html-javascript/   useful article
-            // <table class="table table-bordered" style="width:65%" >
-            //         <thead>
-            //         <tr>
-            //         <th scope="col">fname</th>
-            //         <th scope="col">lname</th>
-            //         <th scope="col">phone_number</th>
-            //         <th scope="col">id</th>
-            //         </tr>
-            //         </thead>
-            //         <tbody>
-            //         <tr>
-            //         <td>user.Fname</td>
-            //         <td>user.Lname</td>
-            //         <td>user.Phone_number</td>
-            //         <td>idStr</td>
-            //         </tr>
-            //         </tbody>
-            //         </table>
             }
         </script>
         <form method="POST" action="del" style="width:35%">
