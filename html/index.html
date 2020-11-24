@@ -98,16 +98,18 @@
             //The DOM Element for The Modal From To add to contacts
             var form = document.getElementById("update_form");
             form.onsubmit = (e) => {
+                //Prevent default occurence when form is submitted e.g(reloading the page)
                 e.preventDefault()
+                //The json to be posted to the api/update endpoint
                 var submitJson = {}
                 for (element of form.elements) {
                     if (element.value=="") {
-                        //return False
+                        return False
                     }
                     submitJson[element.id] = element.value;
                 }
                 console.log(submitJson)
-                //return True
+                return True
             }
         </script>
     </body>
