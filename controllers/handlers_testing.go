@@ -72,9 +72,11 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 	json.NewDecoder(file).Decode(&users)
 
+	i := 0
 	for _, values := range users {
-		if values.ID == user.ID {
-			fmt.Fprintf(w, `Dupliacate id detected`)
+		i++
+		if values.ID != string(i) {
+			user.ID = string(i)
 			return
 		}
 	}
