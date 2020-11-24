@@ -49,7 +49,7 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 			file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 			check(err)
 			fmt.Println("About to delete")
-			users = append(users[i:], users[i+1:]...)
+			users = append(users[:i], users[i+1:]...)
 			json.NewEncoder(file).Encode(&users)
 			file.Close()
 			break
