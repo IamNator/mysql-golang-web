@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	//"sync"
 )
 
@@ -39,21 +40,24 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	file, err := os.Open("data.json")
 	check(err)
 	json.NewDecoder(file).Decode(&users)
+	file.Close()
+
 
 	for i, values := range users {
 		if values.ID == user.ID {
-			file.Close()
 			os.Remove("data.json")
-			filee, _ := os.Open("data.json")
+			file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
+			check(err)
+			fmt.Println("About to delete")
 			users = append(users[i:], users[i+1:]...)
-			json.NewEncoder(filee).Encode(&users)
-			filee.Close()
+			json.NewEncoder(file).Encode(&users)
+			file.Close()
 			break
 		}
 	}
 
 	writer.Header().Set("Content-Type", "application/json")
-	s := "{\"deleted\":\"successfully\"}"
+	s := "deleted"
 	json.NewEncoder(writer).Encode(s)
 
 }
@@ -80,8 +84,8 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		i := 0
 		for _, values := range users {
 			i++
-			if values.ID != string(i) {
-				user.ID = string(i)
+			if values.ID != strconv.Itoa(i) {
+				user.ID = strconv.Itoa(i)
 				break
 			}
 		}
@@ -95,7 +99,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		os.Remove("data.json")
 		file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 		check(err)
-		
+
 		json.NewEncoder(file).Encode(&users)
 		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
