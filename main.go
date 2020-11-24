@@ -30,7 +30,7 @@ func main() {
 
 	myRouter := mux.NewRouter()
 	go fmt.Println("server running...@localhost:9080")
-	myRouter.HandleFunc("/index", views.Index).Methods("GET")
+	myRouter.HandleFunc("/", views.Index).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 
 
