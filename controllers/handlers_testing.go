@@ -86,7 +86,9 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		os.Remove("data.json")
 		file, _ := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 
-		json.NewEncoder(file).Encode(&users)
+		usersJson, _ := json.MarshalIndent(&users, "", "    ")
+		fmt.Fprint(file, &usersJson)
+		//json.NewEncoder(file).Encode(&users)
 		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
 	} else {
