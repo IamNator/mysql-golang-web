@@ -1,7 +1,7 @@
 # mysql-stuff
 
 ###  Contributors
-Emmanueloluwatobi2000@gmail.com - FrontEnd         
+https://github.com/Tee-py - FrontEnd        
 natverior1@gmail.com - BackEnd
 
  Major updates coming soon!
