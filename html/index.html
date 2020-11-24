@@ -38,15 +38,15 @@
                 <form id="update_form">
                     <div class="form-group">
                         <label for="exampleInputEmail1">FirstName</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter FirstName">
+                        <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter FirstName">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">LastName</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter LastName">
+                        <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter LastName">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Phone</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Mobile">
+                        <input type="text" class="form-control" id="phone_number" placeholder="Mobile">
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
                 </form>
@@ -94,6 +94,20 @@
                     newRow.innerHTML = rowHtml
                     index++
                 }
+            }
+            //The DOM Element for The Modal From To add to contacts
+            var form = document.getElementById("update_form");
+            form.onsubmit = (e) => {
+                e.preventDefault()
+                var submitJson = {}
+                for (element of form.elements) {
+                    if (element.value=="") {
+                        //return False
+                    }
+                    submitJson[element.id] = element.value;
+                }
+                console.log(submitJson)
+                //return True
             }
         </script>
     </body>
