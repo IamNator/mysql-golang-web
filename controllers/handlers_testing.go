@@ -31,7 +31,24 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	//del_id := req.FormValue("id")
+	var user models.User
+	var users []models.User
+	json.NewDecoder(req.Body).Decode(&user)
+
+	file, _ := os.Open("data.json")
+	json.NewDecoder(file).Decode(&users)
+
+	for i, values := range users {
+		if values.ID == user.ID {
+			file.Close()
+			os.Remove("data.json")
+			filee, _ := os.Open("data.json")
+			users = append(users[i:], users[i+1:]...)
+			json.NewEncoder(filee).Encode(&users)
+			filee.Close()
+			break
+		}
+	}
 
 	writer.Header().Set("Content-Type", "application/json")
 	s := "{\"deleted\":\"successfully\"}"
@@ -54,6 +71,13 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 
 	json.NewDecoder(req.Body).Decode(&user)
 	json.NewDecoder(file).Decode(&users)
+
+	for _, values := range users {
+		if values.ID == user.ID {
+			fmt.Fprintf(w, `Dupliacate id detected`)
+			return
+		}
+	}
 
 	users = append(users, user)
 

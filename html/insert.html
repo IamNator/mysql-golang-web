@@ -71,12 +71,12 @@
                         <div class="card">
                             <div class="card-header"><strong>Fill your details</strong></div>
                             <div class="card-body">
-                                <form method="POST" action="/form">
+                                <form>
                                     <div class="form-group">
                                         <label class="text-muted" for="exampleInputEmail1">
                                             First Name
                                         </label>
-                                        <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name"> 
+                                        <input type="fname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name">
                                         <small id="emailHelp" class="form-text text-muted">
                                             We don't share your details with anyone
                                         </small>
@@ -85,7 +85,7 @@
                                         <label class="text-muted" for="exampleInputPassword1">
                                             Last Name
                                         </label>
-                                        <input type="name" class="form-control" id="exampleInputPassword1" placeholder="last name"> 
+                                        <input type="lname" class="form-control" id="exampleInputPassword1" placeholder="last name">
                                         <small id="passwordHelp" class="form-text text-muted">
                                             We don't share your details with anyone
                                         </small>
@@ -94,7 +94,7 @@
                                         <label class="text-muted" for="exampleInputPassword1">
                                             Phone Number
                                         </label>
-                                        <input type="name" class="form-control" id="exampleInputPassword1" placeholder="Phone number"> 
+                                        <input type="phone_number" class="form-control" id="exampleInputPassword1" placeholder="Phone number">
                                         <small id="passwordHelp" class="form-text text-muted">
                                             your details are saved in encrypted form
                                         </small>
@@ -106,6 +106,23 @@
                                                 Check me out
                                             </label>
                                         </div>
+                                        <script>
+                                            let url = "/api/update"
+                                            fetch(url, {
+                                                method:"POST",
+                                                body: JSON.stringify({
+                                                    fname: "fname",
+                                                    lname: 'lname',
+                                                    phone_number: "phone_number",
+                                                    id: "id",
+                                                })
+                                            })
+                                                .then(result => {
+                                                    // do something with the result
+                                                    console.log("Completed with result:", result);
+                                                });
+
+                                        </script>
                                     </div> <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
