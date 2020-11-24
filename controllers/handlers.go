@@ -11,7 +11,6 @@ import (
 	//"strconv"
 )
 
-//const GlobalDB := "mysql","user:password@tcp(127.0.0.1:3306)/hello"
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB

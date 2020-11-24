@@ -50,7 +50,9 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 			check(err)
 			fmt.Println("About to delete")
 			users = append(users[:i], users[i+1:]...)
-			json.NewEncoder(file).Encode(&users)
+			jd := json.NewEncoder(file)
+			jd.SetIndent("", "   ")
+			jd.Encode(&users)
 			file.Close()
 			break
 		}
@@ -83,11 +85,11 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	{
 		i := 0
 		for _, values := range users {
-			i++
 			if values.ID != strconv.Itoa(i) {
 				user.ID = strconv.Itoa(i)
 				break
 			}
+			i++
 		}
 	}
 
@@ -99,8 +101,9 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		os.Remove("data.json")
 		file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 		check(err)
-
-		json.NewEncoder(file).Encode(&users)
+		jd := json.NewEncoder(file)
+		jd.SetIndent("", "   ")
+		jd.Encode(&users)
 		fmt.Println("\nData Successfully Added")
 		fmt.Fprintf(w, `Successful`)
 	} else {
