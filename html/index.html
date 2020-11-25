@@ -16,9 +16,9 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
-        <a class="navbar-brand" href="#">
-            <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" style="width: 50px; height: 50px">
-        </a>
+            <a class="navbar-brand" href="#">
+                <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" style="width: 50px; height: 50px">
+            </a>
         </nav>
         <div>
             <h3 class="text-center" style="padding: 20px; font-family: 'Noto Sans JP', sans-serif;">
@@ -28,32 +28,32 @@
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Contact</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="update_form">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">FirstName</label>
-                        <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter FirstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">LastName</label>
-                        <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter LastName">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Phone</label>
-                        <input type="text" class="form-control" id="phone_number" placeholder="Mobile">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Contact</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="update_form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">FirstName</label>
+                            <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter FirstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">LastName</label>
+                            <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter LastName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Phone</label>
+                            <input type="text" class="form-control" id="phone_number" placeholder="Mobile">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
         </div>
@@ -106,7 +106,9 @@
                     if (element.value=="") {
                         //return false
                     }
-                    submitJson[element.id] = element.value;
+                    if (element.id!==""){
+                        submitJson[element.id] = element.value;
+                    }
                 }
                 console.log(submitJson)
                 //return true
