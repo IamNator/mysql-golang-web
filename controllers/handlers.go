@@ -57,20 +57,18 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
+	var user models.User
+	json.NewDecoder(req.Body).Decode(&user)
 
-	del_id := req.FormValue("Del_id")
-
-	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test") //##################
-	// check(err)
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phonenumber WHERE id = ? ;`)
 
-	_, err = stmt.Exec(del_id)
+	_, err = stmt.Exec(user.ID)
 	check(err)
 	//db.Close() //#######################
 
 	writer.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(writer).Encode("\"delete\":\"successful\"")
+	json.NewEncoder(writer).Encode("deleted")
 
 }
 
