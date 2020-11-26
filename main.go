@@ -18,9 +18,9 @@ import (
 func main() {
 	dbData := controllers.DBData{
 		"mysql",          //Type
-		"root",           //User
-		"299792458m/s",   //Password
-		"127.0.0.1:3306", //Host
+		"admin",           //User
+		"3XeaektyhNmPoUqJsifH",   //Password
+		"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306", //Host
 		"test",           //DBName
 		nil,              //Session
 	}
@@ -38,9 +38,9 @@ func main() {
 >>>>>>> 9cf9367f51d5c2900d3ce236a6101e1238149c87
 
 
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")
-	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
-	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET") //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST") //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")//use dbData.Delete_t to test
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
 
 	//defer dbData.CloseDB()

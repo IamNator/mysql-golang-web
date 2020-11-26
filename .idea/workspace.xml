@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mysql-golang-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysql-golang-web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/handlers_testing.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers_testing.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-golang-web.exe" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-golang-web.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +47,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Little Tech/Finito" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -65,8 +64,15 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="422" y="138" key="FileChooserDialogImpl" timestamp="1606259599999">
+      <screen x="0" y="0" width="1284" height="768" />
+    </state>
+    <state x="422" y="138" key="FileChooserDialogImpl/0.0.1284.768@0.0.1284.768" timestamp="1606259599999" />
   </component>
 </project>
