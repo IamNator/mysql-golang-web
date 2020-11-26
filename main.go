@@ -17,25 +17,20 @@ import (
 
 func main() {
 	dbData := controllers.DBData{
-		"mysql",          //Type
-		"admin",           //User
-		"3XeaektyhNmPoUqJsifH",   //Password
-		"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306", //Host
-		"test",           //DBName
-		nil,              //Session
+		DBType: "mysql",          //Type
+		User: "admin",           //User
+		Password: "3XeaektyhNmPoUqJsifH",   //Password
+		Host: "database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306", //Host
+		DBName: "test",           //DBName
+		Session: nil,              //Session
 	}
 
-	// db, _ := dbData.OpenDB()
-	// dbData.Session = db
+	 db, _ := dbData.OpenDB()
+	 dbData.Session = db
 
 	myRouter := mux.NewRouter()
 	go fmt.Println("server running...@localhost:9080")
-<<<<<<< HEAD
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
-	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-=======
-	myRouter.HandleFunc("/index", views.Index).Methods("GET")
->>>>>>> 9cf9367f51d5c2900d3ce236a6101e1238149c87
 
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET") //use dbData.Fetch_t to test
@@ -43,6 +38,6 @@ func main() {
 	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")//use dbData.Delete_t to test
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
 
-	//defer dbData.CloseDB()
+	defer dbData.CloseDB()
 
 }
