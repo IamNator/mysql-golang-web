@@ -13,18 +13,17 @@ import (
 
 func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
 
-	file, err := os.Open("data.json")
+	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	check(err)
-	defer file.Close()
 
 	//var user models.User
 	var users []models.User
 
 	json.NewDecoder(file).Decode(&users)
+	file.Close() //Closes file after it's read
 
 	json.NewEncoder(w).Encode(&users) //Sends an array of user information
 	log.Println("Data fetched")
-	//	db.Close()
 }
 
 func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
