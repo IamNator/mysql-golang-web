@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -21,21 +22,25 @@ func main() {
 		Session: nil,            //Session
 	}
 
-	db, _ := dbData.OpenDB()
-	dbData.Session = db
 
+	//db, _ := dbData.OpenDB()
+	//dbData.Session = db
 
 	myRouter := mux.NewRouter()
-	go fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
 
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")      //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")   //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE") //use dbData.Delete_t to test
 
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET") //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST") //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")//use dbData.Delete_t to test
-	log.Fatal(http.ListenAndServe(":9080", myRouter))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
+	fmt.Printf("server running...@localhost:%s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
-	defer dbData.CloseDB()
+	// defer dbData.CloseDB()
 
 }
 
