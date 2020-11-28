@@ -41,7 +41,6 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(file).Decode(&users)
 	file.Close()
 
-
 	for i, values := range users {
 		if values.ID == user.ID {
 			os.Remove("data.json")
@@ -91,7 +90,6 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 			i++
 		}
 	}
-
 
 	users = append(users, user)
 	fmt.Println("About to enter data")
