@@ -1,5 +1,6 @@
 package main
 
+
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
@@ -13,15 +14,16 @@ import (
 func main() {
 	dbData := controllers.DBData{
 		DBType: "mysql",          //Type
-		User: "admin",           //User
-		Password: "", //"3XeaektyhNmPoUqJsifH",   //Password
-		Host: "",//"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306", //Host
-		DBName: "test",           //DBName
-		Session: nil,              //Session
+		User: "admin",            //User
+		Password: "",             //Password
+		Host: "",				  //Host
+		DBName: "test",          //DBName
+		Session: nil,            //Session
 	}
 
-	 db, _ := dbData.OpenDB()
-	 dbData.Session = db
+	db, _ := dbData.OpenDB()
+	dbData.Session = db
+
 
 	myRouter := mux.NewRouter()
 	go fmt.Println("server running...@localhost:9080")
@@ -36,3 +38,8 @@ func main() {
 	defer dbData.CloseDB()
 
 }
+
+
+
+//"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306",
+//"3XeaektyhNmPoUqJsifH",

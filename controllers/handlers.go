@@ -3,12 +3,13 @@ package controllers
 import (
 	"database/sql"
 	"fmt"
+	"time"
+
 	//"golang.org/x/net/html"
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"net/http"
-	//"strconv"
 )
 
 type DBData struct {
@@ -17,7 +18,11 @@ type DBData struct {
 }
 
 func (db DBData) OpenDB() (*sql.DB, error) {
-	return sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
+	opendb, err := sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
+	db.Session.SetMaxOpenConns(20)
+	db.Session.SetMaxIdleConns(20)
+	db.Session.SetConnMaxLifetime(time.Minute * 5)
+	return opendb, err
 }
 
 func (db DBData) CloseDB() string {
