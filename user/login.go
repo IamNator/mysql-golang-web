@@ -2,11 +2,12 @@ package user
 
 import (
 	"encoding/json"
-	"net/http"
 	"golang.org/x/crypto/bcrypt"
+	"net/http"
 )
 
-func (db DBData) Login(w http.ResponseWriter, req * http.Request){
+
+func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 	var user LoginUser
 	var userdb RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)

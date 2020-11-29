@@ -3,20 +3,13 @@ package user
 import (
 	"database/sql"
 	"encoding/json"
-	//"github.com/IamNator/mysql-golang-web/controllers"
 	"golang.org/x/crypto/bcrypt"
 
 	"log"
 	"net/http"
 )
 
-
-type DBData struct {
-	DBType, User, Password, Host, DBName string
-	Session                              *sql.DB
-}
-
-func (db DBData) Register(w http.ResponseWriter, req *http.Request){
+func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
 	var user RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
 	err := db.Session.QueryRow("Select username From users WHERE username=?", user.userName).Scan(&user)

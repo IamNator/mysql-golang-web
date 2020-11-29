@@ -48,7 +48,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	var users []models.User
 
 	for rows.Next() {
-		err = rows.Scan(&user.Fname, &user.Lname, &user.Phone_number, &user.ID)
+		err = rows.Scan(&user.FirstName, &user.LastName, &user.PhoneNumber, &user.ID)
 		check(err)
 
 		users = append(users, user)
@@ -87,12 +87,12 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
 
-	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && string(user.ID) != "" {
+	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
 
 		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
 	VALUES (?,?,?,?)`)
 
-		_, err = stmt.Exec(user.Fname, user.Lname, user.Phone_number, user.ID)
+		_, err = stmt.Exec(user.FirstName, user.LastName, user.PhoneNumber, user.ID)
 		check(err)
 		//	db.Close() //#######################
 

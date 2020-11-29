@@ -1,9 +1,9 @@
 package main
 
-
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
+	"github.com/IamNator/mysql-golang-web/models"
 	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
 	_ "github.com/go-sql-driver/mysql"
@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	dbData := controllers.DBData{
+	dbGeneral := models.DBData{
 		DBType: "mysql",          //Type
 		User: "admin",            //User
 		Password: "",             //Password
@@ -25,7 +25,12 @@ func main() {
 
 	//db, _ := dbData.OpenDB()
 	//dbData.Session = db
-	dbUser := user.DBData(dbData)
+	dbData := controllers.DBData(dbGeneral)
+	dbUser := user.DBData(dbGeneral)
+	//dbMigration := migrations.DBData(dbGeneral)
+	//
+	//dbMigration.CreateUserDb()
+	//dbMigration.CreatePhoneBookDb()
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
