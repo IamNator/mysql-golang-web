@@ -20,22 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/AUTHORS" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/CONTRIBUTORS" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/PATENTS" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/bcrypt/base64.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/bcrypt/bcrypt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/block.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/cipher.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/const.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
