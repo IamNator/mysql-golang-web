@@ -21,14 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/engine/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/engine/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

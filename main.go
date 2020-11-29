@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
-	"github.com/IamNator/mysql-golang-web/models"
+	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
 	_ "github.com/go-sql-driver/mysql"
@@ -14,32 +14,33 @@ import (
 )
 
 func main() {
-	dbGeneral := models.DBData{
-		DBType: "mysql",          //Type
-		User: "admin",            //User
-		Password: "",             //Password
-		Host: "",				  //Host
-		DBName: "test",          //DBName
-		Session: nil,            //Session
+	dbGeneral := controllers.DBData{
+		DBType:   "mysql",          //Type
+		User:     "admin",          //User
+		Password: "299792458m/sN",  //Password
+		Host:     "localhost:3306", //Host
+		DBName:   "test",           //DBName
+		Session:  nil,              //Session
 	}
 
-	//db, _ := dbData.OpenDB()
-	//dbData.Session = db
+	db, _ := dbGeneral.OpenDB()
+	dbGeneral.Session = db
+
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
-	//dbMigration := migrations.DBData(dbGeneral)
+	dbMigration := migrations.DBData(dbGeneral)
 	//
-	//dbMigration.CreateUserDb()
-	//dbMigration.CreatePhoneBookDb()
+	dbMigration.CreateUserDb()
+	dbMigration.CreatePhoneBookDb()
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")      //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")   //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE") //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")          //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Register_t to test
-	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE") //use dbData.Login_t to test
+	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -51,8 +52,6 @@ func main() {
 	// defer dbData.CloseDB()
 
 }
-
-
 
 //"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306",
 //"3XeaektyhNmPoUqJsifH",
