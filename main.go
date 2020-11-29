@@ -33,7 +33,8 @@ func main() {
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")      //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")   //use dbData.Update_t to test
 	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE") //use dbData.Delete_t to test
-	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Register_t to test
+	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE") //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
