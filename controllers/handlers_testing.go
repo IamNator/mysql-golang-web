@@ -11,7 +11,7 @@ import (
 	//"sync"
 )
 
-func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
+func (db *DBData) Fetch_t(w http.ResponseWriter, _ *http.Request) {
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	check(err)
