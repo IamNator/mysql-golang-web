@@ -20,7 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/CONTRIBUTORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/PATENTS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/bcrypt/base64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/bcrypt/bcrypt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/block.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/cipher.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/crypto/blowfish/const.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +44,12 @@
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
@@ -87,5 +108,13 @@
       <screen x="0" y="0" width="1284" height="768" />
     </state>
     <state x="422" y="138" key="FileChooserDialogImpl/0.0.1284.768@0.0.1284.768" timestamp="1606259599999" />
+    <state x="237" y="117" key="Vcs.Push.Dialog.v2" timestamp="1606632489132">
+      <screen x="0" y="0" width="1291" height="768" />
+    </state>
+    <state x="237" y="117" key="Vcs.Push.Dialog.v2/0.0.1291.768@0.0.1291.768" timestamp="1606632489132" />
+    <state x="463" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606632535767">
+      <screen x="0" y="0" width="1291" height="768" />
+    </state>
+    <state x="463" y="298" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1291.768@0.0.1291.768" timestamp="1606632535767" />
   </component>
 </project>
