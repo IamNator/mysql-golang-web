@@ -41,7 +41,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	db.Session.Ping()
 
-	rows, err := db.Session.Query(`SELECT fname, lname, phone_number, id FROM phonenumber`)
+	rows, err := db.Session.Query(`SELECT fname, lname, phone_number, id FROM phoneBook`)
 	check(err)
 
 	var user models.User
@@ -66,7 +66,7 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 
 
-	stmt, err := db.Session.Prepare(`DELETE FROM phonenumber WHERE id = ? ;`)
+	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? ;`)
 
 	_, err = stmt.Exec(user.ID)
 	check(err)

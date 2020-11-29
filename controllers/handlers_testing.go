@@ -93,7 +93,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 
 	users = append(users, user)
 	fmt.Println("About to enter data")
-	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && user.ID != "" {
+	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && user.ID != "" {
 		file.Close()
 		os.Remove("data.json")
 		file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
