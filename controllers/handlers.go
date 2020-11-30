@@ -39,7 +39,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	db.Session.Ping()
 
-	rows, err := db.Session.Query(`SELECT fname, lname, phone_number, id FROM phoneBook`)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook`)
 	check(err)
 
 	var user models.User
@@ -87,12 +87,11 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 
 	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
 
-		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (FName,LName,phone_number)
+		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
 		_, err = stmt.Exec(user.FirstName, user.LastName, user.PhoneNumber)
 		check(err)
-		//	db.Close() //#######################
 
 		if err != nil {
 			fmt.Fprintln(w, err)

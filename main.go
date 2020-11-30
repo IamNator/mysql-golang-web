@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
 	//"github.com/IamNator/mysql-golang-web/database/migrations"
-	"github.com/IamNator/mysql-golang-web/database/seeders"
+	//"github.com/IamNator/mysql-golang-web/database/seeders"
 	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
 	_ "github.com/go-sql-driver/mysql"
@@ -33,11 +33,11 @@ func main() {
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
 	//dbMigration := migrations.DBData(dbGeneral)
-	dbSeeders := seeders.DBData(dbGeneral)
+	//dbSeeders := seeders.DBData(dbGeneral)
 
 	//dbMigration.CreateUserDb()
 	//dbMigration.CreatePhoneBookDb()
-	dbSeeders.FillDb()
+	//dbSeeders.FillDb()
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/", views.Index).Methods("GET")

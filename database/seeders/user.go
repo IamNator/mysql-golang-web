@@ -28,7 +28,7 @@ func (db DBData) FillDb() {
 		for _, values := range users {
 
 			stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (FirstName,LastName,PhoneNumber)
-	VALUES (?,?,?,?)`)
+	VALUES (?,?,?)`)
 
 			_, err = stmt.Exec(values.FirstName, values.LastName, values.PhoneNumber)
 			check(err)
