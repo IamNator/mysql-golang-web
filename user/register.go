@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"golang.org/x/crypto/bcrypt"
-
 	"log"
 	"net/http"
 )

@@ -89,10 +89,10 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 
 	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
 
-		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (fname,lname,phone_number,id)
+		stmt, err := db.Session.Prepare(`INSERT INTO phonenumber (FName,LName,phone_number)
 	VALUES (?,?,?,?)`)
 
-		_, err = stmt.Exec(user.FirstName, user.LastName, user.PhoneNumber, user.ID)
+		_, err = stmt.Exec(user.FirstName, user.LastName, user.PhoneNumber)
 		check(err)
 		//	db.Close() //#######################
 

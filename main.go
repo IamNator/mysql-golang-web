@@ -13,13 +13,16 @@ import (
 	"os"
 )
 
+
+//"mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test"
+
 func main() {
 	dbGeneral := controllers.DBData{
 		DBType:   "mysql",          //Type
-		User:     "admin",          //User
+		User:     "root",          //User
 		Password: "299792458m/sN",  //Password
 		Host:     "localhost:3306", //Host
-		DBName:   "test",           //DBName
+		DBName:   "app",           //DBName
 		Session:  nil,              //Session
 	}
 
@@ -29,7 +32,7 @@ func main() {
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
 	dbMigration := migrations.DBData(dbGeneral)
-	//
+
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
 
@@ -49,7 +52,7 @@ func main() {
 	fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
-	// defer dbData.CloseDB()
+	defer dbData.CloseDB()
 
 }
 

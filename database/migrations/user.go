@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-//
-//import "database/sql"
-
-
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
@@ -18,8 +14,8 @@ type DBData struct {
 
 func (db *DBData) CreateUserDb() {
 
-	query := `CREATE TABLE IF NOT EXISTS users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50),  
-        password VARCHAR(120), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
+	query := `CREATE TABLE IF NOT EXISTS users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username NCHAR(50),  
+        password NCHAR(120), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
 
 	ctx, cancelfunc := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancelfunc()
@@ -42,8 +38,8 @@ func (db *DBData) CreateUserDb() {
 
 func (db *DBData) CreatePhoneBookDb() {
 
-	query := `CREATE TABLE IF NOT EXISTS phoneBook(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, fname VARCHAR(50),  
-        lname VARCHAR(50), phone_number  VARCHAR(16), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
+	query := `CREATE TABLE IF NOT EXISTS phoneBook(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, FirstName NCHAR(50),  
+        LastName NCHAR(50), phoneNumber  VARCHAR(16), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
 
 	//SELECT fname, lname, phone_number, id FROM phoneBook`)
 	ctx, cancelfunc := context.WithTimeout(context.Background(), 5*time.Second)
@@ -63,18 +59,3 @@ func (db *DBData) CreatePhoneBookDb() {
 	log.Printf("Rows affected when creating table: %d", rows)
 
 }
-//
-//
-//type User struct {
-//	Fname        string `json:"fname"`
-//	Lname        string `json:"lname"`
-//	Phone_number string `json:"phone_number"`
-//	ID           string `json:"id"`
-//}
-
-
-//CREATE TABLE users(
-//id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//username VARCHAR(50),
-//password VARCHAR(120)
-//);
