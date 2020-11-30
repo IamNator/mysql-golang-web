@@ -3,10 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
-	//"github.com/IamNator/mysql-golang-web/database/migrations"
-	//"github.com/IamNator/mysql-golang-web/database/seeders"
-	"github.com/IamNator/mysql-golang-web/user"
-	"github.com/IamNator/mysql-golang-web/views"
+	"github.com/IamNator/mysql-golang-web/database/migrations"
+	"github.com/IamNator/mysql-golang-web/database/seeders"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
@@ -31,22 +30,21 @@ func main() {
 	dbGeneral.Session = db
 
 	dbData := controllers.DBData(dbGeneral)
-	dbUser := user.DBData(dbGeneral)
-	//dbMigration := migrations.DBData(dbGeneral)
-	//dbSeeders := seeders.DBData(dbGeneral)
+	//dbUser := user.DBData(dbGeneral)
 
-	//dbMigration.CreateUserDb()
-	//dbMigration.CreatePhoneBookDb()
-	//dbSeeders.FillDb()
+    if !dbGeneral.DbExists() {
+		CreateAndFillDb(&dbGeneral)
+    	fmt.Print("Database created and updated")
+	}
 
 	myRouter := mux.NewRouter()
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
+	//myRouter.HandleFunc("/", views.Index).Methods("GET")
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")          //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
-	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Register_t to test
-	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE")       //use dbData.Login_t to test
+	//myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
+	//myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
+	//myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Register_t to test
+	//myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -57,6 +55,14 @@ func main() {
 
 	defer dbData.CloseDB()
 
+}
+
+func CreateAndFillDb(dbGeneral * controllers.DBData){
+	dbMigration := migrations.DBData(*dbGeneral)
+	dbSeeders := seeders.DBData(*dbGeneral)
+	dbMigration.CreateUserDb()
+	dbMigration.CreatePhoneBookDb()
+	dbSeeders.FillDb()
 }
 
 //"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306",

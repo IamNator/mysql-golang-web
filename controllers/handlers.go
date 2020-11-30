@@ -32,6 +32,19 @@ func (db DBData) CloseDB() string {
 	}
 }
 
+func (db * DBData) DbExists() bool {
+	var id int
+	idn := 1
+	err := db.Session.QueryRow("Select id From phoneBook WHERE id=?", idn ).Scan(&id)
+	if err != nil {
+	//	fmt.Println(err)
+		return false
+	} else {
+	//	fmt.Println(err)
+		return true
+	}
+}
+
 func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
