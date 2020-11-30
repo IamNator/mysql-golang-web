@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
-	"github.com/IamNator/mysql-golang-web/database/migrations"
+	//"github.com/IamNator/mysql-golang-web/database/migrations"
+	"github.com/IamNator/mysql-golang-web/database/seeders"
 	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
 	_ "github.com/go-sql-driver/mysql"
@@ -20,8 +21,8 @@ func main() {
 	dbGeneral := controllers.DBData{
 		DBType:   "mysql",          //Type
 		User:     "root",          //User
-		Password: "299792458m/sN",  //Password
-		Host:     "localhost:3306", //Host
+		Password: "299792458m/s",  //Password
+		Host:     "127.0.0.1:3306", //Host
 		DBName:   "app",           //DBName
 		Session:  nil,              //Session
 	}
@@ -31,10 +32,12 @@ func main() {
 
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
-	dbMigration := migrations.DBData(dbGeneral)
+	//dbMigration := migrations.DBData(dbGeneral)
+	dbSeeders := seeders.DBData(dbGeneral)
 
-	dbMigration.CreateUserDb()
-	dbMigration.CreatePhoneBookDb()
+	//dbMigration.CreateUserDb()
+	//dbMigration.CreatePhoneBookDb()
+	dbSeeders.FillDb()
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/", views.Index).Methods("GET")

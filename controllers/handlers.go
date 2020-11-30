@@ -3,8 +3,6 @@ package controllers
 import (
 	"database/sql"
 	"fmt"
-	"time"
-
 	//"golang.org/x/net/html"
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
@@ -19,9 +17,9 @@ type DBData struct {
 
 func (db DBData) OpenDB() (*sql.DB, error) {
 	opendb, err := sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
-	db.Session.SetMaxOpenConns(20)
-	db.Session.SetMaxIdleConns(20)
-	db.Session.SetConnMaxLifetime(time.Minute * 5)
+	//db.Session.SetMaxOpenConns(20)
+	//db.Session.SetMaxIdleConns(20)
+	//db.Session.SetConnMaxLifetime(time.Minute * 5)
 	return opendb, err
 }
 

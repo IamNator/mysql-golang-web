@@ -21,14 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-golang-web.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,11 +117,11 @@
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="410" y="186" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1291.768@0.0.1291.768" timestamp="1606630894817" />
-    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1606720213622">
+    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1606721251530">
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="422" y="138" key="FileChooserDialogImpl/0.0.1284.768@0.0.1284.768" timestamp="1606259599999" />
-    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1606720213622" />
+    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1606721251530" />
     <state x="237" y="117" key="Vcs.Push.Dialog.v2" timestamp="1606657911924">
       <screen x="0" y="0" width="1291" height="768" />
     </state>

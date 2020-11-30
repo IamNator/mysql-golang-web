@@ -15,8 +15,7 @@ type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
 }
-//
-//
+
 //type DBDATA interface {
 //	//From controllers
 //	Fetch(w http.ResponseWriter, req *http.Request)
