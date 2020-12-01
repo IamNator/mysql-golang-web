@@ -59,7 +59,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	var users []models.User
 
 	for rows.Next() {
-		err = rows.Scan(&user.FirstName, &user.LastName, &user.PhoneNumber, &user.ID)
+		err = rows.Scan( &user.ID, &user.FirstName, &user.LastName, &user.PhoneNumber)
 		check(err)
 
 		users = append(users, user)
