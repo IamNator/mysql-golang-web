@@ -76,7 +76,6 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
 
-
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? ;`)
 
 	_, err = stmt.Exec(user.ID)

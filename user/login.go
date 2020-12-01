@@ -31,7 +31,7 @@ func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 
 	http.SetCookie(w, &http.Cookie{
 		Name: "session_id",
-		Value: id,
+		Value: id+userdb.Password.String(),
 	})
 	w.Write([]byte(userdb.userName + "logged in successfully"))
 }
