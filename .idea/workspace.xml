@@ -20,19 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/codec.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/generator.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/sql.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/github.com/satori/go.uuid/uuid.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
