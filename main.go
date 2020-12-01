@@ -23,8 +23,8 @@ func main() {
 		DBType:   "mysql",          //Type
 		User:     "b7e0a0a81fef1f", //User
 		Password: "2e02951d",  //Password
-		Host:     "mysql://b7e0a0a81fef1f:2e02951d@eu-cdbr-west-03.cleardb.net/heroku_31043c4e11d34ce?reconnect=true:3306", //Host 3306
-		DBName:   "app",           //DBName
+		Host:     "eu-cdbr-west-03.cleardb.net", //Host 3306
+		DBName:   "heroku_31043c4e11d34ce",           //DBName
 		Session:  nil,              //Session
 	}
 
