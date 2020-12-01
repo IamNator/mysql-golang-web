@@ -7,4 +7,16 @@ natverior1@gmail.com - BackEnd
 https://mysql-golang-app.herokuapp.com/
 
  A simple web interface. The Backend is built entirely on golang, mySql database used.
+ 
 
+json for Registering User 
+	{  "username":"<username>"
+	    "email":"<email>"
+	    "password":"<password>"
+
+json for Logging in User 
+    {
+	    "username":"<username>"
+	    "email":"<email>"
+	    "password":"<password>"
+    }
