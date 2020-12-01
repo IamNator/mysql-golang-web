@@ -28,11 +28,11 @@ func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 		http.Redirect(w, req, "/register", 301)
 		return
 	}
-	
+
 
 	http.SetCookie(w, &http.Cookie{
 		Name: "session_id",
-		Value: id+userdb.Password.String(),
+		Value: id+userdb.Password,
 	})
 	w.Write([]byte(userdb.userName + "logged in successfully"))
 }
