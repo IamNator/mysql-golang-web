@@ -41,14 +41,16 @@ json for delete contacts
 ### Sessions
 SessionID is the cookie value. A cookie is created when the user login or registers
 
-#### /api/register - POST
+
+##### /api/register - POST
 json for Registering User     
 	{      
 	    "username":"<username>"   
 	    "password":"<password>"   
 	}   
 
-#### /api/login - POST
+
+##### /api/login - POST
 json for Logging in User     
     {   
 	    "username":"<username>"    
