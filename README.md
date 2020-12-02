@@ -13,12 +13,12 @@ https://mysql-golang-app.herokuapp.com/
 
 ##### /api/update - POST
 json for adding contacts   
-	{  		
-		"fname":"<First Name>",                                    	   	
-		"lname":"<Last Name>",                            			
-		"phone_number":"<phone number>",                                          	  	
-		"id":"<id>"                                      		
-	}        
+	{    
+		"fname":"<First Name>",    
+		"lname":"<Last Name>",   
+		"phone_number":"Phone Number",   
+		"id":"<id>"   
+	}    
 	
 ##### /api/fetch - GET
 json for fetching contacts   
@@ -42,14 +42,14 @@ json for delete contacts
 SessionID is the cookie value. A cookie is created when the user login or registers
 
 #### /api/register - POST
-json for Registering User 
-	{  "username":"<username>"
-	    "password":"<password>"
-	}
+json for Registering User     
+	{  "username":"<username>"   
+	    "password":"<password>"   
+	}   
 
 #### /api/login - POST
-json for Logging in User 
+json for Logging in User     
     {
-	    "username":"<username>"
-	    "password":"<password>"
-    }
+	    "username":"<username>"    
+	    "password":"<password>"    
+    }    
