@@ -18,20 +18,3 @@ type DBData struct {
 }
 
 
-
-
-
-
-//type DBDATA interface {
-//	//From controllers
-//	Fetch(w http.ResponseWriter, req *http.Request)
-//	Delete(writer http.ResponseWriter, req *http.Request)
-//	Update(w http.ResponseWriter, req *http.Request)
-//	//From migrations
-//	FillDb()
-//	CreateUserDb()
-//	CreatePhoneBookDb()
-//	//From users
-//	Register(w http.ResponseWriter, req *http.Request)
-//	Login(w http.ResponseWriter, req * http.Request)
-//}

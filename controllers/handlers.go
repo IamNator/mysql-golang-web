@@ -90,12 +90,14 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
-	var user models.User
+	var user struct{
+		id string `json:"id"`
+	}
 	json.NewDecoder(req.Body).Decode(&user)
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? ;`)
 
-	_, err = stmt.Exec(user.ID)
+	_, err = stmt.Exec(user)
 	check(err)
 	//db.Close() //#######################
 
