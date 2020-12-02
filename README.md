@@ -43,13 +43,14 @@ SessionID is the cookie value. A cookie is created when the user login or regist
 
 #### /api/register - POST
 json for Registering User     
-	{  "username":"<username>"   
+	{      
+	    "username":"<username>"   
 	    "password":"<password>"   
 	}   
 
 #### /api/login - POST
 json for Logging in User     
-    {
+    {   
 	    "username":"<username>"    
 	    "password":"<password>"    
     }    
