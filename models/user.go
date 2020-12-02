@@ -14,7 +14,13 @@ type User struct {
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
+	SessionIDs							 map[string]string
 }
+
+
+
+
+
 
 //type DBDATA interface {
 //	//From controllers

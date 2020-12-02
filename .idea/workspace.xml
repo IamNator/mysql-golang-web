@@ -20,7 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +118,10 @@
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="437" y="217" key="#Go_Modules/0.0.1291.768@0.0.1291.768" timestamp="1606584966852" />
+    <state x="99" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606888436585">
+      <screen x="0" y="0" width="1291" height="768" />
+    </state>
+    <state x="99" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1291.768@0.0.1291.768" timestamp="1606888436585" />
     <state x="410" y="186" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606630894817">
       <screen x="0" y="0" width="1291" height="768" />
     </state>

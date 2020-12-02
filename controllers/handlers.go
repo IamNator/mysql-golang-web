@@ -13,6 +13,8 @@ import (
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
+	SessionIDs							 map[string]string
+	SessionUsers						 map[string]string
 }
 
 func (db DBData) OpenDB() (*sql.DB, error) {
@@ -49,6 +51,17 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
 	// check(err)
+	cookie, err :=  req.Cookie("session-id")
+	check(err)
+	userName := db.SessionIDs[cookie.Value]
+	if _, ok := db.SessionUsers[userName]; ok {
+			if err != nil {
+			http.Redirect(w, req, "/register", 301)
+			return
+		}
+
+	}
+	//db.SessionIDs[id] = user.userName
 
 	db.Session.Ping()
 

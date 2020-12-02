@@ -26,6 +26,8 @@ func main() {
 		Host:     "eu-cdbr-west-03.cleardb.net", //Host 3306
 		DBName:   "heroku_31043c4e11d34ce",           //DBName
 		Session:  nil,              //Session
+		SessionIDs:	nil,			 //map[string]string
+		SessionUsers: nil,	// map[string]string
 	}
 
 	db, _ := dbGeneral.OpenDB()

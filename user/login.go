@@ -3,9 +3,10 @@ package user
 import (
 	"encoding/json"
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
 	"github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
+	"time"
 )
 
 
@@ -14,8 +15,7 @@ func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 	var userdb RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
 
-	id := uuid.NewV4().String()
-	fmt.Println(id)
+
 
 	err:= db.Session.QueryRow("SELECT username, password FROM users WHERE username=?", user.userName).Scan(&userdb.userName, &userdb.Password)
 	if err != nil {
@@ -30,9 +30,20 @@ func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 	}
 
 
-	http.SetCookie(w, &http.Cookie{
-		Name: "session_id",
-		Value: id+userdb.Password,
-	})
+	http.SetCookie(w, LoginCookie(user.userName, db))
 	w.Write([]byte(userdb.userName + "logged in successfully"))
+}
+
+func LoginCookie(username string, db * DBData) * http.Cookie {
+	expire := time.Now().AddDate(0,0,1)
+	id := uuid.NewV4().String()
+	db.SessionIDs[id] = username
+	db.SessionUsers[username] = "loggedIN"
+	fmt.Println(id)
+	return &http.Cookie{
+		Name: "sessionID",
+		Value: id,
+		Expires: expire,
+		//Secure: true,
+	}
 }
