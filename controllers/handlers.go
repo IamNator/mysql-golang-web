@@ -51,14 +51,18 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
 	// check(err)
-	cookie, err :=  req.Cookie("session-id")
-	check(err)
+	cookie, err :=  req.Cookie("sessionID")
+	if err != nil {
+		http.Redirect(w, req, "/", 301)
+		fmt.Println("Cookie not found")
+		return
+
+	}
 	userName := db.SessionIDs[cookie.Value]
 	if _, ok := db.SessionUsers[userName]; ok {
-			if err != nil {
-			http.Redirect(w, req, "/register", 301)
+			http.Redirect(w, req, "/", 301)
+		    fmt.Println("Cookie.Value does not match userNAme")
 			return
-		}
 
 	}
 	//db.SessionIDs[id] = user.userName

@@ -23,12 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

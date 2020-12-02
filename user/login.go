@@ -29,7 +29,6 @@ func (db * DBData) Login(w http.ResponseWriter, req * http.Request){
 		return
 	}
 
-
 	http.SetCookie(w, LoginCookie(user.userName, db))
 	w.Write([]byte(userdb.userName + "logged in successfully"))
 }

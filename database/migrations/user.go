@@ -19,7 +19,7 @@ func (db *DBData) CreateUserDb() {
 	query := `CREATE TABLE IF NOT EXISTS users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username NCHAR(50),  
         password NCHAR(120), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
 
-	ctx, cancelfunc := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancelfunc := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancelfunc()
 
 	res, err := db.Session.ExecContext(ctx, query)

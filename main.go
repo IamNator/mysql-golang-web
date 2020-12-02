@@ -21,13 +21,13 @@ import (
 func main() {
 	dbGeneral := controllers.DBData{
 		DBType:   "mysql",          //Type
-		User:     "b7e0a0a81fef1f", //User
-		Password: "2e02951d",  //Password
-		Host:     "eu-cdbr-west-03.cleardb.net", //Host 3306
-		DBName:   "heroku_31043c4e11d34ce",           //DBName
+		User:     "root",//"b7e0a0a81fef1f", //User
+		Password: "299792458m/s",//"2e02951d",  //Password
+		Host:     "localhost:3306",//"eu-cdbr-west-03.cleardb.net", //Host 3306
+		DBName:   "app",//"heroku_31043c4e11d34ce",           //DBName
 		Session:  nil,              //Session
-		SessionIDs:	nil,			 //map[string]string
-		SessionUsers: nil,	// map[string]string
+		SessionIDs:	make(map[string]string),			 //map[string]string
+		SessionUsers: make(map[string]string),	// map[string]string
 	}
 
 	db, _ := dbGeneral.OpenDB()
@@ -47,8 +47,8 @@ func main() {
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")          //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
 	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
-	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("DELETE") //use dbData.Register_t to test
-	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("DELETE")       //use dbData.Login_t to test
+	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
+	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
