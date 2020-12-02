@@ -14,7 +14,7 @@ https://mysql-golang-app.herokuapp.com/
 ##### /api/update - POST
 json for adding contacts   
 	{    
-<space>	</space>	"fname":"<First Name>",    
+		"fname":"<First Name>",    
 		"lname":"<Last Name>",   
 		"phone_number":"Phone Number",   
 		"id":"<id>"   
@@ -22,19 +22,11 @@ json for adding contacts
 	
 ##### /api/fetch - GET
 json for fetching contacts   
-	{    
-		"fname":"",    
-		"lname":"",   
-		"phone_number":"",   
-		"id":"<id>"   
-	}
+
 	
 ##### /api/delete - DELETE
 json for delete contacts        
-	{    
-		"fname":"",    
-		"lname":"",     
-		"phone_number":"",     
+	{       
 		"id":"<id>"    
 	}     
  
