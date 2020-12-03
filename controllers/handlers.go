@@ -70,7 +70,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	db.Session.Ping()
 
-	rows, err := db.Session.Query(`SELECT FirstName, LastName, PhoneNumber FROM phoneBook WHERE UserID=?`, SessionUserID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE UserID=`+ SessionUserID)
 	check(err)
 
 	var user models.User
@@ -83,7 +83,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 		users = append(users, user)
 	}
 	json.NewEncoder(w).Encode(users) //Sends an array of user information
-	//	db.Close()
+
 }
 
 func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
@@ -92,13 +92,13 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var user struct{
-		id string `json:"id"`
+		ID string `json:"id"`
 	}
 	json.NewDecoder(req.Body).Decode(&user)
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? ;`)
 
-	_, err = stmt.Exec(user)
+	_, err = stmt.Exec(user.ID)
 	check(err)
 	//db.Close() //#######################
 
@@ -118,11 +118,14 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 
 	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
-
-		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (FirstName,LastName,phoneNumber)
+		//code needs optimization
+		var userid string
+		ck, _ := req.Cookie("sessionID")
+		userid = db.SessionUsers[ck.Value]
+		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
-		_, err = stmt.Exec(user.FirstName, user.LastName, user.PhoneNumber)
+		_, err = stmt.Exec(userid, user.FirstName, user.LastName, user.PhoneNumber)
 		check(err)
 
 		if err != nil {
