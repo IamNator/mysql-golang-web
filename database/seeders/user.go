@@ -3,6 +3,7 @@ package seeders
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"github.com/IamNator/mysql-golang-web/models"
 	"golang.org/x/crypto/bcrypt"
 	"log"
@@ -16,10 +17,11 @@ type DBData struct {
 	SessionUsers						 map[string]string
 }
 
-type user struct{
-	userName string `json:"username"`
-	passWord string `json:"password"`
+type user struct {
+	UserName        string `json:"username"`
+	PassWord        string `json:"password"`
 }
+
 
 
 
@@ -34,9 +36,11 @@ func (db DBData) FillUSerDb() {
 	var users []user
 
 	json.NewDecoder(file).Decode(&users)
+
+	fmt.Println(users)
 	for _, values := range users {
-		v, _ := bcrypt.GenerateFromPassword([]byte(values.passWord), bcrypt.DefaultCost)
-		values.passWord = string(v)
+		v, _ := bcrypt.GenerateFromPassword([]byte(values.PassWord), bcrypt.DefaultCost)
+		values.PassWord = string(v)
 	}
 
 
@@ -45,7 +49,7 @@ func (db DBData) FillUSerDb() {
 		stmt, err := db.Session.Prepare(`INSERT INTO users ( username, password)
 	VALUES (?,?)`)
 
-		_, err = stmt.Exec( values.userName, values.passWord)
+		_, err = stmt.Exec( values.UserName, values.PassWord)
 		check(err)
 	}
 
@@ -61,12 +65,13 @@ func (db DBData) FillDb() {
 	var users []models.User
 
 	json.NewDecoder(file).Decode(&users)
+	//fmt.Println(users)
 
 
 		for _, values := range users {
 
-			stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,PhoneNumber)
-	VALUES (?,?,?)`)
+			stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
+	VALUES (?,?,?,?)`)
 
 			_, err = stmt.Exec(values.ID, values.FirstName, values.LastName, values.PhoneNumber)
 			check(err)

@@ -47,7 +47,7 @@ func main() {
 
     if !dbGeneral.DbExists() {
 		CreateAndFillDb(&dbGeneral)
-    	fmt.Print("Database created and updated")
+    	fmt.Println("Database created and updated")
 	}
 
 	myRouter := mux.NewRouter()
@@ -75,5 +75,8 @@ func CreateAndFillDb(dbGeneral * controllers.DBData){
 	dbSeeders := seeders.DBData(*dbGeneral)
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
+	//fmt.Println("err1")
+	dbSeeders.FillUSerDb()
+	//fmt.Println("err2")
 	dbSeeders.FillDb()
 }
