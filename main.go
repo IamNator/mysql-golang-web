@@ -16,17 +16,15 @@ import (
 )
 
 
-//"mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test"
-
 func main() {
 	dbGeneral := controllers.DBData{
-		DBType:   "mysql",          //Type
-		User:     "b7e0a0a81fef1f", //User
-		Password: "2e02951d",  //Password
-		Host:     "eu-cdbr-west-03.cleardb.net", //Host 3306
-		DBName:   "heroku_31043c4e11d34ce",           //DBName
-		Session:  nil,              //Session
-		SessionIDs:	make(map[string]string),			 //map[string]string
+		DBType:   "mysql",                      //Type
+		User:     "b7e0a0a81fef1f",			    //User
+		Password: "2e02951d",  					//Password
+		Host:     "eu-cdbr-west-03.cleardb.net",//Host 3306
+		DBName:   "heroku_31043c4e11d34ce",     //DBName
+		Session:  nil,              			//Session
+		SessionIDs:	make(map[string]string),	//map[string]string
 		SessionUsers: make(map[string]string),	// map[string]string
 	}
 
