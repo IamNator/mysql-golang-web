@@ -95,10 +95,12 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 		ID string `json:"id"`
 	}
 	json.NewDecoder(req.Body).Decode(&user)
+	ck, _ := req.Cookie("sessionID")
+	username := db.SessionIDs[ck.Value]
+	userID := db.SessionUsers[username]
 
-	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? ;`)
-
-	_, err = stmt.Exec(user.ID)
+	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ?, userID = ? ;`)
+	_, err = stmt.Exec(user.ID, userID)
 	check(err)
 	//db.Close() //#######################
 
