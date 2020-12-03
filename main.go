@@ -32,12 +32,12 @@ func main() {
 
 	//dbGeneral := controllers.DBData{
 	//	DBType:   "mysql",          //Type
-	//	User:     "root",//"b7e0a0a81fef1f", //User
-	//	Password: "299792458m/s",//"2e02951d",  //Password
-	//	Host:     "localhost:3306",//"eu-cdbr-west-03.cleardb.net", //Host 3306
-	//	DBName:   "app",//"heroku_31043c4e11d34ce",           //DBName
+	//	User:     "root",    	    //User
+	//	Password: "299792458m/s",   //Password
+	//	Host:     "localhost:3306", //Host 3306
+	//	DBName:   "app",  			//DBName
 	//	Session:  nil,              //Session
-	//	SessionIDs:	make(map[string]string),			 //map[string]string
+	//	SessionIDs:	make(map[string]string),	//map[string]string
 	//	SessionUsers: make(map[string]string),	// map[string]string
 	//}
 
@@ -79,6 +79,3 @@ func CreateAndFillDb(dbGeneral * controllers.DBData){
 	dbMigration.CreatePhoneBookDb()
 	dbSeeders.FillDb()
 }
-
-//"database-1.cakv5tpw09ys.eu-west-2.rds.amazonaws.com:3306",
-//"3XeaektyhNmPoUqJsifH",
