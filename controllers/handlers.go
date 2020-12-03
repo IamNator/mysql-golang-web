@@ -48,7 +48,7 @@ func (db * DBData) DbExists() bool {
 }
 
 func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
-
+	var SessionUserID string
 	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
 	// check(err)
 	cookie, err :=  req.Cookie("sessionID")
@@ -59,17 +59,18 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	}
 	userName := db.SessionIDs[cookie.Value]
-	if _, ok := db.SessionUsers[userName]; ok {
-			http.Redirect(w, req, "/", 301)
-		    fmt.Println("Cookie.Value does not match userNAme")
-			return
-
+	if id, ok := db.SessionUsers[userName]; ok {
+		SessionUserID = id
+	} else {
+		http.Redirect(w, req, "/", 301)
+		fmt.Println("Cookie.Value does not match userNAme")
+		return
 	}
 	//db.SessionIDs[id] = user.userName
 
 	db.Session.Ping()
 
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook`)
+	rows, err := db.Session.Query(`SELECT FirstName, LastName, PhoneNumber FROM phoneBook WHERE UserID=?`, SessionUserID)
 	check(err)
 
 	var user models.User

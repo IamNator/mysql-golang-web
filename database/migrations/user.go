@@ -40,10 +40,10 @@ func (db *DBData) CreateUserDb() {
 
 func (db *DBData) CreatePhoneBookDb() {
 
-	query := `CREATE TABLE IF NOT EXISTS phoneBook(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, FirstName NCHAR(50),  
+	query := `CREATE TABLE IF NOT EXISTS phoneBook(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, userID INT NOT NULL FOREIGN KEY, FirstName NCHAR(50),  
         LastName NCHAR(50), phoneNumber  VARCHAR(16), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
 
-	//SELECT fname, lname, phone_number, id FROM phoneBook`)
+
 	ctx, cancelfunc := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancelfunc()
 
