@@ -24,8 +24,8 @@ func main() {
 		Host:     "eu-cdbr-west-03.cleardb.net",//Host 3306
 		DBName:   "heroku_31043c4e11d34ce",     //DBName
 		Session:  nil,              			//Session
-		SessionIDs:	make(map[string]string),	//map[string]string
-		SessionUsers: make(map[string]string),	// map[string]string
+		SessionIDs:	make(map[string]string),	//map[string]string  [cookieValue]username
+		SessionUsers: make(map[string]string),	// map[string]string [username]ID
 	}
 
 	//dbGeneral := controllers.DBData{

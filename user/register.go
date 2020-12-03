@@ -9,6 +9,7 @@ import (
 	"net/http"
 )
 
+
 func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
 	var user RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
@@ -29,7 +30,7 @@ func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
 			log.Fatal(err)
 			return
 		}
-		http.SetCookie(w, LoginCookie(user.userName, db))
+		//http.SetCookie(w, LoginCookie(user.userName, db))
 		w.Write([]byte("User Created!"))
 		return
 	case err != nil:
