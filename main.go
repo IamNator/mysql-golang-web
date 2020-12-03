@@ -27,7 +27,7 @@ func main() {
 		SessionIDs:	make(map[string]string),	//map[string]string  [cookieValue]username
 		SessionUsers: make(map[string]string),	// map[string]string [username]ID
 	}
-
+	//
 	//dbGeneral := controllers.DBData{
 	//	DBType:   "mysql",          //Type
 	//	User:     "root",    	    //User

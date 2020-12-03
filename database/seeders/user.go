@@ -3,7 +3,6 @@ package seeders
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"github.com/IamNator/mysql-golang-web/models"
 	"golang.org/x/crypto/bcrypt"
 	"log"
@@ -37,10 +36,9 @@ func (db DBData) FillUSerDb() {
 
 	json.NewDecoder(file).Decode(&users)
 
-	fmt.Println(users)
-	for _, values := range users {
+	for index, values := range users {
 		v, _ := bcrypt.GenerateFromPassword([]byte(values.PassWord), bcrypt.DefaultCost)
-		values.PassWord = string(v)
+		users[index].PassWord = string(v)
 	}
 
 
