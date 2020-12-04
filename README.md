@@ -17,12 +17,19 @@ json for adding contacts
 		"fname":{First Name},    
 		"lname":{Last Name},   
 		"phone_number":{Phone Number},   
-		"id":{id}   
+		"id":{}   
 	}    
 	
 ##### /api/fetch - GET
-json for fetching contacts   
-
+json returned from fetching contacts     
+[  
+ 	{    
+ 		"fname":{First Name},    
+ 		"lname":{Last Name},   
+ 		"phone_number":{Phone Number},   
+ 		"id":{id}   
+ 	}   
+]       
 	
 ##### /api/delete - DELETE
 json for delete contacts        
@@ -48,3 +55,6 @@ json for Logging in User
 	    "username":{username}    
 	    "password":{password}    
     }    
+
+A user can only alter data when he logins into his account   
+and he/she can only alter/view data he/she stored.

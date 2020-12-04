@@ -27,7 +27,7 @@ func main() {
 		SessionIDs:	make(map[string]string),	//map[string]string  [cookieValue]username
 		SessionUsers: make(map[string]string),	// map[string]string [username]ID
 	}
-	//
+
 	//dbGeneral := controllers.DBData{
 	//	DBType:   "mysql",          //Type
 	//	User:     "root",    	    //User
@@ -40,8 +40,9 @@ func main() {
 	//}
 
 	db, _ := dbGeneral.OpenDB()
-	dbGeneral.Session = db
+	defer dbGeneral.CloseDB()
 
+	dbGeneral.Session = db
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
 
@@ -66,8 +67,6 @@ func main() {
 	fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
-	defer dbData.CloseDB()
-
 }
 
 func CreateAndFillDb(dbGeneral * controllers.DBData){
@@ -75,8 +74,6 @@ func CreateAndFillDb(dbGeneral * controllers.DBData){
 	dbSeeders := seeders.DBData(*dbGeneral)
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
-	//fmt.Println("err1")
 	dbSeeders.FillUSerDb()
-	//fmt.Println("err2")
 	dbSeeders.FillDb()
 }
