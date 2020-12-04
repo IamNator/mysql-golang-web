@@ -106,11 +106,11 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 }
 
 func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
-
-	if err := req.ParseForm(); err != nil {
-		fmt.Fprintf(w, "ParseForm() err: %v", err)
-		return
-	}
+	//
+	//if err := req.ParseForm(); err != nil {
+	//	fmt.Fprintf(w, "ParseForm() err: %v", err)
+	//	return
+	//}
 
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
