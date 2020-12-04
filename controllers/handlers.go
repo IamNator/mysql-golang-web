@@ -49,8 +49,6 @@ func (db * DBData) DbExists() bool {
 
 func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	var SessionUserID string
-	// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
-	// check(err)
 	cookie, err :=  req.Cookie("sessionID")
 	if err != nil {
 		http.Redirect(w, req, "/", 301)
@@ -58,19 +56,17 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 		return
 
 	}
-	userName := db.SessionIDs[cookie.Value]
-	if id, ok := db.SessionUsers[userName]; ok {
+	userName := db.SessionIDs[cookie.Value]   //returns the username
+	if id, ok := db.SessionUsers[userName]; ok {   //Check if user is logged in (id exists in the MAP)
 		SessionUserID = id
 	} else {
 		http.Redirect(w, req, "/", 301)
 		fmt.Println("Cookie.Value does not match userNAme")
 		return
 	}
-	//db.SessionIDs[id] = user.userName
 
 	db.Session.Ping()
-
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE UserID=`+ SessionUserID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=`+ SessionUserID)
 	check(err)
 
 	var user models.User
@@ -102,7 +98,7 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ?, userID = ? ;`)
 	_, err = stmt.Exec(user.ID, userID)
 	check(err)
-	//db.Close() //#######################
+
 
 	writer.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(writer).Encode("deleted")
