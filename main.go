@@ -30,15 +30,9 @@ func main() {
 
 	myRouter := mux.NewRouter()
 	go fmt.Println("server running...@localhost:9080")
-<<<<<<< HEAD
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-=======
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
->>>>>>> 9cf9367f51d5c2900d3ce236a6101e1238149c87
 
-
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch_t).Methods("GET")
 	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
 	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":9080", myRouter))

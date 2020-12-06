@@ -81,8 +81,12 @@
             //Make the API call when window loads 
             window.onload = () => {
                 fetch("http://localhost:9080/api/fetch").then((resp)=>{
+                    console.log(resp.text())
                     return resp.text()
-                }, err=>console.log(err)).then(data=>{populateTable(JSON.parse(data))})
+                }, err=>console.log(err)).then(data=>{
+                    console.log(data)
+                    populateTable(JSON.parse(data))
+                })
             }
             //Arrow function to create extra rows and append to the table after the api call has been successfull
             populateTable = (data) => {
