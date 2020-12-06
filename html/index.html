@@ -82,6 +82,7 @@
             window.onload = () => {
                 fetch("http://localhost:9080/api/fetch").then((resp)=>{
                     console.log(resp.text())
+                fetch("/api/fetch").then((resp)=>{
                     return resp.text()
                 }, err=>console.log(err)).then(data=>{
                     console.log(data)

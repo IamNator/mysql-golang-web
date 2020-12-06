@@ -3,32 +3,56 @@ package main
 import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
+	"github.com/IamNator/mysql-golang-web/database/migrations"
+	"github.com/IamNator/mysql-golang-web/database/seeders"
+	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"os"
 )
 
-// mt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
-
-// db, err := sql.Open("mysql", "root:299792458m/s@tcp(127.0.0.1:3306)/test")
-// check(err)
 
 func main() {
-	dbData := controllers.DBData{
-		"mysql",          //Type
-		"root",           //User
-		"299792458m/s",   //Password
-		"127.0.0.1:3306", //Host
-		"test",           //DBName
-		nil,              //Session
+	dbGeneral := controllers.DBData{
+		DBType:   "mysql",                      //Type
+		User:     "b7e0a0a81fef1f",			    //User
+		Password: "2e02951d",  					//Password
+		Host:     "eu-cdbr-west-03.cleardb.net",//Host 3306
+		DBName:   "heroku_31043c4e11d34ce",     //DBName
+		Session:  nil,              			//Session
+		SessionIDs:	make(map[string]string),	//map[string]string  [cookieValue]username
+		SessionUsers: make(map[string]string),	// map[string]string [username]ID
 	}
 
-	// db, _ := dbData.OpenDB()
-	// dbData.Session = db
+	//dbGeneral := controllers.DBData{
+	//	DBType:   "mysql",          //Type
+	//	User:     "root",    	    //User
+	//	Password: "299792458m/s",   //Password
+	//	Host:     "localhost:3306", //Host 3306
+	//	DBName:   "app",  			//DBName
+	//	Session:  nil,              //Session
+	//	SessionIDs:	make(map[string]string),	//map[string]string
+	//	SessionUsers: make(map[string]string),	// map[string]string
+	//}
+
+	db, _ := dbGeneral.OpenDB()
+	defer dbGeneral.CloseDB()
+
+	dbGeneral.Session = db
+	dbData := controllers.DBData(dbGeneral)
+	dbUser := user.DBData(dbGeneral)
+
+    if !dbGeneral.DbExists() {
+		CreateAndFillDb(&dbGeneral)
+    	fmt.Println("Database created and updated")
+	}
 
 	myRouter := mux.NewRouter()
+<<<<<<< HEAD
 	go fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
@@ -36,7 +60,30 @@ func main() {
 	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
 	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":9080", myRouter))
+=======
+	myRouter.HandleFunc("/", views.Index).Methods("GET")
 
-	//defer dbData.CloseDB()
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")          //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
+	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
+	fmt.Printf("server running...@localhost:%s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, myRouter))
+>>>>>>> 9a7702401c0baabb66168d3057fe6478b436f0e4
+
+}
+
+func CreateAndFillDb(dbGeneral * controllers.DBData){
+	dbMigration := migrations.DBData(*dbGeneral)
+	dbSeeders := seeders.DBData(*dbGeneral)
+	dbMigration.CreateUserDb()
+	dbMigration.CreatePhoneBookDb()
+	dbSeeders.FillUSerDb()
+	dbSeeders.FillDb()
 }

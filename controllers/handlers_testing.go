@@ -11,20 +11,19 @@ import (
 	//"sync"
 )
 
-func (db *DBData) Fetch_t(w http.ResponseWriter, req *http.Request) {
+func (db *DBData) Fetch_t(w http.ResponseWriter, _ *http.Request) {
 
-	file, err := os.Open("data.json")
+	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	check(err)
-	defer file.Close()
 
 	//var user models.User
 	var users []models.User
 
 	json.NewDecoder(file).Decode(&users)
+	file.Close() //Closes file after it's read
 
 	json.NewEncoder(w).Encode(&users) //Sends an array of user information
 	log.Println("Data fetched")
-	//	db.Close()
 }
 
 func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
@@ -41,7 +40,6 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	check(err)
 	json.NewDecoder(file).Decode(&users)
 	file.Close()
-
 
 	for i, values := range users {
 		if values.ID == user.ID {
@@ -93,10 +91,9 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 
-
 	users = append(users, user)
 	fmt.Println("About to enter data")
-	if user.Fname != "" && user.Lname != "" && user.Phone_number != "" && user.ID != "" {
+	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && user.ID != "" {
 		file.Close()
 		os.Remove("data.json")
 		file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
