@@ -51,15 +51,9 @@ func main() {
 	}
 
 	myRouter := mux.NewRouter()
-<<<<<<< HEAD
 	go fmt.Println("server running...@localhost:9080")
-	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
 
-	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
-	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(":9080", myRouter))
-=======
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")        //use dbData.Fetch_t to test
@@ -74,7 +68,7 @@ func main() {
 	}
 	fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
->>>>>>> 9a7702401c0baabb66168d3057fe6478b436f0e4
+
 
 }
 
