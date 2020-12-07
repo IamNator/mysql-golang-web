@@ -21,8 +21,20 @@
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/engine/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/engine/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/insert.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/insert.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +70,8 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../IoT_golang" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
@@ -120,11 +133,15 @@
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="410" y="186" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1291.768@0.0.1291.768" timestamp="1606630894817" />
-    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1606721251530">
+    <state x="392" y="239" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1607116839554">
+      <screen x="0" y="0" width="1291" height="768" />
+    </state>
+    <state x="392" y="239" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1291.768@0.0.1291.768" timestamp="1607116839553" />
+    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1607177627835">
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="422" y="138" key="FileChooserDialogImpl/0.0.1284.768@0.0.1284.768" timestamp="1606259599999" />
-    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1606721251530" />
+    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1607177627835" />
     <state x="237" y="117" key="Vcs.Push.Dialog.v2" timestamp="1606657911924">
       <screen x="0" y="0" width="1291" height="768" />
     </state>

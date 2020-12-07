@@ -15,17 +15,16 @@ import (
 	"os"
 )
 
-
 func main() {
 	dbGeneral := controllers.DBData{
-		DBType:   "mysql",                      //Type
-		User:     "b7e0a0a81fef1f",			    //User
-		Password: "2e02951d",  					//Password
-		Host:     "eu-cdbr-west-03.cleardb.net",//Host 3306
-		DBName:   "heroku_31043c4e11d34ce",     //DBName
-		Session:  nil,              			//Session
-		SessionIDs:	make(map[string]string),	//map[string]string  [cookieValue]username
-		SessionUsers: make(map[string]string),	// map[string]string [username]ID
+		DBType:       "mysql",                       //Type
+		User:         "b7e0a0a81fef1f",              //User
+		Password:     "2e02951d",                    //Password
+		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
+		DBName:       "heroku_31043c4e11d34ce",      //DBName
+		Session:      nil,                           //Session
+		SessionIDs:   make(map[string]string),       //map[string]string  [cookieValue]username
+		SessionUsers: make(map[string]string),       // map[string]string [username]ID
 	}
 
 	//dbGeneral := controllers.DBData{
@@ -46,17 +45,17 @@ func main() {
 	dbData := controllers.DBData(dbGeneral)
 	dbUser := user.DBData(dbGeneral)
 
-    if !dbGeneral.DbExists() {
+	if !dbGeneral.DbExists() {
 		CreateAndFillDb(&dbGeneral)
-    	fmt.Println("Database created and updated")
+		fmt.Println("Database created and updated")
 	}
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")          //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")       //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")     //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")        //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")     //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")   //use dbData.Delete_t to test
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
 	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 
@@ -69,7 +68,7 @@ func main() {
 
 }
 
-func CreateAndFillDb(dbGeneral * controllers.DBData){
+func CreateAndFillDb(dbGeneral *controllers.DBData) {
 	dbMigration := migrations.DBData(*dbGeneral)
 	dbSeeders := seeders.DBData(*dbGeneral)
 	dbMigration.CreateUserDb()

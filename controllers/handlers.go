@@ -13,8 +13,8 @@ import (
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
-	SessionIDs							 map[string]string
-	SessionUsers						 map[string]string
+	SessionIDs                           map[string]string
+	SessionUsers                         map[string]string
 }
 
 func (db DBData) OpenDB() (*sql.DB, error) {
@@ -34,30 +34,30 @@ func (db DBData) CloseDB() string {
 	}
 }
 
-func (db * DBData) DbExists() bool {
+func (db *DBData) DbExists() bool {
 	var id int
 	idn := 1
-	err := db.Session.QueryRow("Select id From phoneBook WHERE id=?", idn ).Scan(&id)
+	err := db.Session.QueryRow("Select id From phoneBook WHERE id=?", idn).Scan(&id)
 	if err != nil {
-	//	fmt.Println(err)
+		//	fmt.Println(err)
 		return false
 	} else {
-	//	fmt.Println(err)
+		//	fmt.Println(err)
 		return true
 	}
 }
 
 func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	var SessionUserID string
-	cookie, err :=  req.Cookie("sessionID")
+	cookie, err := req.Cookie("sessionID")
 	if err != nil {
 		http.Redirect(w, req, "/", 301)
 		fmt.Println("Cookie not found")
 		return
 
 	}
-	userName := db.SessionIDs[cookie.Value]   //returns the username
-	if id, ok := db.SessionUsers[userName]; ok {   //Check if user is logged in (id exists in the MAP)
+	userName := db.SessionIDs[cookie.Value]      //returns the username
+	if id, ok := db.SessionUsers[userName]; ok { //Check if user is logged in (id exists in the MAP)
 		SessionUserID = id
 	} else {
 		http.Redirect(w, req, "/", 301)
@@ -66,14 +66,14 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 
 	db.Session.Ping()
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=`+ SessionUserID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + SessionUserID)
 	check(err)
 
 	var user models.User
 	var users []models.User
 
 	for rows.Next() {
-		err = rows.Scan( &user.ID, &user.FirstName, &user.LastName, &user.PhoneNumber)
+		err = rows.Scan(&user.ID, &user.FirstName, &user.LastName, &user.PhoneNumber)
 		check(err)
 
 		users = append(users, user)
@@ -87,7 +87,7 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
-	var user struct{
+	var user struct {
 		ID string `json:"id"`
 	}
 	json.NewDecoder(req.Body).Decode(&user)
@@ -98,7 +98,6 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ?, userID = ? ;`)
 	_, err = stmt.Exec(user.ID, userID)
 	check(err)
-
 
 	writer.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(writer).Encode("deleted")
