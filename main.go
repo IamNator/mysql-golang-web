@@ -53,6 +53,8 @@ func main() {
 	myRouter := mux.NewRouter()
 	
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
+	myRouter.HandleFunc("/", views.Register).Methods("GET")
+	myRouter.HandleFunc("/", views.Login).Methods("GET")
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")        //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")     //use dbData.Update_t to test
