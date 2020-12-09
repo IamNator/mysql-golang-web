@@ -14,6 +14,13 @@ import (
 	"net/http"
 	"os"
 )
+/*
+	package injection needs more simplicity,
+	Migrations seems to be error prone, this needs to be simplified
+	User database is not sufficient, We can make use of Google Register/Login API
+
+	Next Modification : Use Google Register/Login API
+*/
 
 func main() {
 	dbGeneral := controllers.DBData{
