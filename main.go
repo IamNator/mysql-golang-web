@@ -61,14 +61,9 @@ func main() {
 	go fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
+	myRouter.HandleFunc("/login", views.Login).Methods("GET")
+	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-	myRouter.HandleFunc("/api/update", dbData.Update_t).Methods("POST")
-	myRouter.HandleFunc("/api/delete", dbData.Delete_t).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(":9080", myRouter))
-	
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
-	myRouter.HandleFunc("/", views.Register).Methods("GET")
-	myRouter.HandleFunc("/", views.Login).Methods("GET")
 
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")        //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")     //use dbData.Update_t to test
