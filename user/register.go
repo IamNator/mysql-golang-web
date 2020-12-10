@@ -9,8 +9,7 @@ import (
 	"net/http"
 )
 
-
-func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
+func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	var user RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
 	err := db.Session.QueryRow("Select username From users WHERE username=?", user.UserName).Scan(&user.UserName)
@@ -19,14 +18,14 @@ func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
 	case err == sql.ErrNoRows:
 		hashedPassword, error := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 		if error != nil {
-			http.Error(w,"server Error, unable to create your account (hash problem)", 500)
+			http.Error(w, "server Error, unable to create your account (hash problem)", 500)
 			log.Fatal(error)
 			return
 		}
 
 		_, err := db.Session.Exec("INSERT INTO users(username, password) VALUES(?,?)", user.UserName, hashedPassword)
 		if err != nil {
-			http.Error(w, "Server error, unable to create your account (db problem)",500 )
+			http.Error(w, "Server error, unable to create your account (db problem)", 500)
 			log.Fatal(err)
 			return
 		}
@@ -38,7 +37,7 @@ func (db * DBData) Register(w http.ResponseWriter, req *http.Request){
 		fmt.Print(err)
 		return
 	default:
-		http.Redirect(w, req,"/", 301)
+		http.Redirect(w, req, "/", 301)
 	}
 
 }

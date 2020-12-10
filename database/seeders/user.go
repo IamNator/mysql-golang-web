@@ -12,25 +12,20 @@ import (
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
-	SessionIDs							 map[string]string
-	SessionUsers						 map[string]string
+	SessionIDs                           map[string]string
+	SessionUsers                         map[string]string
 }
 
 type user struct {
-	UserName        string `json:"username"`
-	PassWord        string `json:"password"`
+	UserName string `json:"username"`
+	PassWord string `json:"password"`
 }
 
-
-
-
 func (db DBData) FillUSerDb() {
-
 
 	file, err := os.OpenFile("user.json", os.O_CREATE, os.ModePerm)
 	check(err)
 	defer file.Close()
-
 
 	var users []user
 
@@ -41,20 +36,18 @@ func (db DBData) FillUSerDb() {
 		users[index].PassWord = string(v)
 	}
 
-
 	for _, values := range users {
 
 		stmt, err := db.Session.Prepare(`INSERT INTO users ( username, password)
 	VALUES (?,?)`)
 
-		_, err = stmt.Exec( values.UserName, values.PassWord)
+		_, err = stmt.Exec(values.UserName, values.PassWord)
 		check(err)
 	}
 
 }
 
 func (db DBData) FillDb() {
-
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	check(err)
@@ -65,18 +58,16 @@ func (db DBData) FillDb() {
 	json.NewDecoder(file).Decode(&users)
 	//fmt.Println(users)
 
+	for _, values := range users {
 
-		for _, values := range users {
-
-			stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
+		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
-			_, err = stmt.Exec(values.ID, values.FirstName, values.LastName, values.PhoneNumber)
-			check(err)
-		}
+		_, err = stmt.Exec(values.ID, values.FirstName, values.LastName, values.PhoneNumber)
+		check(err)
+	}
 
 }
-
 
 func check(err error) {
 	if err != nil {

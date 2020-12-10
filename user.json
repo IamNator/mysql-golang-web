@@ -1,23 +1,22 @@
 [
   {
-    "username":"Nator",
-    "password":"password"
+    "username": "Nator",
+    "password": "password"
   },
   {
-    "username":"Tobi",
-    "password":"password"
+    "username": "Tobi",
+    "password": "password"
   },
   {
-    "username":"Favor",
-    "password":"password"
+    "username": "Favor",
+    "password": "password"
   },
   {
-    "username":"Light",
-    "password":"password"
+    "username": "Light",
+    "password": "password"
   },
   {
-    "username":"Daniel",
-    "password":"passDaniel"
+    "username": "Daniel",
+    "password": "passDaniel"
   }
-
 ]
