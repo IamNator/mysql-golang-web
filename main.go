@@ -58,7 +58,6 @@ func main() {
 	}
 
 	myRouter := mux.NewRouter()
-	go fmt.Println("server running...@localhost:9080")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 	myRouter.HandleFunc("/index", views.Index).Methods("GET")
 	myRouter.HandleFunc("/login", views.Login).Methods("GET")
@@ -75,7 +74,7 @@ func main() {
 	if port == "" {
 		port = "8000"
 	}
-	fmt.Printf("server running...@localhost:%s\n", port)
+	go fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
 
