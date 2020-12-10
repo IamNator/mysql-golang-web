@@ -34,7 +34,13 @@
     <div class="row">
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
-            <form id="loginForm" method="post" action="api/login">
+            <form id="loginForm">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>OOPS!</strong> Try Again.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="username">
                 </div>
@@ -53,7 +59,7 @@
     var form = document.getElementById("loginForm");
     form.onsubmit = (e) => {
         //Prevent default occurence when form is submitted e.g(reloading the page)
-        //e.preventDefault()
+        e.preventDefault()
         //The json to be posted to the api/login endpoint
         var submitJson = {}
         for (element of form.elements) {
@@ -62,6 +68,10 @@
             }
         }
         console.log(submitJson)
+        fetch("api/login", {
+            "method": "post",
+            "body": submitJson
+        }).then(resp=>resp.text()).then(dat=>console.log(dat))
         //return true
     }
 </script>
