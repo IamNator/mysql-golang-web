@@ -105,11 +105,6 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 }
 
 func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
-	//
-	//if err := req.ParseForm(); err != nil {
-	//	fmt.Fprintf(w, "ParseForm() err: %v", err)
-	//	return
-	//}
 
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
@@ -128,12 +123,12 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			fmt.Fprintln(w, err)
 		} else {
-			fmt.Println("\nData Successfully Added")
+			fmt.Println("Data Successfully Added")
 		}
 
-		fmt.Fprintf(w, `Successful`)
+		fmt.Fprintf(w, `Successful\n`)
 	} else {
-		fmt.Fprintf(w, `Please fill in all the fields `)
+		fmt.Fprintf(w, `Please fill in all the fields\n`)
 	}
 
 }
