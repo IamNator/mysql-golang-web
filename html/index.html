@@ -114,32 +114,6 @@
         //The json to be posted to the api/update endpoint
         var submitJson = {}
         for (element of form.elements) {
-            if (element.value == "") {
-                //return false
-        </p>
-        <script type="text/javascript">
-            //Make the API call when window loads 
-            window.onload = () => {
-                fetch("http://localhost:9080/api/fetch").then((resp)=>{
-                    console.log(resp.text())
-                fetch("/api/fetch").then((resp)=>{
-                    return resp.text()
-                }, err=>console.log(err)).then(data=>{
-                    console.log(data)
-                    populateTable(JSON.parse(data))
-                })
-            }
-            //Arrow function to create extra rows and append to the table after the api call has been successfull
-            populateTable = (data) => {
-                var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
-                var index = 1
-                for (contact of data) {
-                    rowHtml = "<tr id="+contact.id+"><th scope='row'>"+index+"</th><td>"+contact.fname+"</td><td>"+contact.lname+"</td><td>"+contact.phone_number+"</td></tr>"
-                    newRow = tableBody.insertRow(tableBody.rows.length);
-                    newRow.innerHTML = rowHtml
-                    index++
-                }
-            }
             if (element.id !== "") {
                 submitJson[element.id] = element.value;
             }
