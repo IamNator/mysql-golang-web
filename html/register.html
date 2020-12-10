@@ -26,17 +26,21 @@
     </a>
 </nav>
 <div>
-    <h3 class="text-center" style="padding: 20px; font-family: 'Noto Sans JP', sans-serif;">
-        Sign-Up
-    </h3>
+    <div class="text-center" style="padding: 25px">
+        <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" height="50px" ></img>
+    </div>
+    
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
             <form id="regForm" method="post" action="api/register">
-                <div class="alert alert-danger" role="alert">
-                    An Error Occurred. Kindly Try Again. 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>OOPS!</strong> Try Again.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="username">
@@ -44,7 +48,7 @@
                 <div class="form-group">
                     <input type="password" name="password" class="form-control"  id="password" placeholder="password">
                 </div>
-                <button type="submit" class="btn btn-dark btn-block">Login</button>
+                <button type="submit" class="btn btn-dark btn-block">Register</button>
             </form>
         </div>
         <div class="col-md-3 text-center"></div>
