@@ -31,23 +31,20 @@
     </h3>
 </div>
 <div class="container">
-    <table class="table" id="ctable">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">S/N</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Phone</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div class="add-btn text-center" style="margin-top: 2rem">
-        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                data-target="#exampleModalCenter">
-            Add New Contact
-        </button>
+    <div class="row">
+        <div class="col-md-3 text-center"></div>
+        <div class="col-md-6 text-center">
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control"  id="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Login</button>
+            </form>
+        </div>
+        <div class="col-md-3 text-center"></div>
     </div>
 </div>
 </p>
