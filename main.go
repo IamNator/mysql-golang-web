@@ -59,8 +59,8 @@ func main() {
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
-	myRouter.HandleFunc("/login", views.Login).Methods("GET")
+	myRouter.HandleFunc("/index", views.Index).Methods("GET")
+	myRouter.HandleFunc("/", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
 
@@ -76,7 +76,6 @@ func main() {
 	}
 	go fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
-
 
 }
 

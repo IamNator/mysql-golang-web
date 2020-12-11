@@ -7,7 +7,7 @@ import (
 )
 
 func Register(w http.ResponseWriter, req *http.Request) {
-	tpl := template.Must(template.ParseFiles("html/Register.html"))
+	tpl := template.Must(template.ParseFiles("html/register.html"))
 	tpl.Execute(w, nil)
 }
 
