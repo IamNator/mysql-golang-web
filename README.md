@@ -7,7 +7,7 @@ natverior1@gmail.com - BackEnd
 https://mysql-golang-app.herokuapp.com/
 
 ## PhoneBook
- A simple web interface. The Backend is built entirely on golang, mySql database used.
+ A simple web interface. A phone book. The Backend is built entirely on golang, mySql database used.
  
 ### Database Operations
 
