@@ -3,6 +3,7 @@ module github.com/IamNator/mysql-golang-web
 go 1.14
 
 require (
+	cloud.google.com/go v0.74.0 // indirect
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gorilla/mux v1.8.0
 	github.com/satori/go.uuid v1.2.0

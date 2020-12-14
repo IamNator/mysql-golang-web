@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func Home(w http.ResponseWriter, req *http.Request) {
+func Home(w http.ResponseWriter, _ *http.Request) {
 	tpl := template.Must(template.ParseFiles("html/home.html"))
-	tpl.Execute(w, nil)
+	_ = tpl.Execute(w, nil)
 }

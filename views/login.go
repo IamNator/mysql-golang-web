@@ -3,10 +3,14 @@ package views
 import (
 	//"golang.org/x/net/html"
 	"html/template"
+	"log"
 	"net/http"
 )
 
-func Login(w http.ResponseWriter, req *http.Request) {
+func Login(w http.ResponseWriter, _ *http.Request) {
 	tpl := template.Must(template.ParseFiles("html/login.html"))
-	tpl.Execute(w, nil)
+	err := tpl.Execute(w, nil)
+	if err != nil {
+		log.Println(err)
+	}
 }

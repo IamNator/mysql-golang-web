@@ -18,11 +18,11 @@ type DBData struct {
 }
 
 func (db DBData) OpenDB() (*sql.DB, error) {
-	opendb, err := sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
+	openDB, err := sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
 	//db.Session.SetMaxOpenConns(20)
 	//db.Session.SetMaxIdleConns(20)
 	//db.Session.SetConnMaxLifetime(time.Minute * 5)
-	return opendb, err
+	return openDB, err
 }
 
 func (db DBData) CloseDB() string {
@@ -50,8 +50,10 @@ func (db *DBData) DbExists() bool {
 func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	var SessionUserID string
 	cookie, err := req.Cookie("sessionID")
-	if err != nil {
-		http.Redirect(w, req, "/", 301)
+	if err == http.ErrNoCookie {
+		//http.Redirect(w, req, "/", 301)
+		w.WriteHeader(http.StatusUnauthorized)
+		_ = json.NewEncoder(w).Encode("Cookie not found")
 		fmt.Println("Cookie not found")
 		return
 
@@ -60,12 +62,13 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 	if id, ok := db.SessionUsers[userName]; ok { //Check if user is logged in (id exists in the MAP)
 		SessionUserID = id
 	} else {
-		http.Redirect(w, req, "/", 301)
+		w.WriteHeader(http.StatusUnauthorized)
+		_ = json.NewEncoder(w).Encode("Cookie Value invalid, please login")
 		fmt.Println("Cookie.Value does not match userNAme")
 		return
 	}
 
-	db.Session.Ping()
+	_ = db.Session.Ping()
 	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + SessionUserID)
 	check(err)
 
@@ -78,7 +81,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 		users = append(users, user)
 	}
-	json.NewEncoder(w).Encode(users) //Sends an array of user information
+	_ = json.NewEncoder(w).Encode(users) //Sends an array of user information
 
 }
 
@@ -90,8 +93,13 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	var user struct {
 		ID string `json:"id"`
 	}
-	json.NewDecoder(req.Body).Decode(&user)
-	ck, _ := req.Cookie("sessionID")
+	_ = json.NewDecoder(req.Body).Decode(&user)
+	ck, er := req.Cookie("sessionID")
+	if er == http.ErrNoCookie {
+		writer.WriteHeader(http.StatusUnauthorized)
+		_ = json.NewEncoder(writer).Encode("Cookie not found")
+	}
+
 	username := db.SessionIDs[ck.Value]
 	userID := db.SessionUsers[username]
 
@@ -100,7 +108,7 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	check(err)
 
 	writer.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(writer).Encode("deleted")
+	_ = json.NewEncoder(writer).Encode("deleted")
 
 }
 
@@ -125,7 +133,6 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 		} else {
 			fmt.Println("Data Successfully Added")
 		}
-
 		fmt.Fprintf(w, `Successful\n`)
 	} else {
 		fmt.Fprintf(w, `Please fill in all the fields\n`)

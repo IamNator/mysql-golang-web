@@ -11,10 +11,10 @@ func Index(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/login", http.StatusTemporaryRedirect)
 	}
 	tpl := template.Must(template.ParseFiles("html/index.html"))
-	tpl.Execute(w, nil)
+	_ = tpl.Execute(w, nil)
 }
 
-func Insert(w http.ResponseWriter, req *http.Request) {
+func Insert(w http.ResponseWriter, _ *http.Request) {
 	tpl := template.Must(template.ParseFiles("html/insert.html"))
-	tpl.Execute(w, nil)
+	_ = tpl.Execute(w, nil)
 }
