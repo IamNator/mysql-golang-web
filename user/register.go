@@ -16,14 +16,14 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 
 	switch {
 	case err == sql.ErrNoRows:
-		hashedPassword, error := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-		if error != nil {
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+		if err != nil {
 			http.Error(w, "server Error, unable to create your account (hash problem)", 500)
-			log.Fatal(error)
+			log.Fatal(err)
 			return
 		}
 
-		_, err := db.Session.Exec("INSERT INTO users(username, password) VALUES(?,?)", user.UserName, hashedPassword)
+		_, err = db.Session.Exec("INSERT INTO users(username, password) VALUES(?,?)", user.UserName, hashedPassword)
 		if err != nil {
 			http.Error(w, "Server error, unable to create your account (db problem)", 500)
 			log.Fatal(err)
