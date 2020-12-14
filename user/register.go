@@ -33,11 +33,11 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 		w.Write([]byte("User Created!"))
 		return
 	case err != nil:
-		JsonRegisterError(&w,"server error, Unable to create your account",http.StatusInternalServerError)
+		JsonRegisterError(&w,"server error, Unable to access Database",http.StatusInternalServerError)
 		fmt.Print(err)
 		return
 	default:
-		http.Redirect(w, req, "/", 301)
+		JsonRegisterError(&w,"User Already Exists, Please login",http.StatusFound)
 	}
 
 }
