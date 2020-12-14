@@ -8,6 +8,14 @@ type RegisterUser struct {
 	Password string `json:"password"`
 }
 
+//Soon to adopts this for database
+type User struct {
+	FirstName string `json:"firstname"`
+	LastName string	 `json:"lastname"`
+	Email string 	 `json:"email"`
+	PassWord string  `json:"password"`
+}
+
 type LoginUser struct {
 	UserName string `json:"username"`
 	//Email string	 `json:"email"`
