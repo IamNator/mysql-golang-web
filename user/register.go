@@ -12,6 +12,10 @@ import (
 func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	var user RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
+	if user.UserName == "" || user.Password == "" {
+		JsonRegisterError(&w, "please Fill in fields", http.StatusBadRequest)
+		return
+	}
 	err := db.Session.QueryRow("Select username From users WHERE username=?", user.UserName).Scan(&user.UserName)
 
 	switch {
