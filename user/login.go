@@ -18,6 +18,10 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 	check(err)
 
 	fmt.Println(user.UserName)
+	if user.UserName == "" || user.Password == "" {
+		JsonLoginError(&w, "please Fill in fields", http.StatusBadRequest)
+		return
+	}
 
 	err = db.Session.QueryRow("SELECT id, username, password FROM users WHERE username=?", user.UserName).Scan(&id, &userDb.UserName, &userDb.Password)
 	if err != nil {
