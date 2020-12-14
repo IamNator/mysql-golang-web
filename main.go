@@ -58,6 +58,7 @@ func main() {
 	}
 
 	myRouter := mux.NewRouter()
+	myRouter.HandleFunc("/home", views.Home).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
 	myRouter.HandleFunc("/", views.Index).Methods("GET")
 	myRouter.HandleFunc("/login", views.Login).Methods("GET")
