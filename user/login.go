@@ -38,13 +38,13 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 	}
 
 	http.SetCookie(w, LoginCookie(id, user.UserName, db))
-	loginSuccess := struct{
-		Login string `json:"login"`
-	}{
-		"Successful",
-	}
+	//loginSuccess := struct{
+	//	Login string `json:"login"`
+	//}{
+	//	"Successful",
+	//}
 	w.WriteHeader(http.StatusOK)
-	err = json.NewEncoder(w).Encode(loginSuccess)
+	err = json.NewEncoder(w).Encode(user.UserName)
 	check(err)
 }
 
