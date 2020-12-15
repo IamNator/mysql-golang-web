@@ -52,6 +52,7 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 func (db *DBData) Register_new(w http.ResponseWriter, req *http.Request) {
 	var user User
 	json.NewDecoder(req.Body).Decode(&user)
+
 	if user.FirstName == "" || user.LastName == "" || user.Email == "" || user.PassWord == "" {
 		JsonRegisterError(&w, "please Fill in fields", http.StatusBadRequest)
 		return

@@ -48,6 +48,41 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 	check(err)
 }
 
+
+func (db *DBData) Login_new(w http.ResponseWriter, req *http.Request) {
+	var user User
+	var userDb User
+	var id string
+	err := json.NewDecoder(req.Body).Decode(&user)
+	check(err)
+
+	fmt.Println(user.FirstName)
+	if user.Email == "" || user.PassWord == "" {
+		JsonLoginError(&w, "please Fill in fields", http.StatusBadRequest)
+		return
+	}
+
+	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&id, &userDb.FirstName, &userDb.LastName, &userDb.Email, &userDb.PassWord)
+	if err != nil {
+		fmt.Printf("dbQuery Error %v \n", err)
+		JsonLoginError(&w,"User Not Found", http.StatusNotFound)
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(userDb.PassWord), []byte(user.PassWord))
+	if err != nil {
+		fmt.Printf("CompareHashPassword Error %v \n", err)
+		JsonLoginError(&w,"Password Incorrect", http.StatusNotFound)
+		return
+	}
+
+	http.SetCookie(w, LoginCookie(id, user.Email, db))
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(userDb)
+	check(err)
+}
+
+
 func LoginCookie(ID, username string, db *DBData) *http.Cookie {
 	expire := time.Now().AddDate(0, 0, 1)
 	id := uuid.NewV4().String()
