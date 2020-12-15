@@ -9,6 +9,7 @@ import (
 	"os"
 )
 
+//Keeps track of logins and mysql login data
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
@@ -16,10 +17,13 @@ type DBData struct {
 	SessionUsers                         map[string]string
 }
 
+//Old model, we will change this soon
 type user struct {
 	UserName string `json:"username"`
 	PassWord string `json:"password"`
 }
+
+//Data collected and stored of user
 type User struct {
 	FirstName string `json:"firstname"`
 	LastName string	 `json:"lastname"`
@@ -27,7 +31,7 @@ type User struct {
 	PassWord string  `json:"password"`
 }
 
-
+//We will soon delete this
 func (db DBData) FillUSerDb() {
 
 	file, err := os.OpenFile("user.json", os.O_CREATE, os.ModePerm)
@@ -54,6 +58,7 @@ func (db DBData) FillUSerDb() {
 
 }
 
+//New method to be implemented
 func (db DBData) FillUserDb_new() {
 
 	file, err := os.OpenFile("user_new.json", os.O_CREATE, os.ModePerm)
@@ -80,7 +85,7 @@ func (db DBData) FillUserDb_new() {
 
 }
 
-
+//Checks for errors
 func check(err error) {
 	if err != nil {
 		log.Printf("%+v\n", err)

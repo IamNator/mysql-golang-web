@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-
+//Reads Json file and fill mysql database
 func (db DBData) FillDb() {
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
