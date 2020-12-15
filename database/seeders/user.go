@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
-	"github.com/IamNator/mysql-golang-web/user"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"os"
