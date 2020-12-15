@@ -1,0 +1,32 @@
+[
+  {
+    "firstname": "Nator",
+    "lastname": "Verinumbe",
+    "email": "natverior1@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstname": "Oluwa",
+    "lastname": "Tobi",
+    "email": "Oluwatobi@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstname": "Favor",
+    "lastname": "Tobi",
+    "email": "favourtobi@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstname": "Light",
+    "lastname": "Shine",
+    "email": "lightshine@gmail.com",
+    "password": "password"
+  },
+  {
+    "firstname": "Daniel",
+    "lastname": "pass",
+    "email": "danielExcellence@gmail.com",
+    "password": "Danny"
+  }
+]
