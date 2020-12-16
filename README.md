@@ -12,29 +12,29 @@ https://mysql-golang-app.herokuapp.com/
 ### Database Operations
 
 ##### /api/update - POST
-json for adding contacts   
+Request POST application/json for adding contacts   
 	{    
-		"fname":{First Name},    
-		"lname":{Last Name},   
-		"phone_number":{Phone Number},   
-		"id":{}   
+		"fname": "Oluwa,    
+		"lname": "Tobi",   
+		"phone_number": "+2349043495346",   
+		"id": ""   
 	}    
 	
 ##### /api/fetch - GET
-json returned from fetching contacts     
+Response application/json returned from fetching contacts     
 [  
  	{    
- 		"fname":{First Name},    
- 		"lname":{Last Name},   
- 		"phone_number":{Phone Number},   
- 		"id":{id}   
+ 		"fname": "Nator,    
+ 		"lname": "Verinumbe",   
+ 		"phone_number": "+2349045057268",   
+ 		"id": "2du-43-432-34ddf-43f-fqe"   
  	}   
 ]       
 	
 ##### /api/delete - DELETE
-json for delete contacts        
+Request Delete application/json for delete contacts        
 	{       
-		"id":{id}    
+		"id": "242-43-432-34ddf-43f-fq4"    
 	}     
  
 ### Sessions
@@ -42,18 +42,18 @@ SessionID is the cookie value. A cookie is created when the user login or regist
 
 
 ##### /api/register - POST
-json for Registering User     
+Request POST application/json for Registering User     
 	{      
-	    "username":{username}   
-	    "password":{password}   
+	    "username": "Oluwatobi"   
+	    "password": "Password"   
 	}   
 
 
 ##### /api/login - POST
 json for Logging in User     
     {   
-	    "username":{username}    
-	    "password":{password}    
+	    "username": "Nator"    
+	    "password": "29PassWerd"    
     }    
     Please properly enclose the parameters in double quotes.
 
