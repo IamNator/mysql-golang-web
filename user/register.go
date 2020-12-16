@@ -10,7 +10,6 @@ import (
 )
 
 
-
 func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	var user RegisterUser
 	json.NewDecoder(req.Body).Decode(&user)
