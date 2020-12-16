@@ -57,5 +57,5 @@ json for Logging in User
     }    
     Please properly enclose the parameters in double quotes.
 
-A user can only alter data when he log into his account,
+A user can only alter data when he logs into his account,
  and he/she can only alter/view data he/she stored.
