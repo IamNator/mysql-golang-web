@@ -57,7 +57,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Embedded Systems/Partnership/SmartCardReader/SmartCardReader-STM32" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Embedded Systems/Partnership/SmartCardReader" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunManager">
@@ -124,11 +124,11 @@
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="392" y="239" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1291.768@0.0.1291.768" timestamp="1607116839553" />
-    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1608037780880">
+    <state x="424" y="138" key="FileChooserDialogImpl" timestamp="1608190537930">
       <screen x="0" y="0" width="1291" height="768" />
     </state>
     <state x="422" y="138" key="FileChooserDialogImpl/0.0.1284.768@0.0.1284.768" timestamp="1606259599999" />
-    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1608037780880" />
+    <state x="424" y="138" key="FileChooserDialogImpl/0.0.1291.768@0.0.1291.768" timestamp="1608190537930" />
     <state x="237" y="117" key="Vcs.Push.Dialog.v2" timestamp="1606657911924">
       <screen x="0" y="0" width="1291" height="768" />
     </state>

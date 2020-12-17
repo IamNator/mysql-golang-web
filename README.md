@@ -1,17 +1,18 @@
 # mysql-stuff
 
-###  Contributors
+#### Contributors
 https://github.com/Tee-py - FrontEnd        
 natverior1@gmail.com - BackEnd
 
 https://mysql-golang-app.herokuapp.com/
 
-## PhoneBook
- A simple web interface. A phone book. The Backend is built entirely on golang, mySql database used.
+#### PhoneBook
+A simple web interface. A phone book with the Backend built entirely on golang, mySql database used.
  
-### Database Operations
+#### Database Operations
 
-##### /api/update - POST
+
+#### /api/update - POST
 Request POST application/json for adding contacts   
 	{    
 		"fname": "Oluwa,    
@@ -59,3 +60,5 @@ json for Logging in User
 
 A user can only alter data when he log into his account,
  and he/she can only alter/view data he/she stored.
+
+
