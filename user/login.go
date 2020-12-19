@@ -11,47 +11,8 @@ import (
 )
 
 func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
-	var user LoginUser
-	var userDb RegisterUser
-	var id string
-	err := json.NewDecoder(req.Body).Decode(&user)
-	check(err)
-
-	fmt.Println(user.UserName)
-	if user.UserName == "" || user.Password == "" {
-		JsonLoginError(&w, "please Fill in fields", http.StatusBadRequest)
-		return
-	}
-
-	err = db.Session.QueryRow("SELECT id, username, password FROM users WHERE username=?", user.UserName).Scan(&id, &userDb.UserName, &userDb.Password)
-	if err != nil {
-		fmt.Printf("dbQuery Error %v \n", err)
-		JsonLoginError(&w,"User Not Found", http.StatusNotFound)
-		return
-	}
-
-	err = bcrypt.CompareHashAndPassword([]byte(userDb.Password), []byte(user.Password))
-	if err != nil {
-		fmt.Printf("CompareHashPassword Error %v \n", err)
-		JsonLoginError(&w,"Password Incorrect", http.StatusNotFound)
-		return
-	}
-
-	http.SetCookie(w, LoginCookie(id, user.UserName, db))
-	//loginSuccess := struct{
-	//	Login string `json:"login"`
-	//}{
-	//	"Successful",
-	//}
-	w.WriteHeader(http.StatusOK)
-	err = json.NewEncoder(w).Encode(user.UserName)
-	check(err)
-}
-
-
-func (db *DBData) Login_new(w http.ResponseWriter, req *http.Request) {
-	var user User
-	var userDb User
+	var user LoginCredentials
+	var userDb UserCredentials
 	var id string
 	err := json.NewDecoder(req.Body).Decode(&user)
 	check(err)

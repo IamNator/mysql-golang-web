@@ -2,23 +2,17 @@ package user
 
 import "database/sql"
 
-type RegisterUser struct {
-	UserName string `json:"username"`
-	//Email string	 `json:"email"`
-	Password string `json:"password"`
-}
 
 //Soon to adopts this for database
-type User struct {
+type RegisterUser struct {
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
 	Email     string `json:"email"`
 	PassWord  string `json:"password"`
 }
 
-type LoginUser struct {
+type Credentials struct {
 	UserName string `json:"username"`
-	//Email string	 `json:"email"`
 	Password string `json:"password"`
 }
 
