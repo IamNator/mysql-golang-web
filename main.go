@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"os"
 )
+
 /*
 	package injection needs more simplicity,
 	Migrations seems to be error prone, this needs to be simplified
@@ -64,7 +65,6 @@ func main() {
 	myRouter.HandleFunc("/login", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-
 	myRouter.HandleFunc("/api/fetch", dbData.Fetch).Methods("GET")        //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", dbData.Update).Methods("POST")     //use dbData.Update_t to test
 	myRouter.HandleFunc("/api/delete", dbData.Delete).Methods("DELETE")   //use dbData.Delete_t to test
@@ -79,6 +79,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
 }
+
 
 func CreateAndFillDb(dbGeneral *controllers.DBData) {
 	dbMigration := migrations.DBData(*dbGeneral)
