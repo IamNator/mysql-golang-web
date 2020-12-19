@@ -11,9 +11,9 @@ type RegisterUser struct {
 //Soon to adopts this for database
 type User struct {
 	FirstName string `json:"firstname"`
-	LastName string	 `json:"lastname"`
-	Email string 	 `json:"email"`
-	PassWord string  `json:"password"`
+	LastName  string `json:"lastname"`
+	Email     string `json:"email"`
+	PassWord  string `json:"password"`
 }
 
 type LoginUser struct {
