@@ -42,10 +42,10 @@
                     </button>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="username">
+                    <input type="text" class="form-control" name="username" id="UserName" aria-describedby="emailHelp" placeholder="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control"  id="password" placeholder="password">
+                    <input type="password" name="password" class="form-control"  id="Password" placeholder="password">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Register</button>
             </form>
@@ -59,7 +59,7 @@
     var form = document.getElementById("regForm");
     form.onsubmit = (e) => {
         //Prevent default occurrence when form is submitted e.g(reloading the page)
-        //e.preventDefault()
+        e.preventDefault()
         //The json to be posted to the api/login endpoint
         var submitJson = {}
         for (element of form.elements) {
@@ -70,7 +70,7 @@
         console.log(submitJson)
         fetch("api/register", {
             "method": "post",
-            "body": submitJson
+            "body": JSON.stringify(submitJson)
         }).then(resp=>resp.text()).then(dat=>console.log(dat))
         //return true
     }
