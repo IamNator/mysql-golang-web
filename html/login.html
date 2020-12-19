@@ -36,7 +36,7 @@
         <div class="col-md-6 text-center">
             <form id="loginForm">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-feedback" style="display: None">
-                    <strong>OOPS!</strong> Try Again.
+                    <strong>OOPS!</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -93,11 +93,15 @@
                 console.log(resp)
                 if (resp.status==200) {
                     //window.location.href = window.location.href.replace("login", "")
-                    displayFeedBack("", true)
-                    return {""}
+                    displayFeedBack("Login successfull", true);
+                    return {
+                        "status": true,
+                        "data": resp.text()
+                        }
                 }
                 if (resp.status==404) {
-                    return resp.text()
+                    console.log(resp)
+                    displayFeedBack("Invalid Credentials", false)
                 }
                 //return resp.text()
                 }
