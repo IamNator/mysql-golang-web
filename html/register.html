@@ -88,6 +88,7 @@
                 displayFeedBack("An Error Occurred!!. Please Try Again!.", false);
             } else {
                 displayFeedBack("Registration was successfull. You can now Login.", true);
+                setTimeout(_=>window.location.href=window.location.href.replace("register", "login"), 1500)
             }
             resp.text()
         }).then(dat=>console.log(dat))
