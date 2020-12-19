@@ -35,7 +35,7 @@
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
             <form id="regForm" method="post" action="api/register">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: None">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: None" id="login-feedback">
                     <strong>OOPS!</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -79,11 +79,18 @@
                 submitJson[element.id] = element.value;
             }
         }
-        console.log(submitJson)
+        //console.log(submitJson)
         fetch("api/register", {
             "method": "post",
             "body": JSON.stringify(submitJson)
-        }).then(resp=>resp.text()).then(dat=>console.log(dat))
+        }).then(resp=>{
+            if (resp.status!==200) {
+                displayFeedBack("An Error Occurred!!. Please Try Again!.", false)
+            } else {
+                displayFeedBack("Registration was successfull. You can now Login.")
+            }
+            resp.text()
+        }).then(dat=>console.log(dat))
         //return true
     }
 </script>
