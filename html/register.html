@@ -57,6 +57,18 @@
 <script type="text/javascript">
     //Function to submit form to endpoint 
     var form = document.getElementById("regForm");
+    displayFeedBack = (message, success) => {
+        feedback = document.getElementById("login-feedback");
+        if (success) {
+            feedback.className = feedback.className.replace("alert-danger", "alert-success");
+            feedback.children[0].innerText = message;
+            feedback.style.display = "Block"
+        }
+        else {
+            feedback.children[0].innerText = message;
+            feedback.style.display = "Block";
+        }
+    }
     form.onsubmit = (e) => {
         //Prevent default occurrence when form is submitted e.g(reloading the page)
         e.preventDefault()
