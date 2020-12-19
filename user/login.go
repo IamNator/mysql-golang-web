@@ -12,12 +12,12 @@ import (
 
 func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
-	var userDb UserCredentials
+	var userDb Credentials
 	var id string
 	err := json.NewDecoder(req.Body).Decode(&user)
 	check(err)
 
-	fmt.Println(user.FirstName)
+	fmt.Println(user.Email)
 	if user.Email == "" || user.PassWord == "" {
 		JsonLoginError(&w, "please Fill in fields", http.StatusBadRequest)
 		return
