@@ -85,9 +85,9 @@
             "body": JSON.stringify(submitJson)
         }).then(resp=>{
             if (resp.status!==200) {
-                displayFeedBack("An Error Occurred!!. Please Try Again!.", false)
+                displayFeedBack("An Error Occurred!!. Please Try Again!.", false);
             } else {
-                displayFeedBack("Registration was successfull. You can now Login.")
+                displayFeedBack("Registration was successfull. You can now Login.", true);
             }
             resp.text()
         }).then(dat=>console.log(dat))
