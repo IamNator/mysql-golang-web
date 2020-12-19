@@ -5,7 +5,7 @@ import (
 	"github.com/IamNator/mysql-golang-web/controllers"
 	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/database/seeders"
-	"github.com/IamNator/mysql-golang-web/user"
+	user "github.com/IamNator/mysql-golang-web/session"
 	"github.com/IamNator/mysql-golang-web/views"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -51,7 +51,7 @@ func main() {
 
 	dbGeneral.Session = db
 	dbData := controllers.DBData(dbGeneral)
-	dbUser := user.DBData(dbGeneral)
+	dbUser := user.DBData(dbGeneral) //session
 
 	if !dbGeneral.DbExists() {
 		CreateAndFillDb(&dbGeneral)
