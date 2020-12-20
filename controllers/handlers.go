@@ -3,6 +3,8 @@ package controllers
 import (
 	"database/sql"
 	"fmt"
+	"github.com/IamNator/mysql-golang-web/session"
+
 	//"golang.org/x/net/html"
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
@@ -129,7 +131,7 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 		check(err)
 
 		if err != nil {
-			fmt.Fprintln(w, err)
+			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 		} else {
 			fmt.Println("Data Successfully Added")
 		}
