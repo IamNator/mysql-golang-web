@@ -30,7 +30,7 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 
 		_, err = db.Session.Exec("INSERT INTO users(firstname, lastname, email, password) VALUES(?,?,?,?)", user.FirstName, user.LastName, user.Email, hashedPassword)
 		if err != nil {
-			JsonRegisterError(&w,"server Error, unable to create your account (Database problem)", http.StatusInternalServerError)
+			JsonError(&w,"server Error, unable to create your account (Database problem)", http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
@@ -38,21 +38,13 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 		json.NewEncoder(w).Encode("USer Created")
 		return
 	case err != nil:
-		JsonRegisterError(&w,"server error, Unable to access Database",http.StatusInternalServerError)
+		JsonError(&w,"server error, Unable to access Database",http.StatusInternalServerError)
 		fmt.Print(err)
 		return
 	default:
-		JsonRegisterError(&w,"User Already Exists, Please login",http.StatusFound)
+		JsonError(&w,"User Already Exists, Please login",http.StatusFound)
 	}
 
 }
 
-func JsonRegisterError(w * http.ResponseWriter, ErrorMessage string, ErrorCode int) {
-	(*w).WriteHeader(ErrorCode)
-	json.NewEncoder(*w).Encode(struct{
-		Login string `json:"login"`
-	}{
-		ErrorMessage,
-	})
-}
 

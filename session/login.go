@@ -19,21 +19,21 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 
 	fmt.Println(user.Email)
 	if user.Email == "" || user.PassWord == "" {
-		JsonLoginError(&w, "please Fill in fields", http.StatusBadRequest)
+		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
 		return
 	}
 
 	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&id, &userDb.FirstName, &userDb.LastName, &userDb.Email, &userDb.PassWord)
 	if err != nil {
 		fmt.Printf("dbQuery Error %v \n", err)
-		JsonLoginError(&w,"User Not Found", http.StatusNotFound)
+		JsonError(&w,"User Not Found", http.StatusNotFound)
 		return
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(userDb.PassWord), []byte(user.PassWord))
 	if err != nil {
 		fmt.Printf("CompareHashPassword Error %v \n", err)
-		JsonLoginError(&w,"Password Incorrect", http.StatusNotFound)
+		JsonError(&w,"Password Incorrect", http.StatusNotFound)
 		return
 	}
 
@@ -58,12 +58,12 @@ func LoginCookie(ID, username string, db *DBData) *http.Cookie {
 	}
 }
 
-func JsonLoginError(w * http.ResponseWriter, ErrorMessage string, ErrorCode int) {
+func JsonError(w * http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	(*w).WriteHeader(ErrorCode)
 	json.NewEncoder(*w).Encode(struct{
-		Login string `json:"login"`
+		Error string `json:"error"`
 	}{
-		ErrorMessage,
+		Error: ErrorMessage,
 	})
 }
 
