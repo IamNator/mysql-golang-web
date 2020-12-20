@@ -14,7 +14,7 @@ import (
 func (db *DBData) Fetch_t(w http.ResponseWriter, _ *http.Request) {
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
-	check(err)
+	Check(err)
 
 	//var user models.User
 	var users []models.User
@@ -37,7 +37,7 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 
 	file, err := os.Open("data.json")
-	check(err)
+	Check(err)
 	json.NewDecoder(file).Decode(&users)
 	file.Close()
 
@@ -45,7 +45,7 @@ func (db *DBData) Delete_t(writer http.ResponseWriter, req *http.Request) {
 		if values.ID == user.ID {
 			os.Remove("data.json")
 			file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
-			check(err)
+			Check(err)
 			fmt.Println("About to delete")
 			users = append(users[:i], users[i+1:]...)
 			jd := json.NewEncoder(file)
@@ -71,7 +71,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 	}
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
-	check(err)
+	Check(err)
 	defer file.Close()
 
 	var user models.User
@@ -97,7 +97,7 @@ func (db *DBData) Update_t(w http.ResponseWriter, req *http.Request) {
 		file.Close()
 		os.Remove("data.json")
 		file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
-		check(err)
+		Check(err)
 		jd := json.NewEncoder(file)
 		jd.SetIndent("", "   ")
 		jd.Encode(&users)
