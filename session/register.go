@@ -23,7 +23,7 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	case err == sql.ErrNoRows:
 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.PassWord), bcrypt.DefaultCost)
 		if err != nil {
-			JsonRegisterError(&w,"server Error, unable to create your account (hash problem)", http.StatusInternalServerError)
+			JsonError(&w,"server Error, unable to create your account (hash problem)", http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
