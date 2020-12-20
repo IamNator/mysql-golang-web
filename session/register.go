@@ -14,7 +14,7 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 
 	if user.FirstName == "" || user.LastName == "" || user.Email == "" || user.PassWord == "" {
-		JsonRegisterError(&w, "please Fill in fields", http.StatusBadRequest)
+		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
 		return
 	}
 	err := db.Session.QueryRow("Select email From users WHERE email=?", user.Email).Scan(&user.Email)
