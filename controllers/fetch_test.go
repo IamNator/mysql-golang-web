@@ -9,6 +9,7 @@ import (
 
 //Test func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request)
 var db controllers.DBData
+
 func TestDBData_Fetch(t *testing.T) {
 	req, err := http.NewRequest("GET", "/api/fetch", nil)
 	if err != nil {

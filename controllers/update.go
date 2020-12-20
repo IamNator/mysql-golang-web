@@ -14,25 +14,24 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 	json.NewDecoder(req.Body).Decode(&user)
 
 	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
-	//code needs optimization
-	var userid string
-	ck, _ := req.Cookie("sessionID")
-	userid = db.SessionUsers[ck.Value]
-	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
+		//code needs optimization
+		var userid string
+		ck, _ := req.Cookie("sessionID")
+		userid = db.SessionUsers[ck.Value]
+		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
-	
-	_, err = stmt.Exec(userid, user.FirstName, user.LastName, user.PhoneNumber)
-	Check(err)
 
-	if err != nil {
-		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
-	} else {
-		fmt.Println("Data Successfully Added")
-	}
+		_, err = stmt.Exec(userid, user.FirstName, user.LastName, user.PhoneNumber)
+		Check(err)
+
+		if err != nil {
+			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
+		} else {
+			fmt.Println("Data Successfully Added")
+		}
 		fmt.Fprintf(w, `Successful\n`)
 	} else {
 		fmt.Fprintf(w, `Please fill in all the fields\n`)
 	}
 
 }
-
