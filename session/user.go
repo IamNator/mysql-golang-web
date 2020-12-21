@@ -2,7 +2,6 @@ package session
 
 import "database/sql"
 
-
 //For registering new users
 type Credentials struct {
 	FirstName string `json:"firstname"`
@@ -12,7 +11,7 @@ type Credentials struct {
 }
 
 type LoginCredentials struct {
-	Email string `json:"email"`
+	Email    string `json:"email"`
 	PassWord string `json:"password"`
 }
 

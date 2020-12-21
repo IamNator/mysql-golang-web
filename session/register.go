@@ -11,7 +11,7 @@ import (
 
 func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	var user Credentials
-	json.NewDecoder(req.Body).Decode(&user)
+	_ = json.NewDecoder(req.Body).Decode(&user)
 
 	if user.FirstName == "" || user.LastName == "" || user.Email == "" || user.PassWord == "" {
 		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
@@ -23,28 +23,26 @@ func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
 	case err == sql.ErrNoRows:
 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.PassWord), bcrypt.DefaultCost)
 		if err != nil {
-			JsonError(&w,"server Error, unable to create your account (hash problem)", http.StatusInternalServerError)
+			JsonError(&w, "server Error, unable to create your account (hash problem)", http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
 
 		_, err = db.Session.Exec("INSERT INTO users(firstname, lastname, email, password) VALUES(?,?,?,?)", user.FirstName, user.LastName, user.Email, hashedPassword)
 		if err != nil {
-			JsonError(&w,"server Error, unable to create your account (Database problem)", http.StatusInternalServerError)
+			JsonError(&w, "server Error, unable to create your account (Database problem)", http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
 		//http.SetCookie(w, LoginCookie(user.userName, db))
-		json.NewEncoder(w).Encode("USer Created")
+		_ = json.NewEncoder(w).Encode("USer Created")
 		return
 	case err != nil:
-		JsonError(&w,"server error, Unable to access Database",http.StatusInternalServerError)
+		JsonError(&w, "server error, Unable to access Database", http.StatusInternalServerError)
 		fmt.Print(err)
 		return
 	default:
-		JsonError(&w,"User Already Exists, Please login",http.StatusFound)
+		JsonError(&w, "User Already Exists, Please login", http.StatusFound)
 	}
 
 }
-
-

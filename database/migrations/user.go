@@ -14,7 +14,6 @@ type DBData struct {
 	SessionUsers                         map[string]string
 }
 
-
 func (db *DBData) CreateUserDb() {
 
 	query := `CREATE TABLE IF NOT EXISTS users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname NCHAR(50), lastname NCHAR(50), email NCHAR(50), password NCHAR(120), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`

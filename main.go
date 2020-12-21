@@ -80,7 +80,6 @@ func main() {
 
 }
 
-
 func CreateAndFillDb(dbGeneral *controllers.DBData) {
 	dbMigration := migrations.DBData(*dbGeneral)
 	dbSeeders := seeders.DBData(*dbGeneral)
