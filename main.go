@@ -32,7 +32,7 @@ func main() {
 		DBName:       "heroku_31043c4e11d34ce",      //DBName
 		Session:      nil,                           //Session
 		SessionIDs:   make(map[string]string),       //map[string]string  [cookieValue]username
-		SessionUsers: make(map[string]string),       // map[string]string [username]ID
+		SessionToken: make(map[string]string),       // map[string]string [username]ID
 	}
 
 	//dbGeneral := controllers.DBData{
