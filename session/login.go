@@ -37,22 +37,24 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	http.SetCookie(w, LoginCookie(id, user.Email, db))
+	token, _ := CreateToken(id)
+	http.SetCookie(w, LoginCookie(token, user.Email, db))
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(userDb)
 	check(err)
 }
 
-func LoginCookie(ID, username string, db *DBData) *http.Cookie {
+func LoginCookie(token, username string, db *DBData) *http.Cookie {
 	expire := time.Now().AddDate(0, 0, 1)
 	id := uuid.NewV4().String()
 	db.SessionIDs[id] = username
-	db.SessionUsers[username] = ID
-	fmt.Println(id)
+	db.SessionToken[username] = token
+	fmt.Println(token)
 	return &http.Cookie{
 		Name:    "sessionID",
-		Value:   id,
+		Value:   token,
 		Expires: expire,
+		HttpOnly: true,
 		//Secure: true,
 	}
 }
