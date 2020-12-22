@@ -6,6 +6,7 @@ import (
 )
 
 func main(){
+	fmt.Println(os.UserHomeDir())
 	as := os.Getenv("ACCESS_SECRET")
 	fmt.Println("ACCESS_SECRET Already set")
 	if as == "" {
