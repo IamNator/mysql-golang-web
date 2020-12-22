@@ -22,7 +22,7 @@ func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
 	}
 
 	username := db.SessionIDs[ck.Value]
-	userID := db.SessionUsers[username]
+	userID := db.SessionToken[username]
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ?, userID = ? ;`)
 	_, err = stmt.Exec(user.ID, userID)
