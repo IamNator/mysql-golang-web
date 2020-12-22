@@ -11,6 +11,7 @@ type User struct {
 	ID          string `json:"id"`
 }
 
+//Type 
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
