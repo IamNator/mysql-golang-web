@@ -6,14 +6,19 @@ import (
 	"github.com/IamNator/mysql-golang-web/models"
 	"github.com/IamNator/mysql-golang-web/session"
 	"net/http"
+	validate "github.com/go-playground/validator/v10"
 )
 
 func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
+	validator := validate.New()
+	err := validator.Struct(user)
+	if err != nil {
 
-	if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
+	//}
+	//if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
 		//code needs optimization
 		var userid string
 		ck, _ := req.Cookie("sessionID")
