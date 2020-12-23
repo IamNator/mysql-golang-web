@@ -5,9 +5,9 @@ import (
 )
 
 type User struct {
-	FirstName   string `json:"fname"`
-	LastName    string `json:"lname"`
-	PhoneNumber string `json:"phone_number"`
+	FirstName   string `json:"fname" validate:"required"`
+	LastName    string `json:"lname" validate:"required"`
+	PhoneNumber string `json:"phone_number" validate:"required"`
 	ID          string `json:"id"`
 }
 
