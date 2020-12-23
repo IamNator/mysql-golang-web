@@ -19,7 +19,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	}
 	userName := db.SessionIDs[cookie.Value]      //returns the username
-	if id, ok := db.SessionUsers[userName]; ok { //Check if user is logged in (id exists in the MAP)
+	if id, ok := db.SessionToken[userName]; ok { //Check if user is logged in (id exists in the MAP)
 		SessionUserID = id
 	} else {
 		w.WriteHeader(http.StatusUnauthorized)
