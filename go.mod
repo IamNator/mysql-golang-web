@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	cloud.google.com/go v0.74.0 // indirect
+	github.com/adefemi171/Github-User-Chat v0.0.0-20200430034303-8c37f9fa0b5c // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gorilla/mux v1.8.0
