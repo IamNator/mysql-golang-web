@@ -17,7 +17,7 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 		//code needs optimization
 		var userid string
 		ck, _ := req.Cookie("sessionID")
-		userid = db.SessionUsers[ck.Value]
+		userid = db.SessionToken[ck.Value]
 		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
