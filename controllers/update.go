@@ -41,7 +41,17 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 		} else {
-
+			resp := struct {
+				Status bool
+				Message interface{}
+			}{
+				true,
+				"New contact Added to Phone Book",
+			}
+			err = json.NewEncoder(w).Encode(resp)
+			if err != nil {
+				session.JsonError(&w, err.Error(), http.StatusInternalServerError)
+			}
 		}
 
 
