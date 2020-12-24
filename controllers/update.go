@@ -13,6 +13,7 @@ import (
 //
 //contact details = { firstname, lastname, phone_number }
 //
+//return w.Body =  {  "status": true, "message": "contact added to phone book" }
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
@@ -42,8 +43,8 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 		} else {
 			resp := struct {
-				Status bool
-				Message interface{}
+				Status bool `json:"status"`
+				Message interface{} `json:"message"`
 			}{
 				true,
 				"New contact Added to Phone Book",
@@ -53,6 +54,5 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 				session.JsonError(&w, err.Error(), http.StatusInternalServerError)
 			}
 		}
-
 
 }
