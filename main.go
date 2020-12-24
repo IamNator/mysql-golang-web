@@ -32,7 +32,7 @@ func main() {
 		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
 		DBName:       "heroku_31043c4e11d34ce",      //DBName
 		Session:      nil,                           //Session for db
-		SessionToken: make(map[string]models.UserCredentials),       // map[string]string [token]userDetails
+		SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
 	}
 
 	//dbGeneral := controllers.DBData{
