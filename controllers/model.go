@@ -1,10 +1,12 @@
 package controllers
 
-import "database/sql"
+import (
+	"database/sql"
+	"github.com/IamNator/mysql-golang-web/models"
+)
 
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
-	SessionIDs                           map[string]string
-	SessionToken                         map[string]string
+	SessionToken                         map[string]models.User
 }

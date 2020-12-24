@@ -3,6 +3,7 @@ package migrations
 import (
 	"context"
 	"database/sql"
+	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"time"
 )
@@ -10,8 +11,7 @@ import (
 type DBData struct {
 	DBType, User, Password, Host, DBName string
 	Session                              *sql.DB
-	SessionIDs                           map[string]string
-	SessionToken                         map[string]string
+	SessionToken                         map[string]models.User
 }
 
 func (db *DBData) CreateUserDb() {

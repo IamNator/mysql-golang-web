@@ -5,6 +5,7 @@ import (
 	"github.com/IamNator/mysql-golang-web/controllers"
 	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/database/seeders"
+	"github.com/IamNator/mysql-golang-web/models"
 	user "github.com/IamNator/mysql-golang-web/session"
 	"github.com/IamNator/mysql-golang-web/views"
 
@@ -30,9 +31,8 @@ func main() {
 		Password:     "2e02951d",                    //Password
 		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
 		DBName:       "heroku_31043c4e11d34ce",      //DBName
-		Session:      nil,                           //Session
-		SessionIDs:   make(map[string]string),       //map[string]string  [cookieValue]username
-		SessionToken: make(map[string]string),       // map[string]string [username]ID
+		Session:      nil,                           //Session for db
+		SessionToken: make(map[string]models.User),       // map[string]string [token]userDetails
 	}
 
 	//dbGeneral := controllers.DBData{
