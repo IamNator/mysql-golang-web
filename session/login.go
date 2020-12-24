@@ -11,9 +11,9 @@ import (
 	//"time"
 )
 
-//Takes in {username, password}
+//Takes in req.body = {username, password}
 //
-// Returns { {code, userDetails}, token }
+// Returns w.Body = { {code, userDetails}, token }
 //
 //userDetails = {id, firstname, lastname, email, password}
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
@@ -21,7 +21,6 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var userDb models.UserCredentials
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	check(err)
-
 
 	if user.Email == "" || user.PassWord == "" {
 		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
