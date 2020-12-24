@@ -6,7 +6,6 @@ import (
 	"github.com/IamNator/mysql-golang-web/models"
 	//"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
-	"log"
 	"net/http"
 	//"time"
 )
@@ -20,7 +19,9 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
-	check(err)
+	if err != nil {
+		JsonError(&w, err.Error(), http.StatusBadRequest)
+	}
 
 	if user.Email == "" || user.PassWord == "" {
 		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
@@ -50,8 +51,11 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	}{MyStdResp{true, userDb },
 		token,
 	}
+
 	err = json.NewEncoder(w).Encode(res)
-	check(err)
+	if err != nil {
+		JsonError(&w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
@@ -63,8 +67,3 @@ func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	json.NewEncoder(*w).Encode(res)
 }
 
-func check(err error) {
-	if err != nil {
-		log.Println(err)
-	}
-}
