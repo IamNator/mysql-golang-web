@@ -2,19 +2,14 @@ package migrations
 
 import (
 	"context"
-	"database/sql"
 	"github.com/IamNator/mysql-golang-web/models"
 	"log"
 	"time"
 )
 
-type DBData struct {
-	DBType, User, Password, Host, DBName string
-	Session                              *sql.DB
-	SessionToken                         map[string]models.User
-}
+type Migrationdb models.DBData
 
-func (db *DBData) CreateUserDb() {
+func (db *Migrationdb) CreateUserDb() {
 
 	query := `CREATE TABLE IF NOT EXISTS users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname NCHAR(50), lastname NCHAR(50), email NCHAR(50), password NCHAR(120), created_at datetime default CURRENT_TIMESTAMP, updated_at datetime default CURRENT_TIMESTAMP)`
 

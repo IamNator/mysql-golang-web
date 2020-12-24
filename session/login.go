@@ -3,16 +3,17 @@ package session
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/satori/go.uuid"
+	"github.com/IamNator/mysql-golang-web/models"
+	//"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
-	"time"
+	//"time"
 )
 
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
-	var userDb Credentials
+	var userDb models.UserCredentials
 	var id string
 	err := json.NewDecoder(req.Body).Decode(&user)
 	check(err)
@@ -38,7 +39,7 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	}
 
 	token, _ := CreateToken(id)
-	//http.SetCookie(w, LoginCookie(token, user.Email, db))
+	db.SessionToken[token] = userDb
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(userDb)
 	check(err)

@@ -16,7 +16,7 @@ import (
 //	Session                              *sql.DB
 //	SessionToken                         map[string]models.User
 //}
-type seeddb models.DBData
+type Seeddb models.DBData
 
 //Old model, we will change this soon
 type user struct {
@@ -33,7 +33,7 @@ type User struct {
 }
 
 //New method to be implemented
-func (db seeddb) FillUserDb() {
+func (db Seeddb) FillUserDb() {
 
 	file, err := os.OpenFile("user_new.json", os.O_CREATE, os.ModePerm)
 	check(err)

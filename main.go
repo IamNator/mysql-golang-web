@@ -32,7 +32,7 @@ func main() {
 		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
 		DBName:       "heroku_31043c4e11d34ce",      //DBName
 		Session:      nil,                           //Session for db
-		SessionToken: make(map[string]models.User),       // map[string]string [token]userDetails
+		SessionToken: make(map[string]models.UserCredentials),       // map[string]string [token]userDetails
 	}
 
 	//dbGeneral := controllers.DBData{
@@ -80,9 +80,9 @@ func main() {
 
 }
 
-func CreateAndFillDb(dbGeneral *controllers.DBData) {
-	dbMigration := migrations.DBData(*dbGeneral)
-	dbSeeders := seeders.DBData(*dbGeneral)
+func CreateAndFillDb(dbGeneral *models.DBData) {
+	dbMigration := migrations.Migrationdb(*dbGeneral)
+	dbSeeders := seeders.Seeddb(*dbGeneral)
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
 	dbSeeders.FillUSerDb()
