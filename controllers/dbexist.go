@@ -1,6 +1,6 @@
 package controllers
 
-func (db *DBData) DbExists() bool {
+func (db *Controllersdb) DbExists() bool {
 	var id int
 	idn := 1
 	err := db.Session.QueryRow("Select id From phoneBook WHERE id=?", idn).Scan(&id)

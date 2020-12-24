@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func (db DBData) OpenDB() (*sql.DB, error) {
+func (db Controllersdb) OpenDB() (*sql.DB, error) {
 	openDB, err := sql.Open(db.DBType, fmt.Sprintf("%s:%s@tcp(%s)/%s", db.User, db.Password, db.Host, db.DBName))
 	//db.Session.SetMaxOpenConns(20)
 	//db.Session.SetMaxIdleConns(20)

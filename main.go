@@ -45,15 +45,15 @@ func main() {
 	//	SessionIDs:	make(map[string]string),	//map[string]string
 	//	SessionUsers: make(map[string]string),	// map[string]string
 	//}
-	DB := controllers.DBData(dbGeneral)
-	db, _ := dbGeneral.OpenDB()
-	defer dbGeneral.CloseDB()
+	DB := controllers.Controllersdb(dbGeneral)
+	db, _ := DB.OpenDB()
+	defer DB.CloseDB()
 
 	dbGeneral.Session = db
 	dbData := dbGeneral
 	dbUser := user.Sessiondb(dbGeneral)//session
 
-	if !dbGeneral.DbExists() {
+	if !DB.DbExists() {
 		CreateAndFillDb(&dbGeneral)
 		fmt.Println("Database created and updated")
 	}
