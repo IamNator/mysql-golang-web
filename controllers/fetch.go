@@ -42,7 +42,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 		Message: users,
 	}
 
-	err = json.NewEncoder(w).Encode(resp) //Sends an array of user information
+	err = json.NewEncoder(w).Encode(resp)
 	if err != nil {
 		session.JsonError(&w, err.Error(), http.StatusInternalServerError)
 	}
