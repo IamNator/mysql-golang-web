@@ -23,7 +23,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 
 	_ = db.Session.Ping()
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + db.SessionToken[reqBody.Token].ID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, phoneNumber FROM phoneBook WHERE userID=` + db.SessionToken[reqBody.Token].ID)
 	Check(err)
 
 	var user models.PhoneBookContact
