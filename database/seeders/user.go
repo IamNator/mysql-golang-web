@@ -32,7 +32,8 @@ type User struct {
 	PassWord  string `json:"password"`
 }
 
-//New method to be implemented
+//
+//Now implemented
 func (db Seeddb) FillUserDb() {
 
 	file, err := os.OpenFile("user_new.json", os.O_CREATE, os.ModePerm)
