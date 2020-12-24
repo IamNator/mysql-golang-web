@@ -16,7 +16,7 @@ func (db Seeddb) FillDb() {
 	check(err)
 	defer file.Close()
 
-	var users []models.User
+	var users []models.PhoneBookContact
 
 	json.NewDecoder(file).Decode(&users)
 	//fmt.Println(users)
