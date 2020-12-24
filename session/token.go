@@ -1,9 +1,11 @@
 package session
 
-func CreateToken(userid string) (token string, err error){
+import (
+	"github.com/IamNator/mysql-golang-web/models"
+	uuid "github.com/satori/go.uuid"
+)
 
-
-
-
-	return token, nil
+func CreateToken(db *Sessiondb, user models.UserCredentials) {
+	token := uuid.NewV1().String()
+	db.SessionToken[token] = user
 }

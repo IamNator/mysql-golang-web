@@ -21,3 +21,8 @@ type LoginCredentials struct {
 //	SessionToken                         map[string]models.User
 //}
 type Sessiondb models.DBData
+
+type MyStdResp struct {
+	Status bool
+	Message interface{}
+}

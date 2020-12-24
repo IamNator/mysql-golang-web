@@ -4,13 +4,14 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"github.com/IamNator/mysql-golang-web/models"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
 )
 
 func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
-	var user Credentials
+	var user models.UserCredentials
 	_ = json.NewDecoder(req.Body).Decode(&user)
 
 	if user.FirstName == "" || user.LastName == "" || user.Email == "" || user.PassWord == "" {
@@ -23,7 +24,7 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	case err == sql.ErrNoRows:
 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.PassWord), bcrypt.DefaultCost)
 		if err != nil {
-			JsonError(&w, "server Error, unable to create your account (hash problem)", http.StatusInternalServerError)
+			JsonError(&w, fmt.Sprintf("server Error, unable to create your account (hash problem) : %v ", err), http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
@@ -44,5 +45,4 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	default:
 		JsonError(&w, "User Already Exists, Please login", http.StatusFound)
 	}
-
 }

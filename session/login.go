@@ -14,17 +14,16 @@ import (
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
-	var id string
-	err := json.NewDecoder(req.Body).Decode(&user)
+	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	check(err)
 
-	fmt.Println(user.Email)
+
 	if user.Email == "" || user.PassWord == "" {
 		JsonError(&w, "please Fill in fields", http.StatusBadRequest)
 		return
 	}
 
-	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&id, &userDb.FirstName, &userDb.LastName, &userDb.Email, &userDb.PassWord)
+	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&userDb.ID, &userDb.FirstName, &userDb.LastName, &userDb.Email, &userDb.PassWord)
 	if err != nil {
 		fmt.Printf("dbQuery Error %v \n", err)
 		JsonError(&w, "User Not Found", http.StatusNotFound)
@@ -38,20 +37,23 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	token, _ := CreateToken(id)
-	db.SessionToken[token] = userDb
+	CreateToken(db, userDb)
 	w.WriteHeader(http.StatusOK)
-	err = json.NewEncoder(w).Encode(userDb)
+	res := MyStdResp{
+		Status: true,
+		Message: userDb,
+	}
+	err = json.NewEncoder(w).Encode(res)
 	check(err)
 }
 
 func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	(*w).WriteHeader(ErrorCode)
-	json.NewEncoder(*w).Encode(struct {
-		Error string `json:"error"`
-	}{
-		Error: ErrorMessage,
-	})
+	res := MyStdResp{
+		Status: false,
+		Message: ErrorMessage,
+	}
+	json.NewEncoder(*w).Encode(res)
 }
 
 func check(err error) {
