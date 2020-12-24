@@ -2,7 +2,7 @@ package controllers
 
 import "fmt"
 
-func (db Controllersdb) CloseDB() string {
+func (db *Controllersdb) CloseDB() string {
 	err := db.Session.Close()
 	if err != nil {
 		return fmt.Sprintf("%v", err)
