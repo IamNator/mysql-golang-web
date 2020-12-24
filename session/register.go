@@ -31,12 +31,16 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 
 		_, err = db.Session.Exec("INSERT INTO users(firstname, lastname, email, password) VALUES(?,?,?,?)", user.FirstName, user.LastName, user.Email, hashedPassword)
 		if err != nil {
-			JsonError(&w, "server Error, unable to create your account (Database problem)", http.StatusInternalServerError)
+			JsonError(&w, fmt.Sprintf("server Error, unable to create your account (Database problem) : %v ", err), http.StatusInternalServerError)
 			log.Fatal(err)
 			return
 		}
 		//http.SetCookie(w, LoginCookie(user.userName, db))
-		_ = json.NewEncoder(w).Encode("USer Created")
+		res := MyStdResp{
+			Status: true,
+			Message: "User Created",
+		}
+		_ = json.NewEncoder(w).Encode(res)
 		return
 	case err != nil:
 		JsonError(&w, "server error, Unable to access Database", http.StatusInternalServerError)
