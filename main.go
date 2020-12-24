@@ -50,7 +50,6 @@ func main() {
 	defer DB.CloseDB()
 
 	dbGeneral.Session = db
-	dbData := dbGeneral
 	dbUser := user.Sessiondb(dbGeneral)//session
 
 	if !DB.DbExists() {
