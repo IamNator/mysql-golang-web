@@ -21,6 +21,7 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	err := db.Session.QueryRow("Select email From users WHERE email=?", user.Email).Scan(&user.Email)
 
 	switch {
+
 	case err == sql.ErrNoRows:
 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.PassWord), bcrypt.DefaultCost)
 		if err != nil {
@@ -42,10 +43,14 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 		}
 		_ = json.NewEncoder(w).Encode(res)
 		return
+
+
 	case err != nil:
 		JsonError(&w, "server error, Unable to access Database", http.StatusInternalServerError)
 		fmt.Print(err)
 		return
+
+
 	default:
 		JsonError(&w, "User Already Exists, Please login", http.StatusFound)
 	}
