@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
+func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	var SessionUserID string
 	cookie, err := req.Cookie("sessionID")
 	if err == http.ErrNoCookie {
@@ -18,7 +18,7 @@ func (db *DBData) Fetch(w http.ResponseWriter, req *http.Request) {
 		return
 
 	}
-	userName := db.SessionIDs[cookie.Value]      //returns the username
+
 	if id, ok := db.SessionToken[userName]; ok { //Check if user is logged in (id exists in the MAP)
 		SessionUserID = id
 	} else {

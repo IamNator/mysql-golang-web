@@ -25,7 +25,7 @@ import (
 */
 
 func main() {
-	dbGeneral := controllers.DBData{
+	dbGeneral := models.DBData{
 		DBType:       "mysql",                       //Type
 		User:         "b7e0a0a81fef1f",              //User
 		Password:     "2e02951d",                    //Password
@@ -45,13 +45,13 @@ func main() {
 	//	SessionIDs:	make(map[string]string),	//map[string]string
 	//	SessionUsers: make(map[string]string),	// map[string]string
 	//}
-
+	DB := controllers.DBData(dbGeneral)
 	db, _ := dbGeneral.OpenDB()
 	defer dbGeneral.CloseDB()
 
 	dbGeneral.Session = db
 	dbData := dbGeneral
-	dbUser := user.Sessiondb(dbGeneral )//session
+	dbUser := user.Sessiondb(dbGeneral)//session
 
 	if !dbGeneral.DbExists() {
 		CreateAndFillDb(&dbGeneral)

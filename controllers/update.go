@@ -9,7 +9,7 @@ import (
 	validate "github.com/go-playground/validator/v10"
 )
 
-func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
+func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var user models.User
 	json.NewDecoder(req.Body).Decode(&user)
@@ -22,7 +22,7 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 		//code needs optimizations
 		var userid string
 		ck, _ := req.Cookie("sessionID")
-		userid = db.SessionToken[ck.Value]
+		userid = db.SessionToken[token]
 		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 

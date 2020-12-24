@@ -8,7 +8,7 @@ import (
 
 //body takes ("token": "342-342s-fsd-343cv", "id": "23"}
 //returns in body ("status": "true", "message": "deleted id, first and last name"
-func (db *DBData) Delete(writer http.ResponseWriter, req *http.Request) {
+func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
 	//	http.Error(writer, fmt.Sprintf("ParseForm()  err : %v",err), http.StatusBadRequest )
 	//	fmt.Fprintf(writer, "ParseForm() err: %v", err)
