@@ -35,16 +35,15 @@ func main() {
 	//	SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
 	//}
 
-	//dbGeneral := controllers.DBData{
-	//	DBType:   "mysql",          //Type
-	//	User:     "root",    	    //User
-	//	Password: "299792458m/s",   //Password
-	//	Host:     "localhost:3306", //Host 3306
-	//	DBName:   "app",  			//DBName
-	//	Session:  nil,              //Session
-	//	SessionIDs:	make(map[string]string),	//map[string]string
-	//	SessionUsers: make(map[string]string),	// map[string]string
-	//}
+	dbGeneral := models.DBData{
+		DBType:   "mysql",          //Type
+		User:     "root",    	    //User
+		Password: "299792458m/s",   //Password
+		Host:     "localhost:3306", //Host 3306
+		DBName:   "app",  			//DBName
+		Session:  nil,              //Session
+		SessionToken: make(map[string]models.UserCredentials),	// map[string]string
+	}
 	DB := controllers.Controllersdb(dbGeneral)
 	db, _ := DB.OpenDB()
 	defer DB.CloseDB()
