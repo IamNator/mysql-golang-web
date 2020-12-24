@@ -46,10 +46,11 @@ func main() {
 	}
 	DB := controllers.Controllersdb(dbGeneral)
 	db, _ := DB.OpenDB()
+	DB.Session = db
 	defer DB.CloseDB()
 
-	dbGeneral.Session = db
-	dbUser := user.Sessiondb(dbGeneral)//session
+
+	dbUser := user.Sessiondb(DB)//session
 
 	if !DB.DbExists() {
 		CreateAndFillDb(&dbGeneral)
