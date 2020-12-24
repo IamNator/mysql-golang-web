@@ -11,6 +11,11 @@ import (
 	//"time"
 )
 
+//Takes in {username, password}
+//
+// Returns { {code, userDetails}, token }
+//
+//userDetails = {id, firstname, lastname, email, password}
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
@@ -37,11 +42,14 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	CreateToken(db, userDb)
-	w.WriteHeader(http.StatusOK)
-	res := MyStdResp{
-		Status: true,
-		Message: userDb,
+	token := CreateToken(db, userDb)
+	w.WriteHeader(http.StatusOK
+
+	res := struct {
+		MyStdResp
+		Token string `json:"token"`
+	}{MyStdResp{true, userDb },
+		token,
 	}
 	err = json.NewEncoder(w).Encode(res)
 	check(err)

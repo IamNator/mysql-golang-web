@@ -11,17 +11,19 @@ import (
 
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
-	var user models.User
+	var user struct {
+
+	}
 	json.NewDecoder(req.Body).Decode(&user)
+
+	if user
+
 	validator := validate.New()
 	err := validator.Struct(user)
-	if err != nil {
 
-	//}
-	//if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
-		//code needs optimizations
+	if err == nil {
 		var userid string
-		ck, _ := req.Cookie("sessionID")
+
 		userid = db.SessionToken[token]
 		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
