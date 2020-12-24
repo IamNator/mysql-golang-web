@@ -42,7 +42,7 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	}
 
 	token := CreateToken(db, userDb)
-	w.WriteHeader(http.StatusOK
+	w.WriteHeader(http.StatusOK)
 
 	res := struct {
 		MyStdResp
