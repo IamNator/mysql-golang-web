@@ -4,7 +4,7 @@ import (
 	"database/sql"
 )
 
-type User struct {
+type PhoneBookContact struct {
 	FirstName   string `json:"fname" validate:"required"`
 	LastName    string `json:"lname" validate:"required"`
 	PhoneNumber string `json:"phone_number" validate:"required"`

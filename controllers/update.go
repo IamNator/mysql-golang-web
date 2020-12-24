@@ -3,15 +3,22 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/IamNator/mysql-golang-web/models"
 	"github.com/IamNator/mysql-golang-web/session"
 	"net/http"
 	validate "github.com/go-playground/validator/v10"
 )
 
+
+// takes in req.Body = { "token": "42442-343-3432n-34mv", {contact details} }
+//
+//contact details = { firstname, lastname, phone_number }
+//
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
-	var user struct {
-
+	var reqBody struct {
+	 	Token string
+	 	models.PhoneBookContact
 	}
 	json.NewDecoder(req.Body).Decode(&user)
 

@@ -26,8 +26,8 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + db.SessionToken[reqBody.Token].ID)
 	Check(err)
 
-	var user models.User
-	var users []models.User
+	var user models.PhoneBookContact
+	var users []models.PhoneBookContact
 
 	for rows.Next() {
 		err = rows.Scan(&user.ID, &user.FirstName, &user.LastName, &user.PhoneNumber)
