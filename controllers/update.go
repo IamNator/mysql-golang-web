@@ -19,7 +19,7 @@ func (db *DBData) Update(w http.ResponseWriter, req *http.Request) {
 
 	//}
 	//if user.FirstName != "" && user.LastName != "" && user.PhoneNumber != "" && string(user.ID) != "" {
-		//code needs optimization
+		//code needs optimizations
 		var userid string
 		ck, _ := req.Cookie("sessionID")
 		userid = db.SessionToken[ck.Value]
