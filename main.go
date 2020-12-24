@@ -25,15 +25,15 @@ import (
 */
 
 func main() {
-	dbGeneral := models.DBData{
-		DBType:       "mysql",                       //Type
-		User:         "b7e0a0a81fef1f",              //User
-		Password:     "2e02951d",                    //Password
-		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
-		DBName:       "heroku_31043c4e11d34ce",      //DBName
-		Session:      nil,                           //Session for db
-		SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
-	}
+	//dbGeneral := models.DBData{
+	//	DBType:       "mysql",                       //Type
+	//	User:         "b7e0a0a81fef1f",              //User
+	//	Password:     "2e02951d",                    //Password
+	//	Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
+	//	DBName:       "heroku_31043c4e11d34ce",      //DBName
+	//	Session:      nil,                           //Session for db
+	//	SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
+	//}
 
 	//dbGeneral := controllers.DBData{
 	//	DBType:   "mysql",          //Type
