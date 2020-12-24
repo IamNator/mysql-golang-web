@@ -10,7 +10,7 @@ import (
 )
 
 //Reads Json file and fill mysql database
-func (db DBData) FillDb() {
+func (db Seeddb) FillDb() {
 
 	file, err := os.OpenFile("data.json", os.O_CREATE, os.ModePerm)
 	check(err)

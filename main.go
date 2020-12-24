@@ -85,6 +85,6 @@ func CreateAndFillDb(dbGeneral *models.DBData) {
 	dbSeeders := seeders.Seeddb(*dbGeneral)
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
-	dbSeeders.FillUSerDb()
+	dbSeeders.FillUserDb()
 	dbSeeders.FillDb()
 }
