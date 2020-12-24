@@ -36,6 +36,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 		users = append(users, user)
 	}
 
+
 	resp := session.MyStdResp{
 		Status: true,
 		Message: users,
