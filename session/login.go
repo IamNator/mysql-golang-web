@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func (db *sessiondb) Login(w http.ResponseWriter, req *http.Request) {
+func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb Credentials
 	var id string
@@ -38,7 +38,7 @@ func (db *sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	}
 
 	token, _ := CreateToken(id)
-	http.SetCookie(w, LoginCookie(token, user.Email, db))
+	//http.SetCookie(w, LoginCookie(token, user.Email, db))
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(userDb)
 	check(err)

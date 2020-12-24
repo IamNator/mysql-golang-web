@@ -20,4 +20,4 @@ type LoginCredentials struct {
 //	Session                              *sql.DB
 //	SessionToken                         map[string]models.User
 //}
-type sessiondb models.DBData
+type Sessiondb models.DBData

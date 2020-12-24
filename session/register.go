@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func (db *DBData) Register(w http.ResponseWriter, req *http.Request) {
+func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	var user Credentials
 	_ = json.NewDecoder(req.Body).Decode(&user)
 

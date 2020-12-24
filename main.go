@@ -50,8 +50,8 @@ func main() {
 	defer dbGeneral.CloseDB()
 
 	dbGeneral.Session = db
-	dbData := controllers.DBData(dbGeneral)
-	dbUser := user.DBData(dbGeneral) //session
+	dbData := dbGeneral
+	dbUser := user.Sessiondb(dbGeneral )//session
 
 	if !dbGeneral.DbExists() {
 		CreateAndFillDb(&dbGeneral)
