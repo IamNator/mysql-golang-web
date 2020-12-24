@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
+func (db *sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb Credentials
 	var id string
@@ -42,21 +42,6 @@ func (db *DBData) Login(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(userDb)
 	check(err)
-}
-
-func LoginCookie(token, username string, db *DBData) *http.Cookie {
-	expire := time.Now().AddDate(0, 0, 1)
-	id := uuid.NewV4().String()
-	db.SessionIDs[id] = username
-	db.SessionToken[username] = token
-	fmt.Println(token)
-	return &http.Cookie{
-		Name:    "sessionID",
-		Value:   token,
-		Expires: expire,
-		HttpOnly: true,
-		//Secure: true,
-	}
 }
 
 func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {

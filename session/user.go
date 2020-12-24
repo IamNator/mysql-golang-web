@@ -1,6 +1,6 @@
 package session
 
-import "database/sql"
+import "github.com/IamNator/mysql-golang-web/models"
 
 //For registering new users
 type Credentials struct {
@@ -14,10 +14,10 @@ type LoginCredentials struct {
 	Email    string `json:"email"`
 	PassWord string `json:"password"`
 }
-
-type DBData struct {
-	DBType, User, Password, Host, DBName string
-	Session                              *sql.DB
-	SessionIDs                           map[string]string
-	SessionToken                         map[string]string
-}
+//
+//type DBData struct {
+//	DBType, User, Password, Host, DBName string
+//	Session                              *sql.DB
+//	SessionToken                         map[string]models.User
+//}
+type sessiondb models.DBData
