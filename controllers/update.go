@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/IamNator/mysql-golang-web/models"
 	"github.com/IamNator/mysql-golang-web/session"
 	"net/http"
 	validate "github.com/go-playground/validator/v10"

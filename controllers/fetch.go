@@ -2,34 +2,28 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/IamNator/mysql-golang-web/models"
+	"github.com/IamNator/mysql-golang-web/session"
 	"net/http"
 )
 
+// takes req.Body = { "token": "ere-dfd-f3432", "id": "42cv"}
+//
+//returns w.Body = { "status": "true", "message": [ phone book contacts ] }
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
-	var SessionUserID string
-	cookie, err := req.Cookie("sessionID")
-	if err == http.ErrNoCookie {
-		//http.Redirect(w, req, "/", 301)
-		w.WriteHeader(http.StatusUnauthorized)
-		_ = json.NewEncoder(w).Encode("Cookie not found")
-		fmt.Println("Cookie not found")
-		return
-
+	var reqBody struct {
+		Token string `json:"token"`
+		ID string    `json:"id"`
 	}
+	json.NewDecoder(req.Body).Decode(&reqBody)
 
-	if id, ok := db.SessionToken[userName]; ok { //Check if user is logged in (id exists in the MAP)
-		SessionUserID = id
-	} else {
-		w.WriteHeader(http.StatusUnauthorized)
-		_ = json.NewEncoder(w).Encode("Cookie Value invalid, please login")
-		fmt.Println("Cookie.Value does not match userNAme")
+	if _, ok := db.SessionToken[reqBody.Token]; !ok { //Check if user is logged in (id exists in the MAP)
+		session.JsonError(&w, "Unauthorized access", http.StatusUnauthorized)
 		return
 	}
 
 	_ = db.Session.Ping()
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + SessionUserID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, PhoneNumber FROM phoneBook WHERE userID=` + db.SessionToken[reqBody.Token].ID)
 	Check(err)
 
 	var user models.User
@@ -41,6 +35,15 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 
 		users = append(users, user)
 	}
-	_ = json.NewEncoder(w).Encode(users) //Sends an array of user information
+
+	resp := session.MyStdResp{
+		Status: true,
+		Message: users,
+	}
+
+	err = json.NewEncoder(w).Encode(resp) //Sends an array of user information
+	if err != nil {
+		session.JsonError(&w, err.Error(), http.StatusInternalServerError)
+	}
 
 }
