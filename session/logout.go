@@ -35,7 +35,6 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 			"Logged out successfully",
 		}
 
-
 		err = json.NewEncoder(w).Encode(res)
 		if err != nil {
 			JsonError(&w, err.Error(), http.StatusInternalServerError)

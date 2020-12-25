@@ -4,17 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/models"
+
 	//"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	//"time"
 )
 
-
-type UserCredentials struct{
-	models.UserCredentials
-	ID string `json:"id"`
-}
 
 //Takes in req.body = {username, password}
 //
@@ -23,7 +19,7 @@ type UserCredentials struct{
 //userDetails = {id, firstname, lastname, email, password}
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
-	var userDb UserCredentials
+	var userDb models.UserCredentials
 
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	if err != nil {

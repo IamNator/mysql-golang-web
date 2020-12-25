@@ -3,8 +3,6 @@ package seeders
 import (
 	//"database/sql"
 	"encoding/json"
-	"github.com/IamNator/mysql-golang-web/models"
-
 	//"log"
 	"os"
 )
@@ -17,8 +15,10 @@ func (db Seeddb) FillDb() {
 	defer file.Close()
 
 	var users []struct{
-		models.PhoneBookContact
-		ID string `json:"id"`
+		FirstName   string `json:"firstname" validate:"required"`
+		LastName    string `json:"lastname" validate:"required"`
+		PhoneNumber string `json:"phone_number" validate:"required"`
+		ID			 string `json:"id"`
 	}
 
 	json.NewDecoder(file).Decode(&users)
@@ -33,3 +33,4 @@ func (db Seeddb) FillDb() {
 		check(err)
 	}
 }
+

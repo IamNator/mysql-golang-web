@@ -8,6 +8,7 @@ type PhoneBookContact struct {
 	FirstName   string `json:"firstname" validate:"required"`
 	LastName    string `json:"lastname" validate:"required"`
 	PhoneNumber string `json:"phone_number" validate:"required"`
+	ID 			string `json:"id"`
 }
 
 //Type 
@@ -23,4 +24,5 @@ type UserCredentials struct {
 	LastName    string `json:"lastname" validate:"required"`
 	Email 		string `json:"email" validate:"required"`
 	PassWord    string `json:"password" validate:"required"`
+	ID 			string `json:"id"`
 }
