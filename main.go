@@ -50,9 +50,8 @@ func main() {
 	DB.Session = db
 	defer DB.CloseDB()
 
-
 	dbUser := user.Sessiondb(DB)//session
-	//
+
 	if !DB.DbExists() {
 		CreateAndFillDb(DB)
 		fmt.Println("Database created and updated")
