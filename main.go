@@ -70,6 +70,7 @@ func main() {
 
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
 	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
+	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {

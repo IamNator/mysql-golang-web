@@ -2,10 +2,7 @@ package session
 
 import (
 	"encoding/json"
-
-	//"github.com/satori/go.uuid"
 	"net/http"
-	//"time"
 )
 
 //Takes in req.body = {token}
@@ -29,7 +26,7 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	}
 
 	{
-		delete(db.SessionToken, user.Token) //token deleted
+		delete(db.SessionToken, user.Token) //token is deleted here
 
 		w.WriteHeader(http.StatusOK)
 
@@ -50,8 +47,7 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 
 /* Request body received
 {
-  "email":"natverior1@gmail.com",
-  "password":"password"
+  "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86"
 }
 */
 
@@ -59,13 +55,6 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 /* Response to sent
 {
     "Status": true,
-    "Message": {
-        "id": "1",
-        "firstname": "Nator",
-        "lastname": "Verinumbe",
-        "email": "natverior1@gmail.com",
-        "password": "$2a$10$88kYQEH6sP2xPjGD3GeQ5e5hcq74yIHbl.Vo8SDdJgsmx28IdgPQu"
-    },
-    "token": "fa3af482-4685-11eb-8c2d-a01d486a6c86"
+    "Message": "Logged out successfully"
 }
 */
