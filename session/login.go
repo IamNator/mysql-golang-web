@@ -18,6 +18,7 @@ import (
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
+
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	if err != nil {
 		JsonError(&w, err.Error(), http.StatusBadRequest)
@@ -67,3 +68,24 @@ func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	json.NewEncoder(*w).Encode(res)
 }
 
+/* Request body received
+  {
+    "email":"natverior1@gmail.com",
+    "password":"password"
+  }
+*/
+
+
+/* Response to sent
+{
+    "Status": true,
+    "Message": {
+        "id": "1",
+        "firstname": "Nator",
+        "lastname": "Verinumbe",
+        "email": "natverior1@gmail.com",
+        "password": "$2a$10$88kYQEH6sP2xPjGD3GeQ5e5hcq74yIHbl.Vo8SDdJgsmx28IdgPQu"
+    },
+    "token": "fa3af482-4685-11eb-8c2d-a01d486a6c86"
+}
+*/

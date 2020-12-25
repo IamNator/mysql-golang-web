@@ -14,12 +14,7 @@ type LoginCredentials struct {
 	Email    string `json:"email"`
 	PassWord string `json:"password"`
 }
-//
-//type DBData struct {
-//	DBType, User, Password, Host, DBName string
-//	Session                              *sql.DB
-//	SessionToken                         map[string]models.User
-//}
+
 type Sessiondb models.DBData
 
 type MyStdResp struct {

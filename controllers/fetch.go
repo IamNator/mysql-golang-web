@@ -48,3 +48,42 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 
 }
+/* Request Body received
+  {
+    "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86",
+    "id":"1"
+  }
+
+*/
+
+/* Response Received
+{
+    "Status": true,
+    "Message": [
+        {
+            "fname": "Nator",
+            "lname": "Verinumber",
+            "phone_number": "09045057268",
+            "id": "1"
+        },
+        {
+            "fname": "Peter",
+            "lname": "John",
+            "phone_number": "09045689434",
+            "id": "2"
+        },
+        {
+            "fname": "Ajibola",
+            "lname": "Tantoloun",
+            "phone_number": "09055655946",
+            "id": "6"
+        },
+        {
+            "fname": "John",
+            "lname": "Pop",
+            "phone_number": "09045057268",
+            "id": "12"
+        }
+    ]
+}
+*/

@@ -4,12 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/session"
+	"log"
 
 	//"fmt"
 	"net/http"
 )
 
-//body takes ("token": "342-342s-fsd-343cv", "id": "23", "id": "dfd-434-cvd"}
+//body takes ("token": "342-342s-fsd-343cv", "id": "23" }
 //
 //returns in body ("status": "true", "message": "deleted id, first and last name"
 //
@@ -35,10 +36,19 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	masterID := db.SessionToken[user.Token]  //The person authorizing the delete
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ?, userID = ? ;`)
-	_, err = stmt.Exec(user.ID, masterID)
+	res, err := stmt.Exec(user.ID, masterID)
+	log.Println(res)
 	Check(err)
 
 	writer.Header().Set("Content-Type", "application/json")
-	_ = json.NewEncoder(writer).Encode("deleted")
+	resp := session.MyStdResp{
+		Status: true,
+		Message: "User Deleted",
+	}
+
+	err = json.NewEncoder(writer).Encode(resp)
+	if err != nil {
+		session.JsonError(&writer, err.Error(), http.StatusInternalServerError)
+	}
 
 }
