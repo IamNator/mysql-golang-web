@@ -18,9 +18,8 @@ type DBData struct {
 	SessionToken                           map[string]UserCredentials
 }
 
-
+//For registering new users
 type UserCredentials struct {
-	ID          string `json:"id"`
 	FirstName   string `json:"firstname" validate:"required"`
 	LastName    string `json:"lastname" validate:"required"`
 	Email 		string `json:"email" validate:"required"`
