@@ -29,21 +29,24 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	{
+		delete(db.SessionToken, user.Token)
 
+		w.WriteHeader(http.StatusOK)
 
-	w.WriteHeader(http.StatusOK)
+		res := struct {
+			MyStdResp
+			Token string `json:"token"`
+		}{MyStdResp{true, "Logged out successfully" },
+			user.Token,
+		}
 
-	res := struct {
-		MyStdResp
-		Token string `json:"token"`
-	}{MyStdResp{true, "Logged out successfully" },
-		user.Token,
+		err = json.NewEncoder(w).Encode(res)
+		if err != nil {
+			JsonError(&w, err.Error(), http.StatusInternalServerError)
+		}
 	}
 
-	err = json.NewEncoder(w).Encode(res)
-	if err != nil {
-		JsonError(&w, err.Error(), http.StatusInternalServerError)
-	}
 }
 
 
