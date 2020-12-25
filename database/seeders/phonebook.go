@@ -16,7 +16,10 @@ func (db Seeddb) FillDb() {
 	check(err)
 	defer file.Close()
 
-	var users []models.PhoneBookContact
+	var users []struct{
+		models.PhoneBookContact
+		ID string `json:"id"`
+	}
 
 	json.NewDecoder(file).Decode(&users)
 	//fmt.Println(users)
