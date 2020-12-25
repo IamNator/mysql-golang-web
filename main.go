@@ -7,7 +7,6 @@ import (
 	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/database/seeders"
 	"github.com/IamNator/mysql-golang-web/models"
-	user "github.com/IamNator/mysql-golang-web/session"
 	"github.com/IamNator/mysql-golang-web/views"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -52,7 +51,7 @@ func main() {
 	defer DB.CloseDB()
 
 
-	dbUser := user.Sessiondb(DB)//session
+	//dbUser := user.Sessiondb(DB)//session
 
 	if !DB.DbExists() {
 		CreateAndFillDb(&dbGeneral)
