@@ -32,5 +32,4 @@ func (db Seeddb) FillDb() {
 		_, err = stmt.Exec(values.ID, values.FirstName, values.LastName, values.PhoneNumber)
 		check(err)
 	}
-
 }
