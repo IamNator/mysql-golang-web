@@ -9,7 +9,7 @@ import (
 )
 
 
-// takes in req.Body = { "token": "42442-343-3432n-34mv", {contact details} }
+// takes in req.Body = { "token": "42442-343-3432n-34mv", "detail": {contact details} }
 //
 //contact details = { firstname, lastname, phone_number }
 //
@@ -18,7 +18,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
 	 	Token string `validate: "required"`
-	 	models.PhoneBookContact `validate: "required"`
+	 	Details models.PhoneBookContact `validate: "required" json:"details"`
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
@@ -38,7 +38,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (FirstName,LastName,phoneNumber)
 	VALUES (?,?,?)`)
 
-		_, err = stmt.Exec(reqBody.FirstName, reqBody.LastName, reqBody.PhoneNumber)
+		_, err = stmt.Exec(reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
 		if err != nil {
 			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 		} else {
