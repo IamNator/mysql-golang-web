@@ -35,8 +35,8 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 
 	masterID := db.SessionToken[user.Token]  //The person authorizing the delete
 
-	statement := fmt.Sprintf("DELETE FROM `%s`.`phonebook` WHERE id = ?, userID = ? ;", db.DBName)
-	stmt, err := db.Session.Prepare(statement)
+
+	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
 	log.Println(res)
 	Check(err)
