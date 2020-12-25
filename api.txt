@@ -11,7 +11,7 @@ Request body
     "password":"password"
  }
 
- Response Body
+ Response Body  -- 200  OK
 
  {
      "Status": true,
@@ -79,7 +79,7 @@ For /api/fetch -- GET
 
 */
 
-/* Response Received
+/* Response Received --  200 Ok
 {
     "Status": true,
     "Message": [
@@ -112,7 +112,23 @@ For /api/fetch -- GET
 
 ####################################
 
-For /api/update
+For /api/update  --- POST
+
+{
+    "token":"8e01b26b-46a6-11eb-9e3b-1a2b5a79a0a0",
+    "details": {
+        "firstname": "humble",
+        "lastname": "jack",
+        "phone_number": "09043453433"
+    }
+}
+
+
+Response -- 200 OK
+{
+    "status": true,
+    "message": "New contact Added to Phone Book"
+}
 
 ######################################
 
