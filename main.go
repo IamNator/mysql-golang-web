@@ -5,7 +5,10 @@ import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
 	"github.com/IamNator/mysql-golang-web/database/migrations"
+	"github.com/IamNator/mysql-golang-web/database/seeders"
 	"github.com/IamNator/mysql-golang-web/models"
+	user "github.com/IamNator/mysql-golang-web/session"
+	"github.com/IamNator/mysql-golang-web/views"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
@@ -48,26 +51,26 @@ func main() {
 	defer DB.CloseDB()
 
 
-	//dbUser := user.Sessiondb(DB)//session
+	dbUser := user.Sessiondb(DB)//session
 	//
 	if !DB.DbExists() {
-		CreateAndFillDb(dbGeneral)
+		CreateAndFillDb(DB)
 		fmt.Println("Database created and updated")
 	}
 
 	myRouter := mux.NewRouter()
-	//myRouter.HandleFunc("/home", views.Home).Methods("GET")
-	//myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	//myRouter.HandleFunc("/", views.Index).Methods("GET")
-	//myRouter.HandleFunc("/login", views.Login).Methods("GET")
-	//myRouter.HandleFunc("/register", views.Register).Methods("GET")
-	//
-	//myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")        //use dbData.Fetch_t to test
-	//myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")     //use dbData.Update_t to test
-	//myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE")   //use dbData.Delete_t to test
-	//
-	//myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
-	//myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
+	myRouter.HandleFunc("/home", views.Home).Methods("GET")
+	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
+	myRouter.HandleFunc("/", views.Index).Methods("GET")
+	myRouter.HandleFunc("/login", views.Login).Methods("GET")
+	myRouter.HandleFunc("/register", views.Register).Methods("GET")
+
+	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")        //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")     //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE")   //use dbData.Delete_t to test
+
+	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
+	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -78,13 +81,13 @@ func main() {
 
 }
 //
-func CreateAndFillDb(dbGeneral models.DBData) {
-	dbMigration := migrations.Migrationdb(dbGeneral)
-	//dbSeeders := seeders.Seeddb(dbGeneral)
+func CreateAndFillDb(db controllers.Controllersdb) {
+	dbMigration := migrations.Migrationdb(db)
+	dbSeeders := seeders.Seeddb(db)
 
 	dbMigration.CreateUserDb()
-	//dbMigration.CreatePhoneBookDb()
+	dbMigration.CreatePhoneBookDb()
 
-	//dbSeeders.FillUserDb()
-	//dbSeeders.FillDb()
+	dbSeeders.FillUserDb()
+	dbSeeders.FillDb()
 }
