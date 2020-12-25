@@ -1,7 +1,6 @@
 package session
 
 import (
-	//"github.com/IamNator/mysql-golang-web/models"
 	"github.com/IamNator/mysql-golang-web/models"
 	uuid "github.com/satori/go.uuid"
 )
