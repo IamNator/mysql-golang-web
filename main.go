@@ -4,9 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
+	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/models"
-	"github.com/IamNator/mysql-golang-web/views"
-
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
@@ -51,15 +50,15 @@ func main() {
 
 	//dbUser := user.Sessiondb(DB)//session
 	//
-	//if !DB.DbExists() {
-	//	CreateAndFillDb(&dbGeneral)
-	//	fmt.Println("Database created and updated")
-	//}
+	if !DB.DbExists() {
+		CreateAndFillDb(dbGeneral)
+		fmt.Println("Database created and updated")
+	}
 
 	myRouter := mux.NewRouter()
 	//myRouter.HandleFunc("/home", views.Home).Methods("GET")
 	//myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
+	//myRouter.HandleFunc("/", views.Index).Methods("GET")
 	//myRouter.HandleFunc("/login", views.Login).Methods("GET")
 	//myRouter.HandleFunc("/register", views.Register).Methods("GET")
 	//
@@ -79,11 +78,13 @@ func main() {
 
 }
 //
-//func CreateAndFillDb(dbGeneral *models.DBData) {
-//	dbMigration := migrations.Migrationdb(*dbGeneral)
-//	dbSeeders := seeders.Seeddb(*dbGeneral)
-//	dbMigration.CreateUserDb()
-//	dbMigration.CreatePhoneBookDb()
-//	dbSeeders.FillUserDb()
-//	dbSeeders.FillDb()
-//}
+func CreateAndFillDb(dbGeneral models.DBData) {
+	dbMigration := migrations.Migrationdb(dbGeneral)
+	//dbSeeders := seeders.Seeddb(dbGeneral)
+
+	//dbMigration.CreateUserDb()
+	dbMigration.CreatePhoneBookDb()
+
+	//dbSeeders.FillUserDb()
+	//dbSeeders.FillDb()
+}
