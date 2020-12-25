@@ -12,7 +12,6 @@ import (
 //
 // Returns w.Body = { status:true, message:"logged out successfully" }
 //
-//userDetails = {id, firstname, lastname, email, password}
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	var user struct{
 		Token string `json:"token"`
@@ -30,16 +29,15 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	}
 
 	{
-		delete(db.SessionToken, user.Token)
+		delete(db.SessionToken, user.Token) //token deleted
 
 		w.WriteHeader(http.StatusOK)
 
-		res := struct {
-			MyStdResp
-			Token string `json:"token"`
-		}{MyStdResp{true, "Logged out successfully" },
-			user.Token,
+		res := MyStdResp {
+			true,
+			"Logged out successfully",
 		}
+
 
 		err = json.NewEncoder(w).Encode(res)
 		if err != nil {
