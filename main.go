@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
 	"github.com/IamNator/mysql-golang-web/database/migrations"
@@ -34,6 +35,7 @@ func main() {
 	//	Session:      nil,                           //Session for db
 	//	SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
 	//}
+	var gh *sql.DB
 
 	dbGeneral := models.DBData{
 		DBType:   "mysql",          //Type
@@ -41,7 +43,7 @@ func main() {
 		Password: "299792458m/s",   //Password
 		Host:     "localhost:3306", //Host 3306
 		DBName:   "app",  			//DBName
-		Session:  nil,              //Session
+		Session:  gh,              //Session
 		SessionToken: make(map[string]models.UserCredentials),	// map[string]string
 	}
 	DB := controllers.Controllersdb(dbGeneral)
