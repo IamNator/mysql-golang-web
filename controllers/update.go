@@ -35,10 +35,10 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	}
 
 
-		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
-	VALUES (?,?,?,?)`)
+		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (FirstName,LastName,phoneNumber)
+	VALUES (?,?,?)`)
 
-		_, err = stmt.Exec(db.SessionToken[reqBody.Token].ID, reqBody.FirstName, reqBody.LastName, reqBody.PhoneNumber)
+		_, err = stmt.Exec(reqBody.FirstName, reqBody.LastName, reqBody.PhoneNumber)
 		if err != nil {
 			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 		} else {

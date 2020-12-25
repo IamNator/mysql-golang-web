@@ -1,3 +1,5 @@
+
+
 For /api/register -- POST
 
 Request body
@@ -7,6 +9,20 @@ Request body
     "lastname": "Thuggy",
     "email":"barneythugy@yahoo.com",
     "password":"password"
+ }
+
+ Response Body
+
+ {
+     "Status": true,
+     "Message": "User Created"
+ }
+
+ Response Body when user already exists
+
+ {
+     "Status": false,
+     "Message": "User Already Exists, Please login"
  }
 
 
@@ -95,6 +111,10 @@ For /api/fetch -- GET
 }
 
 ####################################
+
+For /api/update
+
+######################################
 
 
 
