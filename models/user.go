@@ -5,10 +5,9 @@ import (
 )
 
 type PhoneBookContact struct {
-	FirstName   string `json:"fname" validate:"required"`
-	LastName    string `json:"lname" validate:"required"`
+	FirstName   string `json:"firstname" validate:"required"`
+	LastName    string `json:"lastname" validate:"required"`
 	PhoneNumber string `json:"phone_number" validate:"required"`
-	ID          string `json:"id"`
 }
 
 //Type 
