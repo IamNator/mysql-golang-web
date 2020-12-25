@@ -110,6 +110,12 @@ For /api/fetch -- GET
     ]
 }
 
+Response 401 -Unauthorized access
+{
+    "Status": false,
+    "Message": "Unauthorized access"
+}
+
 ####################################
 
 For /api/update  --- POST
@@ -128,6 +134,12 @@ Response -- 200 OK
 {
     "status": true,
     "message": "New contact Added to Phone Book"
+}
+
+//Response 401 Unauthorized
+{
+    "Status": false,
+    "Message": "Unauthorized Access, Please login"
 }
 
 ######################################
