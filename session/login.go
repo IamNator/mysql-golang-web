@@ -10,6 +10,12 @@ import (
 	//"time"
 )
 
+
+type UserCredentials struct{
+	models.UserCredentials
+	ID string `json:"id"`
+}
+
 //Takes in req.body = {username, password}
 //
 // Returns w.Body = { {code, userDetails}, token }
@@ -17,7 +23,7 @@ import (
 //userDetails = {id, firstname, lastname, email, password}
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
-	var userDb models.UserCredentials
+	var userDb UserCredentials
 
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	if err != nil {
