@@ -61,17 +61,17 @@ func main() {
 
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/home", views.Home).Methods("GET")
-	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	myRouter.HandleFunc("/", views.Index).Methods("GET")
-	myRouter.HandleFunc("/login", views.Login).Methods("GET")
-	myRouter.HandleFunc("/register", views.Register).Methods("GET")
-
-	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")        //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")     //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE")   //use dbData.Delete_t to test
-
-	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
-	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
+	//myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
+	//myRouter.HandleFunc("/", views.Index).Methods("GET")
+	//myRouter.HandleFunc("/login", views.Login).Methods("GET")
+	//myRouter.HandleFunc("/register", views.Register).Methods("GET")
+	//
+	//myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")        //use dbData.Fetch_t to test
+	//myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")     //use dbData.Update_t to test
+	//myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE")   //use dbData.Delete_t to test
+	//
+	//myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
+	//myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 
 	port := os.Getenv("PORT")
 	if port == "" {
