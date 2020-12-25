@@ -39,7 +39,7 @@ For /api/login  -- POST
 */
 
 
-/* Response to sent
+/* Response to sent  -- 200 OK
 {
     "Status": true,
     "Message": {
@@ -60,7 +60,7 @@ For /api/logout -- POST
     "token":"2eb28ec9-468e-11eb-9a34-a01d486a6c86"
  }
 
-//Response Body
+//Response Body  -- 200 OK
 
  {
      "Status": true,
@@ -141,4 +141,18 @@ For /api/delete  -- DELETE
  {
     "token":"2eb28ec9-468e-11eb-9a34-a01d486a6c86",
     "id":"12"
-  }
+ }
+
+ //Response -- 200 OK
+
+ {
+     "Status": true,
+     "Message": "User Deleted"
+ }
+
+ //Response -- 401 unauthorized access
+
+ {
+     "Status": false,
+     "Message": "Unauthorized access please login"
+ }
