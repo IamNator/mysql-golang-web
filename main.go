@@ -82,8 +82,8 @@ func CreateAndFillDb(dbGeneral models.DBData) {
 	dbMigration := migrations.Migrationdb(dbGeneral)
 	//dbSeeders := seeders.Seeddb(dbGeneral)
 
-	//dbMigration.CreateUserDb()
-	dbMigration.CreatePhoneBookDb()
+	dbMigration.CreateUserDb()
+	//dbMigration.CreatePhoneBookDb()
 
 	//dbSeeders.FillUserDb()
 	//dbSeeders.FillDb()
