@@ -3,7 +3,7 @@
 // Documentation for Login API
 //
 // schemes: http
-// BasePath: /login
+// BasePath: /
 // Version:1.0.0
 //
 // Consumes:
@@ -25,12 +25,10 @@ import (
 	//"time"
 )
 
-//Takes in req.body = {username, password}
-//
-// Returns w.Body = { {code, userDetails}, token }
-//
-//userDetails = {id, firstname, lastname, email, password}
 
+// swagger:route GET /api/login
+
+// Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
