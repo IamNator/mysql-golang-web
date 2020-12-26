@@ -80,6 +80,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
 }
+
 //
 func CreateAndFillDb(db controllers.Controllersdb) {
 	dbMigration := migrations.Migrationdb(db)

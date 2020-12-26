@@ -1,3 +1,17 @@
+// Package classification of Login API
+//
+// Documentation for Login API
+//
+// schemes: http
+// BasePath: /login
+// Version:1.0.0
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+// swagger :meta
 package session
 
 import (
@@ -11,12 +25,12 @@ import (
 	//"time"
 )
 
-
 //Takes in req.body = {username, password}
 //
 // Returns w.Body = { {code, userDetails}, token }
 //
 //userDetails = {id, firstname, lastname, email, password}
+
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
 	var userDb models.UserCredentials
