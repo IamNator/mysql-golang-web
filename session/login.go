@@ -4,7 +4,7 @@
 //
 // schemes: http
 // BasePath: /
-// Version:1.0.0
+// Version: 1.0.0
 //
 // Consumes:
 // - application/json
@@ -26,7 +26,8 @@ import (
 )
 
 
-// swagger:route GET /api/login
+// swagger:route GET /api/login session logging-in
+// Logs the user in
 
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {

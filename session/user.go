@@ -7,6 +7,7 @@ type LoginCredentials struct {
 	PassWord string `json:"password"`
 }
 
+//Sessiondb is a http.Handler
 type Sessiondb models.DBData
 
 type MyStdResp struct {
