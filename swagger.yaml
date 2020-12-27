@@ -104,6 +104,7 @@ paths:
           $ref: '#/responses/loginBadRequest'
         "404":
           $ref: '#/responses/loginIncorrectPassword'
+          description: loginNotFound
       tags:
       - session
   /api/logout:
@@ -157,11 +158,11 @@ responses:
           x-go-name: Status
       type: object
   loginBadRequest:
-    description: Non registered user tries to login
+    description: request does not conform to login api
     schema:
       $ref: '#/definitions/MyStdResp'
   loginIncorrectPassword:
-    description: Non registered user tries to login
+    description: Incorrect password
     schema:
       $ref: '#/definitions/MyStdResp'
   loginNotFound:

@@ -85,8 +85,9 @@ type LoginResponse struct {
 // responses:
 // 200: loginResponse
 // 400: loginBadRequest
-// 404: loginNotFound
-// 404: loginIncorrectPassword
+// 404:
+//	loginIncorrectPassword
+//	loginNotFound
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 
