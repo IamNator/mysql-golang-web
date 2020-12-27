@@ -59,7 +59,9 @@ info:
 paths:
   /api/login:
     get:
-      description: Returns a session token
+      description: |-
+        Returns a session token
+        requests:
       operationId: login
       responses:
         "200":

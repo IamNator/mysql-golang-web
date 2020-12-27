@@ -37,7 +37,7 @@ type LoginResponseWrapper struct {
 
 // Non registered user tries to login
 // swagger:response loginNotFound
-type LoginResponseUnauthorizedWrapper struct {
+type LoginResponseNotFoundWrapper struct {
 	//returns when a non registered user tries to login
 	//in: body
 	Body MyStdResp
@@ -47,7 +47,7 @@ type LoginResponseUnauthorizedWrapper struct {
 // LoginResponse defines the struct for API login
 // swagger: model
 type LoginResponse struct {
-	// the status is the state of the request process
+	// shows if process was successful or not
 	Status  bool  `json:"status"`
 	// Contains user information
 	Message struct{
@@ -69,11 +69,13 @@ type LoginResponse struct {
 
 // swagger:route GET /api/login session login
 // Returns a session token
+// requests:
 // responses:
 // 200: loginResponse
 // 404: loginNotFound
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
+
 	var user LoginCredentials
 	var userDb models.UserCredentials
 
