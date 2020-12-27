@@ -31,14 +31,14 @@ import (
 // swagger:response loginResponse
 type LoginResponseWrapper struct {
     //in: body
-	Body []LoginResponse
+	Body LoginResponse
 }
 
 // Respond to login request
 // swagger:response loginUnauthorized
 type LoginResponseUnauthorizedWrapper struct {
 	//in: body
-	Body []MyStdResp
+	Body MyStdResp
 }
 
 type LoginResponse struct {

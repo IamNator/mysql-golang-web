@@ -31,6 +31,14 @@ definitions:
         x-go-name: Token
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/session
+  MyStdResp:
+    properties:
+      Message:
+        type: object
+      Status:
+        type: boolean
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/session
 info:
   description: Documentation for Login API
   title: Login API
@@ -43,6 +51,8 @@ paths:
       responses:
         "200":
           $ref: '#/responses/loginResponse'
+        "400":
+          $ref: '#/responses/loginUnauthorized'
       tags:
       - session
 produces:
@@ -53,6 +63,12 @@ responses:
     schema:
       items:
         $ref: '#/definitions/LoginResponse'
+      type: array
+  loginUnauthorized:
+    description: Respond to login request
+    schema:
+      items:
+        $ref: '#/definitions/MyStdResp'
       type: array
 schemes:
 - http
