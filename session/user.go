@@ -12,8 +12,10 @@ type LoginCredentials struct {
 type Sessiondb models.DBData
 
 
-
+// swagger:model
 type MyStdResp struct {
+	// successful / not successful
 	Status bool
+	// string
 	Message interface{}
 }
