@@ -47,6 +47,22 @@ type LoginResponseNotFoundWrapper struct {
 	Body MyStdResp
 }
 
+// Non registered user tries to login
+// swagger:response loginBadRequest
+type LoginBadRequestWrapper struct {
+	//returns when the request does not conform to login api
+	//in: body
+	Body MyStdResp
+}
+
+// Non registered user tries to login
+// swagger:response loginIncorrectPassword
+type LoginIncorrectPasswordWrapper struct {
+	//returns when user enters an incorrect password
+	//in: body
+	Body MyStdResp
+}
+
 // LoginResponse defines the struct for API login
 // swagger:model
 type LoginResponse struct {
@@ -73,7 +89,9 @@ type LoginResponse struct {
 // Returns a session token
 // responses:
 // 200: loginResponse
+// 400: loginBadRequest
 // 404: loginNotFound
+// 404: loginIncorrectPassword
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 
