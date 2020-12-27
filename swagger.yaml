@@ -1,0 +1,47 @@
+basePath: /
+consumes:
+- application/json
+info:
+  description: Documentation for Login API
+  title: Login API
+  version: 1.0.0
+paths:
+  /api/login:
+    get:
+      description: Returns a session token
+      operationId: login
+      responses:
+        "200":
+          $ref: '#/responses/LoginResponse'
+      tags:
+      - session
+produces:
+- application/json
+responses:
+  LoginResponse:
+    description: Respond to login request
+    headers:
+      message: {}
+      token:
+        type: string
+    schema:
+      properties:
+        email:
+          type: string
+          x-go-name: Email
+        firstname:
+          type: string
+          x-go-name: FirstName
+        id:
+          type: string
+          x-go-name: ID
+        lastname:
+          type: string
+          x-go-name: LastName
+        password:
+          type: string
+          x-go-name: PassWord
+      type: object
+schemes:
+- http
+swagger: "2.0"

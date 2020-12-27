@@ -1,4 +1,4 @@
-// Package classification of Login API
+// Package classification Login API
 //
 // Documentation for Login API
 //
@@ -11,7 +11,7 @@
 //
 // Produces:
 // - application/json
-// swagger :meta
+// swagger:meta
 package session
 
 import (
@@ -26,8 +26,26 @@ import (
 )
 
 
-// swagger:route GET /api/login session logging-in
-// Logs the user in
+// Respond to login request
+// swagger:response LoginResponse
+type LoginResponse struct {
+	// in:body
+	Status  bool  `json:"status"`
+	Message struct{
+		FirstName string `json:"firstname" validate:"required"`
+		LastName  string `json:"lastname" validate:"required"`
+		Email     string `json:"email" validate:"required"`
+		PassWord  string `json:"password" validate:"required"`
+		ID        string `json:"id"`
+	} `json:"message"`
+	Token string `json:"token"`
+}
+
+
+// swagger:route GET /api/login session login
+// Returns a session token
+// responses:
+// 200: LoginResponse
 
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
@@ -61,10 +79,9 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	token := CreateToken(db, userDb)
 	w.WriteHeader(http.StatusOK)
 
-	res := struct {
-		MyStdResp
-		Token string `json:"token"`
-	}{MyStdResp{true, userDb },
+	res := LoginResponse{
+		true,
+		userDb,
 		token,
 	}
 
@@ -73,6 +90,7 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 		JsonError(&w, err.Error(), http.StatusInternalServerError)
 	}
 }
+
 
 func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	(*w).WriteHeader(ErrorCode)
