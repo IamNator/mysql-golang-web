@@ -137,7 +137,10 @@ responses:
     schema:
       properties:
         message:
-          $ref: '#/definitions/PhoneBookContact'
+          items:
+            $ref: '#/definitions/PhoneBookContact'
+          type: array
+          x-go-name: Message
         status:
           type: boolean
           x-go-name: Status

@@ -8,11 +8,9 @@ import (
 	"net/http"
 )
 
-// takes in req.Body = { "token": "42442-343-3432n-34mv", "detail": {contact details} }
-//
-//contact details = { firstname, lastname, phone_number }
-//
-//return w.Body =  {  "status": true, "message": "contact added to phone book" }
+
+// swagger:route POST /api/update controllers update
+// adds new contacts to a phoneBook
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
