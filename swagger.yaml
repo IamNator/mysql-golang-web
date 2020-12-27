@@ -51,23 +51,21 @@ paths:
       responses:
         "200":
           $ref: '#/responses/loginResponse'
-        "400":
-          $ref: '#/responses/loginUnauthorized'
         "404":
-          $ref: '#/responses/loginUnauthorized'
+          $ref: '#/responses/loginNotFound'
       tags:
       - session
 produces:
 - application/json
 responses:
+  loginNotFound:
+    description: Respond to a successful login request
+    schema:
+      $ref: '#/definitions/MyStdResp'
   loginResponse:
     description: Respond to login request
     schema:
       $ref: '#/definitions/LoginResponse'
-  loginUnauthorized:
-    description: Respond to login request
-    schema:
-      $ref: '#/definitions/MyStdResp'
 schemes:
 - http
 swagger: "2.0"
