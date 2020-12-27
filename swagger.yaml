@@ -3,30 +3,41 @@ consumes:
 - application/json
 definitions:
   LoginResponse:
+    description: |-
+      LoginResponse defines the struct for API login
+      swagger: model
     properties:
       message:
+        description: Contains user information
         properties:
           email:
+            description: the user's email address
             type: string
             x-go-name: Email
           firstname:
+            description: the user's first name
             type: string
             x-go-name: FirstName
           id:
+            description: the user's id
             type: string
             x-go-name: ID
           lastname:
+            description: the user's last name
             type: string
             x-go-name: LastName
           password:
+            description: the user's hashed password
             type: string
             x-go-name: PassWord
         type: object
         x-go-name: Message
       status:
+        description: the status is the state of the request process
         type: boolean
         x-go-name: Status
       token:
+        description: A unique number that defines authenticates the users transactions
         type: string
         x-go-name: Token
     type: object
