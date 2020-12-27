@@ -35,6 +35,12 @@ type LoginResponseWrapper struct {
 	Body LoginResponse
 }
 
+// swagger:request loginRequest
+type loginCredentialsWrapper struct{
+	//in :body
+	Body LoginCredentials
+}
+
 // Non registered user tries to login
 // swagger:response loginNotFound
 type LoginResponseNotFoundWrapper struct {
@@ -70,6 +76,7 @@ type LoginResponse struct {
 // swagger:route GET /api/login session login
 // Returns a session token
 // requests:
+// GET: loginRequest
 // responses:
 // 200: loginResponse
 // 404: loginNotFound
