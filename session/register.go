@@ -1,19 +1,3 @@
-// Package classification register API
-//
-//Documentation for register API
-//
-// schemes: http
-// BasePath: /
-// Version: 1.0.0
-// Contact: natverior1@gmail.com
-//
-// Consumes:
-// - application/json
-//
-// Produces:
-// - application/json
-//
-// swagger:meta
 package session
 
 import (

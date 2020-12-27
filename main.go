@@ -1,3 +1,19 @@
+// Package classification mysql-golang-web API
+//
+// Documentation for mysql-golang-web API
+//
+// schemes: http
+// BasePath: /
+// Version: 1.0.0
+// Contact: natverior1@gmail.com
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+//
+// swagger:meta
 package main
 
 import (

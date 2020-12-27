@@ -42,16 +42,15 @@ definitions:
     x-go-package: github.com/IamNator/mysql-golang-web/session
   MyStdResp:
     properties:
-      message:
-        description: delete message / error message when delete is unsuccessful
-        type: string
-        x-go-name: Message
-      status:
+      Status:
         description: successful / not successful
         type: boolean
-        x-go-name: Status
+      message:
+        description: string
+        type: string
+        x-go-name: Message
     type: object
-    x-go-package: github.com/IamNator/mysql-golang-web/controllers
+    x-go-package: github.com/IamNator/mysql-golang-web/session
   PhoneBookContact:
     properties:
       firstname:
@@ -71,8 +70,8 @@ definitions:
 info:
   contact:
     email: natverior1@gmail.com
-  description: Documentation for delete API
-  title: delete API
+  description: Documentation for mysql-golang-web API
+  title: mysql-golang-web API
   version: 1.0.0
 paths:
   /api/delete:
