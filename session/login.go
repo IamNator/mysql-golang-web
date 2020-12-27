@@ -28,7 +28,11 @@ import (
 
 // Respond to login request
 // swagger:response LoginResponse
-// // in:body
+type LoginResponseWrapper struct {
+//	in: body
+	Body []LoginResponse
+}
+
 type LoginResponse struct {
 
 	Status  bool  `json:"status"`
@@ -47,7 +51,7 @@ type LoginResponse struct {
 // Returns a session token
 // responses:
 // 200: LoginResponse
-
+// 404: MyStdResp
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials

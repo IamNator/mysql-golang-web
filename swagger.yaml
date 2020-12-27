@@ -1,6 +1,36 @@
 basePath: /
 consumes:
 - application/json
+definitions:
+  LoginResponse:
+    properties:
+      message:
+        properties:
+          email:
+            type: string
+            x-go-name: Email
+          firstname:
+            type: string
+            x-go-name: FirstName
+          id:
+            type: string
+            x-go-name: ID
+          lastname:
+            type: string
+            x-go-name: LastName
+          password:
+            type: string
+            x-go-name: PassWord
+        type: object
+        x-go-name: Message
+      status:
+        type: boolean
+        x-go-name: Status
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/session
 info:
   description: Documentation for Login API
   title: Login API
@@ -13,6 +43,8 @@ paths:
       responses:
         "200":
           $ref: '#/responses/LoginResponse'
+        "404":
+          $ref: '#/responses/MyStdResp'
       tags:
       - session
 produces:
@@ -20,30 +52,10 @@ produces:
 responses:
   LoginResponse:
     description: Respond to login request
-    headers:
-      message: {}
-      status:
-        type: boolean
-      token:
-        type: string
     schema:
-      properties:
-        email:
-          type: string
-          x-go-name: Email
-        firstname:
-          type: string
-          x-go-name: FirstName
-        id:
-          type: string
-          x-go-name: ID
-        lastname:
-          type: string
-          x-go-name: LastName
-        password:
-          type: string
-          x-go-name: PassWord
-      type: object
+      items:
+        $ref: '#/definitions/LoginResponse'
+      type: array
 schemes:
 - http
 swagger: "2.0"
