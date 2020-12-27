@@ -14,7 +14,7 @@ type Sessiondb models.DBData
 // swagger:model
 type MyStdResp struct {
 	// successful / not successful
-	Status bool `json:"status`
+	Status bool	   `json:"status`
 	// string
 	Message string `json:"message"`
 }

@@ -13,7 +13,7 @@ type updateResponseWrapper struct {
 	// in: body
 	Body struct {
 		Status  bool        `json:"status"`
-		Message string `json:"message"`
+		Message string	    `json:"message"`
 	}
 }
 
@@ -49,7 +49,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 	} else {
 		resp := struct {
-			Status  bool        `json:"status"`
+			Status  bool   `json:"status"`
 			Message string `json:"message"`
 		}{
 			true,
