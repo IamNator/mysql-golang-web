@@ -59,11 +59,11 @@ produces:
 - application/json
 responses:
   loginNotFound:
-    description: Respond to a successful login request
+    description: Response when a non registered user tries to login
     schema:
       $ref: '#/definitions/MyStdResp'
   loginResponse:
-    description: Respond to login request
+    description: Response to a successful login request
     schema:
       $ref: '#/definitions/LoginResponse'
 schemes:

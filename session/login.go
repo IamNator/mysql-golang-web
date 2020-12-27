@@ -27,14 +27,14 @@ import (
 )
 
 
-// Response to a successful login request
+// Successful login request
 // swagger:response loginResponse
 type LoginResponseWrapper struct {
     //in: body
 	Body LoginResponse
 }
 
-// Response when a non registered user tries to login
+// Non registered user tries to login
 // swagger:response loginNotFound
 type LoginResponseUnauthorizedWrapper struct {
 	//returns when a non registered user tries to login
