@@ -85,7 +85,7 @@ paths:
       tags:
       - controllers
   /api/fetch:
-    post:
+    get:
       description: returns all phonebook contacts
       operationId: fetch
       responses:
