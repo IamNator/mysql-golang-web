@@ -17,5 +17,5 @@ type MyStdResp struct {
 	// successful / not successful
 	Status bool `json:"status`
 	// string
-	Message interface{} `json:"message"`
+	Message string `json:"message"`
 }

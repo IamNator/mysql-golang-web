@@ -47,7 +47,7 @@ definitions:
         type: boolean
       message:
         description: string
-        type: object
+        type: string
         x-go-name: Message
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/session
