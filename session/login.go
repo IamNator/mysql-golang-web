@@ -34,11 +34,6 @@ type LoginResponseWrapper struct {
 	Body LoginResponse
 }
 
-type loginCredentialsWrapper struct {
-	//in :body
-	Body LoginCredentials
-}
-
 // Non registered user tries to login
 // swagger:response loginNotFound
 type LoginResponseNotFoundWrapper struct {
@@ -47,7 +42,7 @@ type LoginResponseNotFoundWrapper struct {
 	Body MyStdResp
 }
 
-// Non registered user tries to login
+// request does not conform to login api
 // swagger:response loginBadRequest
 type LoginBadRequestWrapper struct {
 	//returns when the request does not conform to login api
@@ -55,7 +50,7 @@ type LoginBadRequestWrapper struct {
 	Body MyStdResp
 }
 
-// Non registered user tries to login
+// Incorrect password
 // swagger:response loginIncorrectPassword
 type LoginIncorrectPasswordWrapper struct {
 	//returns when user enters an incorrect password
