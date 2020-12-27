@@ -1,1 +1,1 @@
-web: bin/mysql-golang-web
+web: make swagger && bin/mysql-golang-web

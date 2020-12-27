@@ -22,6 +22,8 @@ responses:
     description: Respond to login request
     headers:
       message: {}
+      status:
+        type: boolean
       token:
         type: string
     schema:
