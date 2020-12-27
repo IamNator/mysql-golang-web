@@ -72,7 +72,6 @@ paths:
     post:
       description: |-
         Returns a session token
-        Takes in req.body = {token}
         Returns w.Body = { status:true, message:"logged out successfully" }
       operationId: logout
       tags:
