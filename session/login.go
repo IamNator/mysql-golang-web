@@ -5,6 +5,7 @@
 // schemes: http
 // BasePath: /
 // Version: 1.0.0
+// Contact: natverior1@gmail.com
 //
 // Consumes:
 // - application/json
