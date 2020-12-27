@@ -43,8 +43,10 @@ definitions:
   MyStdResp:
     properties:
       Message:
+        description: string
         type: object
       Status:
+        description: successful / not successful
         type: boolean
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/session
@@ -98,8 +100,10 @@ responses:
   logoutResponse:
     description: ""
     headers:
-      Message: {}
+      Message:
+        description: string
       Status:
+        description: successful / not successful
         type: boolean
     schema:
       type: object
