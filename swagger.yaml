@@ -100,14 +100,8 @@ responses:
       $ref: '#/definitions/LoginResponse'
   logoutResponse:
     description: ""
-    headers:
-      Status:
-        description: successful / not successful
-        type: boolean
-      message:
-        description: string
     schema:
-      type: object
+      $ref: '#/definitions/MyStdResp'
   registerResponse:
     description: ""
     schema:
