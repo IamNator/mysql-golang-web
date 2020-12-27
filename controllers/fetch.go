@@ -37,7 +37,10 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 
 
-	resp := session.MyStdResp{
+	resp := struct{
+		Status bool `json:"status"`
+		Message interface{} `json:"message"`
+	}{
 		Status: true,
 		Message: users,
 	}
