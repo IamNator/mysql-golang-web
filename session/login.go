@@ -11,6 +11,7 @@
 //
 // Produces:
 // - application/json
+//
 // swagger:meta
 package session
 
@@ -27,7 +28,7 @@ import (
 
 
 // Respond to login request
-// swagger:response login
+// swagger:response loginResponse
 type LoginResponseWrapper struct {
     //in: body
 	Body []LoginResponse
@@ -50,7 +51,7 @@ type LoginResponse struct {
 // swagger:route GET /api/login session login
 // Returns a session token
 // responses:
-// 200: LoginResponse
+// 200: loginResponse
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
