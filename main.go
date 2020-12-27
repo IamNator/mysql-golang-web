@@ -76,7 +76,7 @@ func main() {
 	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
 	sh := middleware.Redoc(opts, nil)
 	myRouter.Handle("/docs", sh)
-	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("/swagger.yaml")))
+	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./swagger.yaml")))
 
 	port := os.Getenv("PORT")
 	if port == "" {
