@@ -53,6 +53,8 @@ paths:
           $ref: '#/responses/loginResponse'
         "400":
           $ref: '#/responses/loginUnauthorized'
+        "404":
+          $ref: '#/responses/loginUnauthorized'
       tags:
       - session
 produces:
@@ -61,15 +63,11 @@ responses:
   loginResponse:
     description: Respond to login request
     schema:
-      items:
-        $ref: '#/definitions/LoginResponse'
-      type: array
+      $ref: '#/definitions/LoginResponse'
   loginUnauthorized:
     description: Respond to login request
     schema:
-      items:
-        $ref: '#/definitions/MyStdResp'
-      type: array
+      $ref: '#/definitions/MyStdResp'
 schemes:
 - http
 swagger: "2.0"

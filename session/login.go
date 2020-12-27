@@ -41,6 +41,7 @@ type LoginResponseUnauthorizedWrapper struct {
 	Body MyStdResp
 }
 
+
 type LoginResponse struct {
 
 	Status  bool  `json:"status"`
@@ -60,6 +61,7 @@ type LoginResponse struct {
 // responses:
 // 200: loginResponse
 // 400: loginUnauthorized
+// 404: loginUnauthorized
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
