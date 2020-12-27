@@ -29,7 +29,7 @@ import (
 // swagger:response deleteResponse
 type deleteResponseWrapper struct {
 	// in: body
-	Body session.MyStdResp
+	Body MyStdResp
 }
 
 // swagger:model
