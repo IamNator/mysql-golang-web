@@ -8,9 +8,19 @@ import (
 	"net/http"
 )
 
+// swagger:response updateResponse
+type updateResponseWrapper struct {
+	// in: body
+	Body struct {
+		Status  bool        `json:"status"`
+		Message string `json:"message"`
+	}
+}
 
 // swagger:route POST /api/update controllers update
 // adds new contacts to a phoneBook
+// responses:
+// 200: updateResponse
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
@@ -40,7 +50,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	} else {
 		resp := struct {
 			Status  bool        `json:"status"`
-			Message interface{} `json:"message"`
+			Message string `json:"message"`
 		}{
 			true,
 			"New contact Added to Phone Book",
