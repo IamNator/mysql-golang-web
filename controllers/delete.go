@@ -40,7 +40,7 @@ type MyStdResp struct {
 	Message string `json:"message"`
 }
 
-// swagger:route POST /api/delete controllers delete
+// swagger:route DELETE /api/delete controllers delete
 // delete contact from phone book
 // responses:
 // 200: deleteResponse
