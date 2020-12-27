@@ -34,9 +34,10 @@ type LoginResponseWrapper struct {
 	Body LoginResponse
 }
 
-// Respond to login request
-// swagger:response loginUnauthorized
+// Respond to a successful login request
+// swagger:response loginNotFound
 type LoginResponseUnauthorizedWrapper struct {
+	//returns when a non registered user tries to login
 	//in: body
 	Body MyStdResp
 }
@@ -60,8 +61,7 @@ type LoginResponse struct {
 // Returns a session token
 // responses:
 // 200: loginResponse
-// 400: loginUnauthorized
-// 404: loginUnauthorized
+// 404: loginNotFound
 // Login returns a token and user details from the user data
 func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var user LoginCredentials
