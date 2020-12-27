@@ -42,15 +42,13 @@ paths:
       operationId: login
       responses:
         "200":
-          description: LoginResponse
-          schema:
-            $ref: '#/definitions/LoginResponse'
+          $ref: '#/responses/loginResponse'
       tags:
       - session
 produces:
 - application/json
 responses:
-  login:
+  loginResponse:
     description: Respond to login request
     schema:
       items:
