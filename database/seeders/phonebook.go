@@ -14,11 +14,11 @@ func (db Seeddb) FillDb() {
 	check(err)
 	defer file.Close()
 
-	var users []struct{
+	var users []struct {
 		FirstName   string `json:"firstname" validate:"required"`
 		LastName    string `json:"lastname" validate:"required"`
 		PhoneNumber string `json:"phone_number" validate:"required"`
-		ID			 string `json:"id"`
+		ID          string `json:"id"`
 	}
 
 	json.NewDecoder(file).Decode(&users)
@@ -33,4 +33,3 @@ func (db Seeddb) FillDb() {
 		check(err)
 	}
 }
-

@@ -52,6 +52,22 @@ definitions:
         x-go-name: Status
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/controllers
+  PhoneBookContact:
+    properties:
+      firstname:
+        type: string
+        x-go-name: FirstName
+      id:
+        type: string
+        x-go-name: ID
+      lastname:
+        type: string
+        x-go-name: LastName
+      phone_number:
+        type: string
+        x-go-name: PhoneNumber
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/models
 info:
   contact:
     email: natverior1@gmail.com
@@ -66,6 +82,15 @@ paths:
       responses:
         "200":
           $ref: '#/responses/deleteResponse'
+      tags:
+      - controllers
+  /api/fetch:
+    post:
+      description: returns all phonebook contacts
+      operationId: fetch
+      responses:
+        "200":
+          $ref: '#/responses/fetchResponse'
       tags:
       - controllers
   /api/login:
@@ -104,6 +129,19 @@ responses:
     description: ""
     schema:
       $ref: '#/definitions/MyStdResp'
+  fetchResponse:
+    description: ""
+    headers:
+      Body:
+        description: in body
+    schema:
+      properties:
+        message:
+          $ref: '#/definitions/PhoneBookContact'
+        status:
+          type: boolean
+          x-go-name: Status
+      type: object
   loginNotFound:
     description: Non registered user tries to login
     schema:

@@ -32,7 +32,6 @@ type deleteResponseWrapper struct {
 	Body session.MyStdResp
 }
 
-
 // swagger:model
 type MyStdResp struct {
 	// successful / not successful
@@ -41,21 +40,20 @@ type MyStdResp struct {
 	Message string `json:"message"`
 }
 
-
 // swagger:route POST /api/delete controllers delete
 // delete contact from phone book
 // responses:
 // 200: deleteResponse
 func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
-		session.JsonError(&writer, fmt.Sprintf("ParseForm()  err : %v",err), http.StatusBadRequest )
+		session.JsonError(&writer, fmt.Sprintf("ParseForm()  err : %v", err), http.StatusBadRequest)
 		//fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
 
 	var user struct {
 		Token string `json:"token"`
-		ID string 	 `json:"id"` //id to be deleted
+		ID    string `json:"id"` //id to be deleted
 	}
 
 	_ = json.NewDecoder(req.Body).Decode(&user)
@@ -65,8 +63,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	masterID := db.SessionToken[user.Token]  //The person authorizing the delete
-
+	masterID := db.SessionToken[user.Token] //The person authorizing the delete
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
@@ -75,7 +72,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 
 	writer.Header().Set("Content-Type", "application/json")
 	resp := MyStdResp{
-		Status: true,
+		Status:  true,
 		Message: "User Deleted",
 	}
 

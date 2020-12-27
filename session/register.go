@@ -28,7 +28,7 @@ import (
 
 // swagger:response registerResponse
 type registerResponseWrapper struct {
-//	in:body
+	//	in:body
 	Body MyStdResp
 }
 
@@ -64,18 +64,16 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 		}
 		//http.SetCookie(w, LoginCookie(user.userName, db))
 		res := MyStdResp{
-			Status: true,
+			Status:  true,
 			Message: "User Created",
 		}
 		_ = json.NewEncoder(w).Encode(res)
 		return
 
-
 	case err != nil:
 		JsonError(&w, "server error, Unable to access Database", http.StatusInternalServerError)
 		fmt.Print(err)
 		return
-
 
 	default:
 		JsonError(&w, "User Already Exists, Please login", http.StatusFound)

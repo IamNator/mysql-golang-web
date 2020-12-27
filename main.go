@@ -27,13 +27,13 @@ import (
 func main() {
 
 	dbGeneral := models.DBData{
-		DBType:       "mysql",                       //Type
-		User:         "b7e0a0a81fef1f",              //User
-		Password:     "2e02951d",                    //Password
-		Host:         "eu-cdbr-west-03.cleardb.net", //Host 3306
-		DBName:       "heroku_31043c4e11d34ce",      //DBName
-		Session:      nil,                           //Session for db
-		SessionToken: make(map[string]models.UserCredentials),    // map[string]struct [token]userDetails
+		DBType:       "mysql",                                 //Type
+		User:         "b7e0a0a81fef1f",                        //User
+		Password:     "2e02951d",                              //Password
+		Host:         "eu-cdbr-west-03.cleardb.net",           //Host 3306
+		DBName:       "heroku_31043c4e11d34ce",                //DBName
+		Session:      nil,                                     //Session for db
+		SessionToken: make(map[string]models.UserCredentials), // map[string]struct [token]userDetails
 	}
 
 	//dbGeneral := models.DBData{
@@ -51,7 +51,7 @@ func main() {
 	DB.Session = db
 	defer DB.CloseDB()
 
-	dbUser := user.Sessiondb(DB)//session
+	dbUser := user.Sessiondb(DB) //session
 
 	if !DB.DbExists() {
 		CreateAndFillDb(DB)
@@ -65,13 +65,13 @@ func main() {
 	myRouter.HandleFunc("/login", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")        //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")     //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE")   //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")      //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", DB.Update).Methods("POST")   //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE") //use dbData.Delete_t to test
 
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
 	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
-	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")       //use dbData.Login_t to test
+	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")     //use dbData.Login_t to test
 
 	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
 	sh := middleware.Redoc(opts, nil)

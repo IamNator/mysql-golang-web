@@ -7,13 +7,24 @@ import (
 	"net/http"
 )
 
-// takes req.Body = { "token": "ere-dfd-f3432", "id": "42cv"}
-//
-//returns w.Body = { "status": "true", "message": [ phone book contacts ] }
+// swagger:response fetchResponse
+type fetchResponseWrapper struct {
+	//in body
+	Body struct {
+		Status  bool                    `json:"status"`
+		Message models.PhoneBookContact `json:"message"`
+	}
+}
+
+
+// swagger:route POST /api/fetch controllers fetch
+// returns all phonebook contacts
+// responses:
+// 200: fetchResponse
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	var reqBody struct {
 		Token string `json:"token"`
-		ID string    `json:"id"`
+		ID    string `json:"id"`
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
@@ -36,12 +47,11 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 		users = append(users, user)
 	}
 
-
-	resp := struct{
-		Status bool `json:"status"`
+	resp := struct {
+		Status  bool        `json:"status"`
 		Message interface{} `json:"message"`
 	}{
-		Status: true,
+		Status:  true,
 		Message: users,
 	}
 
@@ -51,11 +61,12 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 
 }
+
 /* Request Body received
-  {
-    "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86",
-    "id":"1"
-  }
+{
+  "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86",
+  "id":"1"
+}
 
 */
 

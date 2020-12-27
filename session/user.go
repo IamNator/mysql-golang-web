@@ -11,7 +11,6 @@ type LoginCredentials struct {
 //Sessiondb is a http.Handler
 type Sessiondb models.DBData
 
-
 // swagger:model
 type MyStdResp struct {
 	// successful / not successful

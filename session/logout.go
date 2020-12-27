@@ -21,31 +21,27 @@ import (
 	"net/http"
 )
 
-
 // swagger:response logoutResponse
 type logoutResponseWrapper struct {
 	// in: body
 	Body MyStdResp
 }
 
-
-
 // swagger:route POST /api/logout session logout
 // logs the user out
 // responses:
 // 200: logoutResponse
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
-	var user struct{
+	var user struct {
 		Token string `json:"token"`
 	}
-
 
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	if err != nil {
 		JsonError(&w, err.Error(), http.StatusBadRequest)
 	}
 
-	if user.Token == ""  {
+	if user.Token == "" {
 		JsonError(&w, "Token not present", http.StatusBadRequest)
 		return
 	}
@@ -55,7 +51,7 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 
 		w.WriteHeader(http.StatusOK)
 
-		res := MyStdResp {
+		res := MyStdResp{
 			true,
 			"Logged out successfully",
 		}
@@ -68,13 +64,11 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 
 }
 
-
 /* Request body received
 {
   "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86"
 }
 */
-
 
 /* Response to sent
 {

@@ -8,7 +8,6 @@ import (
 	"net/http"
 )
 
-
 // takes in req.Body = { "token": "42442-343-3432n-34mv", "detail": {contact details} }
 //
 //contact details = { firstname, lastname, phone_number }
@@ -17,8 +16,8 @@ import (
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
-	 	Token string `json: "token" validate: "required"`
-	 	Details models.PhoneBookContact `json:"details" validate: "required" `
+		Token   string                  `json: "token" validate: "required"`
+		Details models.PhoneBookContact `json:"details" validate: "required" `
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
@@ -34,25 +33,24 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-
-		stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
+	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
-		_, err = stmt.Exec(db.SessionToken[reqBody.Token].ID, reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
-		if err != nil {
-			session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
-		} else {
-			resp := struct {
-				Status bool `json:"status"`
-				Message interface{} `json:"message"`
-			}{
-				true,
-				"New contact Added to Phone Book",
-			}
-			err = json.NewEncoder(w).Encode(resp)
-			if err != nil {
-				session.JsonError(&w, err.Error(), http.StatusInternalServerError)
-			}
+	_, err = stmt.Exec(db.SessionToken[reqBody.Token].ID, reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
+	if err != nil {
+		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
+	} else {
+		resp := struct {
+			Status  bool        `json:"status"`
+			Message interface{} `json:"message"`
+		}{
+			true,
+			"New contact Added to Phone Book",
 		}
+		err = json.NewEncoder(w).Encode(resp)
+		if err != nil {
+			session.JsonError(&w, err.Error(), http.StatusInternalServerError)
+		}
+	}
 
 }

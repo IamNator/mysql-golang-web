@@ -12,4 +12,3 @@ func (db *Controllersdb) DbExists() bool {
 		return true
 	}
 }
-

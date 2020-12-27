@@ -12,4 +12,3 @@ func (db *Controllersdb) OpenDB() (*sql.DB, error) {
 	//db.Session.SetConnMaxLifetime(time.Minute * 10)
 	return openDB, err
 }
-

@@ -27,16 +27,14 @@ import (
 	//"time"
 )
 
-
 // Successful login request
 // swagger:response loginResponse
 type LoginResponseWrapper struct {
-    //in: body
+	//in: body
 	Body LoginResponse
 }
 
-
-type loginCredentialsWrapper struct{
+type loginCredentialsWrapper struct {
 	//in :body
 	Body LoginCredentials
 }
@@ -49,29 +47,27 @@ type LoginResponseNotFoundWrapper struct {
 	Body MyStdResp
 }
 
-
 // LoginResponse defines the struct for API login
 // swagger:model
 type LoginResponse struct {
 	// shows if process was successful or not
-	Status  bool  `json:"status"`
+	Status bool `json:"status"`
 	// Contains user information
-	Message struct{
+	Message struct {
 		// the user's first name
 		FirstName string `json:"firstname" validate:"required"`
 		// the user's last name
-		LastName  string `json:"lastname" validate:"required"`
+		LastName string `json:"lastname" validate:"required"`
 		// the user's email address
-		Email     string `json:"email" validate:"required"`
+		Email string `json:"email" validate:"required"`
 		// the user's hashed password
-		PassWord  string `json:"password" validate:"required"`
+		PassWord string `json:"password" validate:"required"`
 		// the user's id
-		ID        string `json:"id"`
+		ID string `json:"id"`
 	} `json:"message"`
 	// A unique number that defines authenticates the users transactions
 	Token string `json:"token"`
 }
-
 
 // swagger:route POST /api/login session login
 // Returns a session token
@@ -123,23 +119,21 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-
 func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 	(*w).WriteHeader(ErrorCode)
 	res := MyStdResp{
-		Status: false,
+		Status:  false,
 		Message: ErrorMessage,
 	}
 	json.NewEncoder(*w).Encode(res)
 }
 
 /* Request body received
-  {
-    "email":"natverior1@gmail.com",
-    "password":"password"
-  }
+{
+  "email":"natverior1@gmail.com",
+  "password":"password"
+}
 */
-
 
 /* Response to sent
 {
