@@ -43,16 +43,25 @@ type LoginResponseUnauthorizedWrapper struct {
 }
 
 
+// LoginResponse defines the struct for API login
+// swagger: model
 type LoginResponse struct {
-
+	// the status is the state of the request process
 	Status  bool  `json:"status"`
+	// Contains user information
 	Message struct{
+		// the user's first name
 		FirstName string `json:"firstname" validate:"required"`
+		// the user's last name
 		LastName  string `json:"lastname" validate:"required"`
+		// the user's email address
 		Email     string `json:"email" validate:"required"`
+		// the user's hashed password
 		PassWord  string `json:"password" validate:"required"`
+		// the user's id
 		ID        string `json:"id"`
 	} `json:"message"`
+	// A unique number that defines authenticates the users transactions
 	Token string `json:"token"`
 }
 

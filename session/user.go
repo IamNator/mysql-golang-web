@@ -11,6 +11,8 @@ type LoginCredentials struct {
 //Sessiondb is a http.Handler
 type Sessiondb models.DBData
 
+
+
 type MyStdResp struct {
 	Status bool
 	Message interface{}
