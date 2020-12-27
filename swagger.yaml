@@ -103,8 +103,7 @@ paths:
         "400":
           $ref: '#/responses/loginBadRequest'
         "404":
-          $ref: '#/responses/loginIncorrectPassword'
-          description: loginNotFound
+          description: ""
       tags:
       - session
   /api/logout:
