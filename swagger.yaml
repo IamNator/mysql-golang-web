@@ -77,7 +77,7 @@ paths:
       - session
   /api/register:
     post:
-      description: adds new user to user databasegsdg
+      description: adds new user to user database
       operationId: register
       responses:
         "200":
