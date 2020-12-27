@@ -28,8 +28,9 @@ import (
 
 // Respond to login request
 // swagger:response LoginResponse
+// // in:body
 type LoginResponse struct {
-	// in:body
+
 	Status  bool  `json:"status"`
 	Message struct{
 		FirstName string `json:"firstname" validate:"required"`
