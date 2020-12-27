@@ -12,3 +12,6 @@ A simple web interface. A phone book with the Backend built entirely on golang, 
  ```
  check Api.txt for API documentation
  ```
+   
+#### API DOCUMENTATION   
+https://mysql-golang-app.herokuapp.com/docs 
