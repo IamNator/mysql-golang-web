@@ -51,7 +51,7 @@ type LoginResponseNotFoundWrapper struct {
 
 
 // LoginResponse defines the struct for API login
-// swagger: model
+// swagger:model
 type LoginResponse struct {
 	// shows if process was successful or not
 	Status  bool  `json:"status"`

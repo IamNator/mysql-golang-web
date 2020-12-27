@@ -3,9 +3,7 @@ consumes:
 - application/json
 definitions:
   LoginResponse:
-    description: |-
-      LoginResponse defines the struct for API login
-      swagger: model
+    description: LoginResponse defines the struct for API login
     properties:
       message:
         description: Contains user information
@@ -70,15 +68,16 @@ paths:
       - session
   /api/logout:
     post:
-      description: |-
-        Returns a session token
-        Returns w.Body = { status:true, message:"logged out successfully" }
+      description: logs the user out
       operationId: logout
+      responses:
+        "200":
+          $ref: '#/responses/logoutResponse'
       tags:
       - session
   /api/register:
     post:
-      description: adds new user to user database
+      description: adds new user to user databasegsdg
       operationId: register
       responses:
         "200":
@@ -96,6 +95,14 @@ responses:
     description: Successful login request
     schema:
       $ref: '#/definitions/LoginResponse'
+  logoutResponse:
+    description: ""
+    headers:
+      Message: {}
+      Status:
+        type: boolean
+    schema:
+      type: object
   registerResponse:
     description: ""
     schema:
