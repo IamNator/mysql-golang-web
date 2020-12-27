@@ -26,9 +26,16 @@ import (
 	"net/http"
 )
 
+// swagger:response registerResponse
+type registerResponseWrapper struct {
+//	in:body
+	Body MyStdResp
+}
 
 // swagger:route POST /api/register session register
 // adds new user to user database
+// responses:
+// 200: registerResponse
 func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	var user models.UserCredentials
 	_ = json.NewDecoder(req.Body).Decode(&user)

@@ -59,9 +59,7 @@ info:
 paths:
   /api/login:
     post:
-      description: |-
-        Returns a session token
-        GET: loginRequest
+      description: Returns a session token
       operationId: login
       responses:
         "200":
@@ -80,9 +78,12 @@ paths:
       tags:
       - session
   /api/register:
-    get:
+    post:
       description: adds new user to user database
       operationId: register
+      responses:
+        "200":
+          $ref: '#/responses/registerResponse'
       tags:
       - session
 produces:
@@ -96,6 +97,10 @@ responses:
     description: Successful login request
     schema:
       $ref: '#/definitions/LoginResponse'
+  registerResponse:
+    description: ""
+    schema:
+      $ref: '#/definitions/MyStdResp'
 schemes:
 - http
 swagger: "2.0"

@@ -75,7 +75,6 @@ type LoginResponse struct {
 
 // swagger:route POST /api/login session login
 // Returns a session token
-// GET: loginRequest
 // responses:
 // 200: loginResponse
 // 404: loginNotFound

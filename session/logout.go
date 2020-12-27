@@ -26,7 +26,6 @@ import (
 
 // swagger:route POST /api/logout session logout
 // Returns a session token
-//Takes in req.body = {token}
 // Returns w.Body = { status:true, message:"logged out successfully" }
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	var user struct{
