@@ -42,15 +42,16 @@ definitions:
     x-go-package: github.com/IamNator/mysql-golang-web/session
   MyStdResp:
     properties:
-      Status:
-        description: successful / not successful
-        type: boolean
       message:
-        description: string
+        description: delete message / error message when delete is unsuccessful
         type: string
         x-go-name: Message
+      status:
+        description: successful / not successful
+        type: boolean
+        x-go-name: Status
     type: object
-    x-go-package: github.com/IamNator/mysql-golang-web/session
+    x-go-package: github.com/IamNator/mysql-golang-web/controllers
   PhoneBookContact:
     properties:
       firstname:
@@ -99,8 +100,10 @@ paths:
       responses:
         "200":
           $ref: '#/responses/loginResponse'
+        "400":
+          $ref: '#/responses/loginBadRequest'
         "404":
-          $ref: '#/responses/loginNotFound'
+          $ref: '#/responses/loginIncorrectPassword'
       tags:
       - session
   /api/logout:
@@ -153,6 +156,14 @@ responses:
           type: boolean
           x-go-name: Status
       type: object
+  loginBadRequest:
+    description: Non registered user tries to login
+    schema:
+      $ref: '#/definitions/MyStdResp'
+  loginIncorrectPassword:
+    description: Non registered user tries to login
+    schema:
+      $ref: '#/definitions/MyStdResp'
   loginNotFound:
     description: Non registered user tries to login
     schema:
