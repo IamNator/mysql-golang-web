@@ -12,7 +12,7 @@ type fetchResponseWrapper struct {
 	//in body
 	Body struct {
 		Status  bool                    `json:"status"`
-		Message models.PhoneBookContact `json:"message"`
+		Message []models.PhoneBookContact `json:"message"`
 	}
 }
 
