@@ -1,3 +1,19 @@
+// Package classification delete API
+//
+//Documentation for delete API
+//
+// schemes: http
+// BasePath: /
+// Version: 1.0.0
+// Contact: natverior1@gmail.com
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+//
+// swagger:meta
 package controllers
 
 import (
@@ -10,10 +26,26 @@ import (
 	"net/http"
 )
 
-//body takes ("token": "342-342s-fsd-343cv", "id": "23" }
-//
-//returns in body ("status": "true", "message": "deleted id, first and last name"
-//
+// swagger:response deleteResponse
+type deleteResponseWrapper struct {
+	// in: body
+	Body session.MyStdResp
+}
+
+
+// swagger:model
+type MyStdResp struct {
+	// successful / not successful
+	Status bool `json:"status"`
+	// delete message / error message when delete is unsuccessful
+	Message string `json:"message"`
+}
+
+
+// swagger:route POST /api/delete controllers delete
+// delete contact from phone book
+// responses:
+// 200: deleteResponse
 func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
 		session.JsonError(&writer, fmt.Sprintf("ParseForm()  err : %v",err), http.StatusBadRequest )
@@ -42,7 +74,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	Check(err)
 
 	writer.Header().Set("Content-Type", "application/json")
-	resp := session.MyStdResp{
+	resp := MyStdResp{
 		Status: true,
 		Message: "User Deleted",
 	}

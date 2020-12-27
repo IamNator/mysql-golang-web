@@ -1,4 +1,4 @@
-// Package classification Login API
+// Package classification logout API
 //
 // Documentation for logout API
 //

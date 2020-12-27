@@ -1,4 +1,4 @@
-// Package classification Login API
+// Package classification register API
 //
 //Documentation for register API
 //

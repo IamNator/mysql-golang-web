@@ -42,22 +42,32 @@ definitions:
     x-go-package: github.com/IamNator/mysql-golang-web/session
   MyStdResp:
     properties:
-      Status:
-        description: successful / not successful
-        type: boolean
       message:
-        description: string
+        description: delete message / error message when delete is unsuccessful
         type: string
         x-go-name: Message
+      status:
+        description: successful / not successful
+        type: boolean
+        x-go-name: Status
     type: object
-    x-go-package: github.com/IamNator/mysql-golang-web/session
+    x-go-package: github.com/IamNator/mysql-golang-web/controllers
 info:
   contact:
     email: natverior1@gmail.com
-  description: Documentation for register API
-  title: Login API
+  description: Documentation for delete API
+  title: delete API
   version: 1.0.0
 paths:
+  /api/delete:
+    post:
+      description: delete contact from phone book
+      operationId: delete
+      responses:
+        "200":
+          $ref: '#/responses/deleteResponse'
+      tags:
+      - controllers
   /api/login:
     post:
       description: Returns a session token
@@ -90,6 +100,10 @@ paths:
 produces:
 - application/json
 responses:
+  deleteResponse:
+    description: ""
+    schema:
+      $ref: '#/definitions/MyStdResp'
   loginNotFound:
     description: Non registered user tries to login
     schema:
