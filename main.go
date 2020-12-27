@@ -8,6 +8,7 @@ import (
 	"github.com/IamNator/mysql-golang-web/models"
 	user "github.com/IamNator/mysql-golang-web/session"
 	"github.com/IamNator/mysql-golang-web/views"
+	"github.com/go-openapi/runtime/middleware"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
@@ -71,6 +72,11 @@ func main() {
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
 	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
 	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")       //use dbData.Login_t to test
+
+	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
+	sh := middleware.Redoc(opts, nil)
+	myRouter.Handle("/docs", sh)
+	myRouter.Handle("swagger.yaml", http.FileServer(http.Dir("/swagger.yaml")))
 
 	port := os.Getenv("PORT")
 	if port == "" {

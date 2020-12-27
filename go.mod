@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go v0.74.0 // indirect
 	github.com/adefemi171/Github-User-Chat v0.0.0-20200430034303-8c37f9fa0b5c // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/go-openapi/runtime v0.19.24
 	github.com/go-openapi/validate v0.20.0 // indirect
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/go-sql-driver/mysql v1.5.0
