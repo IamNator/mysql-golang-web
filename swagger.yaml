@@ -33,7 +33,7 @@ definitions:
         type: object
         x-go-name: Message
       status:
-        description: the status is the state of the request process
+        description: shows if process was successful or not
         type: boolean
         x-go-name: Status
       token:
@@ -53,21 +53,36 @@ definitions:
 info:
   contact:
     email: natverior1@gmail.com
-  description: Documentation for Login API
+  description: Documentation for register API
   title: Login API
   version: 1.0.0
 paths:
   /api/login:
-    get:
+    post:
       description: |-
         Returns a session token
-        requests:
+        GET: loginRequest
       operationId: login
       responses:
         "200":
           $ref: '#/responses/loginResponse'
         "404":
           $ref: '#/responses/loginNotFound'
+      tags:
+      - session
+  /api/logout:
+    post:
+      description: |-
+        Returns a session token
+        Takes in req.body = {token}
+        Returns w.Body = { status:true, message:"logged out successfully" }
+      operationId: logout
+      tags:
+      - session
+  /api/register:
+    get:
+      description: adds new user to user database
+      operationId: register
       tags:
       - session
 produces:

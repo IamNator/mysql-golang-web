@@ -1,6 +1,6 @@
 // Package classification Login API
 //
-// Documentation for Login API
+// Documentation for login API
 //
 // schemes: http
 // BasePath: /
@@ -35,7 +35,7 @@ type LoginResponseWrapper struct {
 	Body LoginResponse
 }
 
-// swagger:request loginRequest
+
 type loginCredentialsWrapper struct{
 	//in :body
 	Body LoginCredentials
@@ -73,9 +73,8 @@ type LoginResponse struct {
 }
 
 
-// swagger:route GET /api/login session login
+// swagger:route POST /api/login session login
 // Returns a session token
-// requests:
 // GET: loginRequest
 // responses:
 // 200: loginResponse

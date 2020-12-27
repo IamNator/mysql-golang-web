@@ -1,3 +1,19 @@
+// Package classification Login API
+//
+//Documentation for register API
+//
+// schemes: http
+// BasePath: /
+// Version: 1.0.0
+// Contact: natverior1@gmail.com
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+//
+// swagger:meta
 package session
 
 import (
@@ -10,6 +26,9 @@ import (
 	"net/http"
 )
 
+
+// swagger:route POST /api/register session register
+// adds new user to user database
 func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	var user models.UserCredentials
 	_ = json.NewDecoder(req.Body).Decode(&user)

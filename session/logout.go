@@ -1,3 +1,19 @@
+// Package classification Login API
+//
+// Documentation for logout API
+//
+// schemes: http
+// BasePath: /
+// Version: 1.0.0
+// Contact: natverior1@gmail.com
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+//
+// swagger:meta
 package session
 
 import (
@@ -5,10 +21,13 @@ import (
 	"net/http"
 )
 
+
+
+
+// swagger:route POST /api/logout session logout
+// Returns a session token
 //Takes in req.body = {token}
-//
 // Returns w.Body = { status:true, message:"logged out successfully" }
-//
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	var user struct{
 		Token string `json:"token"`
