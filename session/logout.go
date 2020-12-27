@@ -25,7 +25,7 @@ import (
 // swagger:response logoutResponse
 type logoutResponseWrapper struct {
 	// in: body
-	MyStdResp
+	Body MyStdResp
 }
 
 
