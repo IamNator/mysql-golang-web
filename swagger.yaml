@@ -95,7 +95,7 @@ paths:
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
-        "400":
+        "401":
           $ref: '#/responses/fetchUnauthorized'
         "500":
           $ref: '#/responses/fetchInternalError'
@@ -148,6 +148,10 @@ paths:
       responses:
         "200":
           $ref: '#/responses/updateResponse'
+        "401":
+          $ref: '#/responses/updateUnauthorized'
+        "500":
+          $ref: '#/responses/updateInternalError'
       tags:
       - controllers
 produces:
@@ -230,8 +234,12 @@ responses:
     description: when a user already exists
     schema:
       $ref: '#/definitions/MyStdResp'
+  updateInternalError:
+    description: unable to respond to request
+    schema:
+      $ref: '#/definitions/MyStdResp'
   updateResponse:
-    description: ""
+    description: update successful
     schema:
       properties:
         message:
@@ -241,6 +249,10 @@ responses:
           type: boolean
           x-go-name: Status
       type: object
+  updateUnauthorized:
+    description: token not valid, login to get a new one
+    schema:
+      $ref: '#/definitions/MyStdResp'
 schemes:
 - http
 swagger: "2.0"
