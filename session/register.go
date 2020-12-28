@@ -16,10 +16,27 @@ type registerResponseWrapper struct {
 	Body MyStdResp
 }
 
+// when a user already exists
+// swagger:response registerUserExist
+type registerUserExistWrapper struct {
+	//	in:body
+	Body MyStdResp
+}
+
+// returns when there is an internal server error (likely unable access database)
+// swagger:response registerInternalError
+type registerInternalErrorWrapper struct {
+	//	in:body
+	Body MyStdResp
+}
+
+
 // swagger:route POST /api/register session register
 // adds new user to user database
 // responses:
 // 201: registerResponse
+// 302: registerUserExist
+// 500: registerInternalError
 func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	var user models.UserCredentials
 	_ = json.NewDecoder(req.Body).Decode(&user)
