@@ -10,6 +10,7 @@ import (
 	"net/http"
 )
 
+// user successfully created
 // swagger:response registerResponse
 type registerResponseWrapper struct {
 	//	in:body
