@@ -121,7 +121,7 @@ paths:
       description: adds new user to user database
       operationId: register
       responses:
-        "200":
+        "201":
           $ref: '#/responses/registerResponse'
       tags:
       - session

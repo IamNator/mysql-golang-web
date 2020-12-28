@@ -11,7 +11,7 @@ Request body
     "password":"password"
  }
 
- Response Body  -- 200  OK
+ Response Body  -- 201  Created
 
  {
      "Status": true,
