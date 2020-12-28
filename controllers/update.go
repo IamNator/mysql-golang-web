@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// update successful
 // swagger:response updateResponse
 type updateResponseWrapper struct {
 	// in: body
@@ -17,10 +18,29 @@ type updateResponseWrapper struct {
 	}
 }
 
+
+// token not valid, login to get a new one
+// swagger:response updateUnauthorized
+type updateUnauthorizedWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+// unable to respond to request
+// swagger:response updateInternalError
+type updateInternalErrorWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+
+
 // swagger:route POST /api/update controllers update
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse
+// 401: updateUnauthorized
+// 500: updateInternalError
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {

@@ -95,6 +95,10 @@ paths:
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
+        "400":
+          $ref: '#/responses/fetchUnauthorized'
+        "500":
+          $ref: '#/responses/fetchInternalError'
       tags:
       - controllers
   /api/login:
@@ -161,6 +165,10 @@ responses:
     description: token not valid, login to get a new one
     schema:
       $ref: '#/definitions/MyStdResp'
+  fetchInternalError:
+    description: unable to respond to request
+    schema:
+      $ref: '#/definitions/MyStdResp'
   fetchResponse:
     description: ""
     headers:
@@ -177,6 +185,10 @@ responses:
           type: boolean
           x-go-name: Status
       type: object
+  fetchUnauthorized:
+    description: token not valid, login to get a new one
+    schema:
+      $ref: '#/definitions/MyStdResp'
   loginBadRequest:
     description: request does not conform to login api
     schema:

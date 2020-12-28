@@ -17,10 +17,27 @@ type fetchResponseWrapper struct {
 }
 
 
+// token not valid, login to get a new one
+// swagger:response fetchUnauthorized
+type fetchUnauthorizedWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+// unable to respond to request
+// swagger:response fetchInternalError
+type fetchInternalErrorWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+
 // swagger:route GET /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
 // 200: fetchResponse
+// 401: fetchUnauthorized
+// 500: fetchInternalError
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	var reqBody struct {
 		Token string `json:"token"`
