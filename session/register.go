@@ -19,7 +19,7 @@ type registerResponseWrapper struct {
 // swagger:route POST /api/register session register
 // adds new user to user database
 // responses:
-// 200: registerResponse
+// 201: registerResponse
 func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 	var user models.UserCredentials
 	_ = json.NewDecoder(req.Body).Decode(&user)
@@ -46,7 +46,9 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 			log.Fatal(err)
 			return
 		}
+
 		//http.SetCookie(w, LoginCookie(user.userName, db))
+		w.WriteHeader(http.StatusCreated)
 		res := MyStdResp{
 			Status:  true,
 			Message: "User Created",
