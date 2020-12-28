@@ -80,5 +80,5 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 			session.JsonError(&w, err.Error(), http.StatusInternalServerError)
 		}
 	}
-
 }
+
