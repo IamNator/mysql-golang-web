@@ -82,6 +82,10 @@ paths:
       responses:
         "200":
           $ref: '#/responses/deleteResponse'
+        "400":
+          $ref: '#/responses/deleteUnauthorized'
+        "500":
+          $ref: '#/responses/deleteInternalError'
       tags:
       - controllers
   /api/fetch:
@@ -117,7 +121,7 @@ paths:
         "400":
           $ref: '#/responses/logoutBadRequest'
         "500":
-          $ref: '#/responses/loginInternalError'
+          $ref: '#/responses/logoutInternalError'
       tags:
       - session
   /api/register:
@@ -145,7 +149,15 @@ paths:
 produces:
 - application/json
 responses:
+  deleteInternalError:
+    description: ""
+    schema:
+      $ref: '#/definitions/MyStdResp'
   deleteResponse:
+    description: ""
+    schema:
+      $ref: '#/definitions/MyStdResp'
+  deleteUnauthorized:
     description: ""
     schema:
       $ref: '#/definitions/MyStdResp'

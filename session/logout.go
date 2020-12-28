@@ -31,7 +31,7 @@ type logoutInternalErrorWrapper struct {
 // responses:
 // 200: logoutResponse
 // 400: logoutBadRequest
-// 500: loginInternalError
+// 500: logoutInternalError
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	var user struct {
 		Token string `json:"token"`
