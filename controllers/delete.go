@@ -16,6 +16,20 @@ type deleteResponseWrapper struct {
 	Body MyStdResp
 }
 
+
+// swagger:response deleteUnauthorized
+type deleteUnauthorizedWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+
+// swagger:response deleteInternalError
+type deleteInternalErrorWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
 // swagger:model
 type MyStdResp struct {
 	// successful / not successful
@@ -28,6 +42,8 @@ type MyStdResp struct {
 // delete contact from phone book
 // responses:
 // 200: deleteResponse
+// 400: deleteUnauthorized
+// 500: deleteInternalError
 func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
 		session.JsonError(&writer, fmt.Sprintf("ParseForm()  err : %v", err), http.StatusBadRequest)

@@ -114,6 +114,10 @@ paths:
       responses:
         "200":
           $ref: '#/responses/logoutResponse'
+        "400":
+          $ref: '#/responses/logoutBadRequest'
+        "500":
+          $ref: '#/responses/loginInternalError'
       tags:
       - session
   /api/register:
@@ -177,6 +181,14 @@ responses:
     description: Successful login request
     schema:
       $ref: '#/definitions/LoginResponse'
+  logoutBadRequest:
+    description: unable to process request
+    schema:
+      $ref: '#/definitions/MyStdResp'
+  logoutInternalError:
+    description: Unable to respond
+    schema:
+      $ref: '#/definitions/MyStdResp'
   logoutResponse:
     description: ""
     schema:
