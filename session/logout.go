@@ -11,10 +11,27 @@ type logoutResponseWrapper struct {
 	Body MyStdResp
 }
 
+// unable to process request
+// swagger:response logoutBadRequest
+type logoutBadRequestWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+// Unable to respond
+// swagger:response logoutInternalError
+type logoutInternalErrorWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
+
 // swagger:route POST /api/logout session logout
 // logs the user out
 // responses:
 // 200: logoutResponse
+// 400: logoutBadRequest
+// 500: loginInternalError
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	var user struct {
 		Token string `json:"token"`

@@ -123,6 +123,10 @@ paths:
       responses:
         "201":
           $ref: '#/responses/registerResponse'
+        "302":
+          $ref: '#/responses/registerUserExist'
+        "500":
+          $ref: '#/responses/registerInternalError'
       tags:
       - session
   /api/update:
@@ -177,8 +181,17 @@ responses:
     description: ""
     schema:
       $ref: '#/definitions/MyStdResp'
+  registerInternalError:
+    description: returns when there is an internal server error (likely unable access
+      database)
+    schema:
+      $ref: '#/definitions/MyStdResp'
   registerResponse:
     description: ""
+    schema:
+      $ref: '#/definitions/MyStdResp'
+  registerUserExist:
+    description: when a user already exists
     schema:
       $ref: '#/definitions/MyStdResp'
   updateResponse:
