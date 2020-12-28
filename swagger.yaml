@@ -42,16 +42,15 @@ definitions:
     x-go-package: github.com/IamNator/mysql-golang-web/session
   MyStdResp:
     properties:
-      message:
-        description: delete message / error message when delete is unsuccessful
-        type: string
-        x-go-name: Message
-      status:
+      Status:
         description: successful / not successful
         type: boolean
-        x-go-name: Status
+      message:
+        description: string
+        type: string
+        x-go-name: Message
     type: object
-    x-go-package: github.com/IamNator/mysql-golang-web/controllers
+    x-go-package: github.com/IamNator/mysql-golang-web/session
   PhoneBookContact:
     properties:
       firstname:
@@ -211,7 +210,7 @@ responses:
     schema:
       $ref: '#/definitions/MyStdResp'
   registerResponse:
-    description: ""
+    description: user successfully created
     schema:
       $ref: '#/definitions/MyStdResp'
   registerUserExist:

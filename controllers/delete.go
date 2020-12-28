@@ -10,20 +10,21 @@ import (
 	"net/http"
 )
 
+// delete successful
 // swagger:response deleteResponse
 type deleteResponseWrapper struct {
 	// in: body
 	Body MyStdResp
 }
 
-
+// token not valid, login to get a new one
 // swagger:response deleteUnauthorized
 type deleteUnauthorizedWrapper struct {
 	// in: body
 	Body MyStdResp
 }
 
-
+// unable to respond to request
 // swagger:response deleteInternalError
 type deleteInternalErrorWrapper struct {
 	// in: body
