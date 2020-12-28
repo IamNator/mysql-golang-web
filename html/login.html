@@ -4,7 +4,9 @@
     <title>Login | Go-PhoneBook</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <meta name="google-signin-client_id" content="454429831838-3hb76ui9qlnaldvih3dplm1il9edei9m.apps.googleusercontent.com">
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link type="text/css" href="/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,6 +52,7 @@
                 <button type="submit" class="btn btn-dark btn-block">Login</button>
             </form>
         </div>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <div class="col-md-3 text-center"></div>
     </div>
 </div>
