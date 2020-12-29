@@ -61,7 +61,7 @@ func main() {
 	//	Session:  nil,              //Session
 	//	SessionToken: make(map[string]models.UserCredentials),	// map[string]string
 	//}
-
+//What is going on??
 	DB := controllers.Controllersdb(dbGeneral)
 	db, _ := DB.OpenDB()
 	DB.Session = db
