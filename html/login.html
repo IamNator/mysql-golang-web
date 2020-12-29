@@ -98,7 +98,7 @@
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successfull", true);
                     window.localStorage.setItem("token", resp.body.token)
-                    setTimeout(_=>window.location.href=window.location.href.replace("", "index"), 10)
+                    setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)
                     return {
                         "status": true,
                         "data": resp.text()
