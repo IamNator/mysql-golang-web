@@ -44,8 +44,8 @@ type updateInternalErrorWrapper struct {
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody struct {
-		Token   string                  `json: "token" validate: "required"`
-		Details models.PhoneBookContact `json:"details" validate: "required" `
+		Token   string                  `json:"token" validate:"required"`
+		Details models.PhoneBookContact `json:"details" validate:"required" `
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 

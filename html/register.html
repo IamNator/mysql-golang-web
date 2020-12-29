@@ -42,7 +42,13 @@
                     </button>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" id="UserName" aria-describedby="emailHelp" placeholder="username">
+                    <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp" placeholder="firstname">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastname" class="form-control"  id="lastname" placeholder="lastname">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control"  id="email" placeholder="email">
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="form-control"  id="Password" placeholder="password">
@@ -84,7 +90,7 @@
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(resp=>{
-            if (resp.status!==200) {
+            if (resp.status!==201) {
                 //Display Error FeedBack Message
                 displayFeedBack("An Error Occurred!!. Please Try Again!.", false);
             } else {
