@@ -7,8 +7,6 @@
     <meta name="google-signin-client_id" content="454429831838-3hb76ui9qlnaldvih3dplm1il9edei9m.apps.googleusercontent.com">
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <link type="text/css" href="/css/bootstrap.min.css"
-          rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" href="https://golang.org/lib/godoc/images/go-logo-blue.svg"/>
@@ -29,7 +27,7 @@
 </nav>
 <div>
     <div class="text-center" style="padding: 25px">
-        <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" height="50px" ></img>
+        <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg" height="50px" >
     </div>
 </div>
 <div class="container">
@@ -56,7 +54,7 @@
         <div class="col-md-3 text-center"></div>
     </div>
 </div>
-</p>
+
 <script type="text/javascript">
     //Function to submit form to endpoint 
     var form = document.getElementById("loginForm");
@@ -96,8 +94,9 @@
                 console.log(resp)
                 if (resp.status==200) {
                     //window.location.href = window.location.href.replace("login", "")
-                    displayFeedBack("Login successfull", true);
-                    window.localStorage.setItem("token", resp.body.token)
+                    displayFeedBack("Login successful", true);
+                    let tk = resp.json()
+                    window.localStorage.setItem("token", tk.toString() )
                     setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)
                     return {
                         "status": true,
