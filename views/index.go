@@ -7,9 +7,6 @@ import (
 )
 
 func Index(w http.ResponseWriter, req *http.Request) {
-	if _, ok := req.Cookie("sessionID"); ok != nil {
-		http.Redirect(w, req, "/login", http.StatusTemporaryRedirect)
-	}
 	tpl := template.Must(template.ParseFiles("html/index.html"))
 	_ = tpl.Execute(w, nil)
 }
