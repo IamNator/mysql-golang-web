@@ -107,7 +107,8 @@
             }
         }).then((resp) =>
         {resp.json().then((data) => {
-                populateTable(JSON.parse(data.message))
+                console.log(data)
+                populateTable(JSON.parse(data))
             })
         },
         (err) => {console.log(err)} )
