@@ -97,6 +97,7 @@
                 if (resp.status==200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successfull", true);
+                    window.localStorage.setItem("token", resp.body.token)
                     return {
                         "status": true,
                         "data": resp.text()
