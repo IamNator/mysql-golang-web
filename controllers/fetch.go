@@ -41,7 +41,6 @@ type fetchInternalErrorWrapper struct {
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	var reqBody struct {
 		Token string `json:"token"`
-		ID    string `json:"id"`
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
@@ -85,8 +84,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 
 /* Request Body received
 {
-  "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86",
-  "id":"1"
+  "token":"fa3af482-4685-11eb-8c2d-a01d486a6c86"
 }
 
 */

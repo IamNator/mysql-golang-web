@@ -115,10 +115,12 @@
                                             fetch(url, {
                                                 method: "PUT",
                                                 body: JSON.stringify({
-                                                    fname: "fname",
-                                                    lname: 'lname',
-                                                    phone_number: "phone_number",
-                                                    id: "id",
+                                                    token: "token",
+                                                    details: {
+                                                        firstname: "fname",
+                                                        lastname: "lname",
+                                                        phone_number: "phone_number",
+                                                    },
                                                 })
                                             })
                                                 .then(result => {

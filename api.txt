@@ -124,7 +124,7 @@ Response 401 -Unauthorized access
 
 ####################################
 
-For /api/update  --- POST
+For /api/update  --- PUT
 
 {
     "token":"8e01b26b-46a6-11eb-9e3b-1a2b5a79a0a0",

@@ -97,7 +97,12 @@
 <script type="text/javascript">
     //Make the API call when window loads
     window.onload = () => {
-        fetch("/api/fetch").then((resp) => {
+        fetch("/api/fetch",{
+            method: "GET",
+            body: JSON.stringify({
+                token: "token"
+            })
+        }).then((resp) => {
             return resp.text()
         }, err => console.log(err)).then(data => {
             populateTable(JSON.parse(data))
