@@ -99,12 +99,13 @@
 
                     // Examine the text in the response
                     resp.json().then(function(data) {
-                        console.log(data);
+                        tk = data.token
+                        console.log(tk);
                     });
 
                     return {
                         "status": true,
-                        "data": resp.text()
+                        "data": resp.tk
                     }
                 }
                 if (resp.status === 404) {
