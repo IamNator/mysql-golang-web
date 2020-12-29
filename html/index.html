@@ -102,7 +102,7 @@
                 token: token.toString()
             })
         }).then((resp) =>
-            populateTable(resp.json.message)
+            populateTable(resp.json())
             return resp.json()
         }, err => console.log(err)).then(data => {
             populateTable(JSON.parse(data))
@@ -112,7 +112,7 @@
     populateTable = (data) => {
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
         var index = 1
-        for (contact of data) {
+        for (contact of data.message) {
             rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + index + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td></tr>"
             newRow = tableBody.insertRow(tableBody.rows.length);
             newRow.innerHTML = rowHtml
