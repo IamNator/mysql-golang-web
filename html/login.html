@@ -112,7 +112,9 @@
                 let tk = data.data
                 window.localStorage.setItem("token", tk )
                 console.log(data)
-                 setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)}
+                console.log("token added")
+                 window.location.replace("https://mysql-golang-app.herokuapp.com/index")
+            }
                 )
     }
         //return true
