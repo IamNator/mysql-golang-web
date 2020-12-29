@@ -32,7 +32,7 @@ type fetchInternalErrorWrapper struct {
 }
 
 
-// swagger:route GET /api/fetch controllers fetch
+// swagger:route POST /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
 // 200: fetchResponse
