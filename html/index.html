@@ -4,11 +4,26 @@
     <a href="#" onclick="signOut();">Sign out</a>
     <script>
         function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-
+            // var auth2 = gapi.auth2.getAuthInstance();
+            // auth2.signOut().then(function () {
+            //     console.log('User signed out.');
+            // });
+            token = window.localStorage.getItem("token")
+            fetch("/api/logout", {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        "token": token.toString()
+                    }
+                )
+            })
+            .then(
+                (response) => {
+                    if (response.status !== 200) {
+                        console.log("successful")
+                    }
+                }
+            )
             window.location.replace("https://mysql-golang-app.herokuapp.com/login")
         }
     </script>
@@ -64,7 +79,7 @@
                         <label for="exampleInputPassword1">Phone</label>
                         <input type="text" class="form-control" id="phone_number" placeholder="Mobile">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
+                    <button type="submit"  formaction="/index"  class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
                 </form>
             </div>
             <div class="modal-footer">
