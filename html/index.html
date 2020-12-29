@@ -105,11 +105,12 @@
                 "Content-Type": "application/json"
             }
         }).then((resp) =>
-            populateTable(resp.json())
-            return resp.json()
-        }, err => console.log(err)).then(data => {
-            populateTable(JSON.parse(data))
-        })
+        {resp.json().then((data) => {
+                populateTable(JSON.parse(data))
+            })
+        },
+        (err) => {console.log(err)} )
+
     }
     //Arrow function to create extra rows and append to the table after the api call has been successfull
     populateTable = (data) => {
