@@ -113,7 +113,7 @@
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
         var index = 1
         for (contact of data) {
-            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + index + "</th><td>" + contact.fname + "</td><td>" + contact.lname + "</td><td>" + contact.phone_number + "</td></tr>"
+            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + index + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td></tr>"
             newRow = tableBody.insertRow(tableBody.rows.length);
             newRow.innerHTML = rowHtml
             index++
