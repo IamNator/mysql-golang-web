@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <title>Login | Go-PhoneBook</title>
@@ -92,31 +92,36 @@
             "body": JSON.stringify(submitJson)
         }).then(
             (resp) => {
-                console.log(resp)
+               // console.log(resp)
                 if (resp.status === 200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
 
+                    // Examine the text in the response
+                    resp.json().then(function(data) {
+                        console.log(data);
+                    });
+
                     return {
                         "status": true,
                         "data": resp.text()
-                        }
+                    }
                 }
                 if (resp.status === 404) {
-                    console.log(resp)
+                    //console.log(resp)
                     displayFeedBack("Invalid Credentials", false)
                 }
                 //return resp.text()
-                }
-            ).then( (data) => {
-                let tk = data.data
-                window.localStorage.setItem("token", tk )
-                console.log(data)
-                console.log("token added")
-            //     window.location.replace("https://mysql-golang-app.herokuapp.com/index")
             }
-                )
-    }
+        )//.then( (data) => {
+            //     let tk = data.data
+            //     window.localStorage.setItem("token", tk )
+            //     console.log(data)
+            //     console.log("token added")
+            // //     window.location.replace("https://mysql-golang-app.herokuapp.com/index")
+            // }
+            //     )
+   }
         //return true
 
 
