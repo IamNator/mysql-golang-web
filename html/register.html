@@ -86,7 +86,7 @@
             }
         }
         //console.log(submitJson)
-        fetch("api/register", {
+        fetch("https://mysql-golang-app.herokuapp.com/api/register", {
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(resp=>{
