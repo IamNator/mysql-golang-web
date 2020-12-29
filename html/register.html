@@ -88,8 +88,9 @@
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(resp=>{
-            if (resp.status!==201) {
-                //Display Error FeedBack Message
+            if (resp.status === 302) {
+                displayFeedBack("User already exists!!. Please login!.", false);
+            } else if (resp.status === 500) {
                 displayFeedBack("An Error Occurred!!. Please Try Again!.", false);
             } else {
                 //Display Success FeedBack Message
