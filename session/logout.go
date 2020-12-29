@@ -48,7 +48,9 @@ func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
 	}
 
 	{
+		Mutex.Lock()
 		delete(db.SessionToken, user.Token) //token is deleted here
+		Mutex.Unlock()
 
 		w.WriteHeader(http.StatusOK)
 

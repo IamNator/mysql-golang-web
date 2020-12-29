@@ -5,10 +5,13 @@ import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/session"
 	"log"
+	"sync"
 
 	//"fmt"
 	"net/http"
 )
+
+var Mutex sync.Mutex
 
 // delete successful
 // swagger:response deleteResponse
@@ -64,7 +67,9 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	Mutex.Lock()
 	masterID := db.SessionToken[user.Token] //The person authorizing the delete
+	Mutex.Unlock()
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)

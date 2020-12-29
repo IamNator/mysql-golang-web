@@ -56,7 +56,11 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	if _, ok := db.SessionToken[reqBody.Token]; !ok {
+	Mutex.Lock()
+	id, ok := db.SessionToken[reqBody.Token]
+	Mutex.Unlock()
+
+	if !ok {
 		session.JsonError(&w, "Unauthorized Access, Please login", http.StatusUnauthorized)
 		return
 	}
@@ -64,7 +68,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
-	_, err = stmt.Exec(db.SessionToken[reqBody.Token].ID, reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
+	_, err = stmt.Exec(id.ID, reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
 	if err != nil {
 		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 	} else {

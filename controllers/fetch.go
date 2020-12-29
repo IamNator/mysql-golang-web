@@ -45,13 +45,17 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
-	if _, ok := db.SessionToken[reqBody.Token]; !ok { //Check if user is logged in (id exists in the MAP)
+	Mutex.Lock()
+	id, ok := db.SessionToken[reqBody.Token]
+	Mutex.Unlock()
+
+	if !ok { //Check if user is logged in (id exists in the MAP)
 		session.JsonError(&w, "Unauthorized access", http.StatusUnauthorized)
 		return
 	}
 
 	_ = db.Session.Ping()
-	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, phoneNumber FROM phoneBook WHERE userID=` + db.SessionToken[reqBody.Token].ID)
+	rows, err := db.Session.Query(`SELECT id, FirstName, LastName, phoneNumber FROM phoneBook WHERE userID=` + id.ID)
 	Check(err)
 
 	var user models.PhoneBookContact
