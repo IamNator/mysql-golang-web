@@ -106,7 +106,7 @@ func main() {
 
 }
 
-//
+//Creates and fills up database tables if they don't exist
 func CreateAndFillDb(db controllers.Controllersdb) {
 	dbMigration := migrations.Migrationdb(db)
 	dbSeeders := seeders.Seeddb(db)

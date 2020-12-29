@@ -142,7 +142,7 @@ paths:
       tags:
       - session
   /api/update:
-    post:
+    put:
       description: adds new contacts to a phoneBook
       operationId: update
       responses:
