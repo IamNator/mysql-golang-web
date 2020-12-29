@@ -76,10 +76,11 @@
     }
 
     form.onsubmit = (e) => {
-        //Prevent default occurence when form is submitted e.g(reloading the page)
+        //Prevent default occurrence when form is submitted e.g(reloading the page)
         e.preventDefault()
         //The json to be posted to the api/login endpoint
         var submitJson = {}
+        var element
         for (element of form.elements) {
             if (element.id !== "") {
                 submitJson[element.id] = element.value;
@@ -95,8 +96,8 @@
                 if (resp.status==200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
-                    let tk = resp.json()
-                    window.localStorage.setItem("token", tk.toString() )
+                    let tk = resp.json().token
+                    window.localStorage.setItem("token", tk )
                     setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)
                     return {
                         "status": true,

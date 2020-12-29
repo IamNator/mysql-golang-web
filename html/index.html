@@ -94,12 +94,12 @@
 </p>
 <script type="text/javascript">
     //Make the API call when window loads
-    token = window.localStorage.getItem("token").toString()
+    token = window.localStorage.getItem("token")
     window.onload = () => {
         fetch("/api/fetch",{
             method: "GET",
             body: JSON.stringify({
-                token: token
+                token: token.toString()
             })
         }).then((resp) =>
             populateTable(resp.json.message)
