@@ -96,9 +96,7 @@
                 if (resp.status==200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
-                    let tk = resp.json().token
-                    window.localStorage.setItem("token", tk )
-                    setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)
+
                     return {
                         "status": true,
                         "data": resp.text()
@@ -110,7 +108,13 @@
                 }
                 //return resp.text()
                 }
-            ).then(dat=>console.log(dat))
+            ).then(data=> {
+                let tk = data.data
+                window.localStorage.setItem("token", tk )
+                console.log(data)
+                 setTimeout(_=>window.location.replace("https://mysql-golang-app.herokuapp.com/index"), 1)}
+                )
+    }
         //return true
 
     }
