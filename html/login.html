@@ -98,7 +98,7 @@
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successfull", true);
                     window.localStorage.setItem("token", resp.body.token)
-                    setTimeout(_=>window.location.href=window.location.href.replace("login", "index"), 1000)
+                    setTimeout(_=>window.location.href=window.location.href.replace("login", "index"), 10)
                     return {
                         "status": true,
                         "data": resp.text()
