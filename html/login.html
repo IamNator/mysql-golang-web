@@ -91,9 +91,9 @@
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(
-            resp=> {
+            (resp) => {
                 console.log(resp)
-                if (resp.status==200) {
+                if (resp.status === 200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
 
@@ -102,13 +102,13 @@
                         "data": resp.text()
                         }
                 }
-                if (resp.status==404) {
+                if (resp.status === 404) {
                     console.log(resp)
                     displayFeedBack("Invalid Credentials", false)
                 }
                 //return resp.text()
                 }
-            ).then(data=> {
+            ).then( (data) => {
                 let tk = data.data
                 window.localStorage.setItem("token", tk )
                 console.log(data)
@@ -128,4 +128,4 @@
     }
 </script>
 </body>
-<html>
+</html>
