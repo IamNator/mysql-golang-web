@@ -50,12 +50,12 @@
                 <form id="update_form">
                     <div class="form-group">
                         <label for="exampleInputEmail1">FirstName</label>
-                        <input type="text" class="form-control" id="fname" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp"
                                placeholder="Enter FirstName">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">LastName</label>
-                        <input type="text" class="form-control" id="lname" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp"
                                placeholder="Enter LastName">
                     </div>
                     <div class="form-group">
@@ -100,7 +100,10 @@
             method: "GET",
             body: JSON.stringify({
                 token: token.toString()
-            })
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
         }).then((resp) =>
             populateTable(resp.json())
             return resp.json()
@@ -126,13 +129,27 @@
         e.preventDefault()
         //The json to be posted to the api/update endpoint
         var submitJson = {}
+
         for (element of form.elements) {
             if (element.id !== "") {
                 submitJson[element.id] = element.value;
             }
         }
-        console.log(submitJson)
-        //return true
+
+        let url = "/api/update"
+        fetch(url, {
+            method: "PUT",
+            body: JSON.stringify({
+                token: token.toString(),
+                details: submitJson,
+            })
+        })
+            .then( (result) => {
+                // do something with the result
+                console.log("Completed with result:", result);
+            }, (err) => {
+                console.log(err);
+            });
     }
 </script>
 </body>
