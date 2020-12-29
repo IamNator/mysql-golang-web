@@ -95,6 +95,7 @@
 <script type="text/javascript">
     //Make the API call when window loads
     token = window.localStorage.getItem("token")
+    console.log(token)
     window.onload = () => {
         fetch("/api/fetch",{
             method: "GET",

@@ -99,13 +99,16 @@
 
                     // Examine the text in the response
                     resp.json().then(function(data) {
-                        tk = data.token
+                        tk = data
                         console.log(tk);
+                        window.localStorage.setItem("token", tk.token )
+                        console.log("token added")
+                        window.location.replace("https://mysql-golang-app.herokuapp.com/index")
                     });
 
                     return {
                         "status": true,
-                        "data": resp.tk
+                        "data": tk
                     }
                 }
                 if (resp.status === 404) {
