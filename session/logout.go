@@ -6,10 +6,10 @@ import (
 )
 
 
-// swagger: parameters idOfLogoutEndpoint
+// swagger: parameters logout
 type logoutRequestWrapper struct {
 	// in: query
-	Body struct {
+	Body struct{
 		Token string `json:"token"`
 	}
 }
@@ -36,7 +36,7 @@ type logoutInternalErrorWrapper struct {
 }
 
 
-// swagger:route POST /api/logout session idOfLogoutEndpoint
+// swagger:route POST /api/logout session logout
 // logs the user out
 // responses:
 // 200: logoutResponse

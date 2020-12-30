@@ -27,7 +27,7 @@ import (
 	//"time"
 )
 
-// swagger:parameters idOfLoginEndpoint
+// swagger:parameters login
 type loginRequestWrapper struct {
 	// in: query
 	Body LoginCredentials
@@ -86,7 +86,7 @@ type LoginResponse struct {
 	Token string `json:"token"`
 }
 
-// swagger:route POST /api/login session idOfLoginEndpoint
+// swagger:route POST /api/login session login
 // Returns a session token
 // responses:
 // 200: loginResponse

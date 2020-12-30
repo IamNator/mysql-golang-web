@@ -5,9 +5,11 @@ definitions:
   LoginCredentials:
     properties:
       email:
+        description: user's email address
         type: string
         x-go-name: Email
       password:
+        description: user's password
         type: string
         x-go-name: PassWord
     type: object
@@ -139,7 +141,7 @@ paths:
   /api/login:
     post:
       description: Returns a session token
-      operationId: idOfLoginEndpoint
+      operationId: login
       parameters:
       - $ref: '#/definitions/LoginCredentials'
         in: query
@@ -157,7 +159,7 @@ paths:
   /api/logout:
     post:
       description: logs the user out
-      operationId: idOfLogoutEndpoint
+      operationId: logout
       responses:
         "200":
           $ref: '#/responses/logoutResponse'
@@ -169,7 +171,7 @@ paths:
       - session
   /api/register:
     post:
-      operationId: idOfRegisterEndpoint
+      operationId: register
       parameters:
       - $ref: '#/definitions/UserCredentials'
         in: query

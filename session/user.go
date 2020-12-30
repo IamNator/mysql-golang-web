@@ -2,9 +2,11 @@ package session
 
 import "github.com/IamNator/mysql-golang-web/models"
 
-
+// swagger:model
 type LoginCredentials struct {
+	//user's email address
 	Email    string `json:"email"`
+	//user's password
 	PassWord string `json:"password"`
 }
 
