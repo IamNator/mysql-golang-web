@@ -2,6 +2,16 @@ basePath: /
 consumes:
 - application/json
 definitions:
+  LoginCredentials:
+    properties:
+      email:
+        type: string
+        x-go-name: Email
+      password:
+        type: string
+        x-go-name: PassWord
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/session
   LoginResponse:
     description: LoginResponse defines the struct for API login
     properties:
@@ -91,7 +101,12 @@ paths:
   /api/fetch:
     post:
       description: returns all phonebook contacts
-      operationId: fetch
+      operationId: fetchRequest
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          type: object
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
@@ -104,7 +119,12 @@ paths:
   /api/login:
     post:
       description: Returns a session token
-      operationId: login
+      operationId: idOfLoginEndpoint
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/LoginCredentials'
       responses:
         "200":
           $ref: '#/responses/loginResponse'
@@ -118,7 +138,16 @@ paths:
   /api/logout:
     post:
       description: logs the user out
-      operationId: logout
+      operationId: idOfLogoutEndpoint
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          properties:
+            token:
+              type: string
+              x-go-name: Token
+          type: object
       responses:
         "200":
           $ref: '#/responses/logoutResponse'
@@ -130,8 +159,12 @@ paths:
       - session
   /api/register:
     post:
-      description: adds new user to user database
-      operationId: register
+      operationId: idOfRegisterEndpoint
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          type: object
       responses:
         "201":
           $ref: '#/responses/registerResponse'
@@ -144,7 +177,7 @@ paths:
   /api/update:
     put:
       description: adds new contacts to a phoneBook
-      operationId: update
+      operationId: idOfUpdateEnpoint
       responses:
         "200":
           $ref: '#/responses/updateResponse'

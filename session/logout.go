@@ -5,6 +5,14 @@ import (
 	"net/http"
 )
 
+// swagger:parameters idOfLogoutEndpoint
+type logoutRequestWrapper struct {
+	// in: body
+	Body struct {
+		Token string `json:"token"`
+	}
+}
+
 // swagger:response logoutResponse
 type logoutResponseWrapper struct {
 	// in: body
@@ -26,7 +34,7 @@ type logoutInternalErrorWrapper struct {
 }
 
 
-// swagger:route POST /api/logout session logout
+// swagger:route POST /api/logout session idOfLogoutEndpoint
 // logs the user out
 // responses:
 // 200: logoutResponse

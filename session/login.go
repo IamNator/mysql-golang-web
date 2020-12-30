@@ -27,6 +27,12 @@ import (
 	//"time"
 )
 
+// swagger:parameters idOfLoginEndpoint
+type loginRequestWrapper struct {
+	// in: body
+	Body LoginCredentials
+}
+
 // Successful login request
 // swagger:response loginResponse
 type LoginResponseWrapper struct {
@@ -80,7 +86,7 @@ type LoginResponse struct {
 	Token string `json:"token"`
 }
 
-// swagger:route POST /api/login session login
+// swagger:route POST /api/login session idOfLoginEndpoint
 // Returns a session token
 // responses:
 // 200: loginResponse

@@ -33,8 +33,14 @@ type registerInternalErrorWrapper struct {
 }
 
 
-// swagger:route POST /api/register session register
+// swagger:parameters idOfRegisterEndpoint
+type registerRequestWrapper struct {
+	// in: body
+	Body struct models.UserCredentials
+}
+
 // adds new user to user database
+// swagger:route POST /api/register session idOfRegisterEndpoint
 // responses:
 // 201: registerResponse
 // 302: registerUserExist

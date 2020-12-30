@@ -8,6 +8,15 @@ import (
 	"net/http"
 )
 
+// swagger:parameters idOfUpdateEndpoint
+type updateRequestWrapper struct {
+	// in: body
+	Body struct {
+		Token   string                  `json:"token" validate:"required"`
+		Details models.PhoneBookContact `json:"details" validate:"required" `
+	}
+}
+
 // update successful
 // swagger:response updateResponse
 type updateResponseWrapper struct {
@@ -35,7 +44,7 @@ type updateInternalErrorWrapper struct {
 
 
 
-// swagger:route PUT /api/update controllers update
+// swagger:route PUT /api/update controllers idOfUpdateEnpoint
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse
