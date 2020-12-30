@@ -145,9 +145,10 @@ paths:
       description: delete contact from phone book
       operationId: delete
       parameters:
-      - $ref: '#/definitions/deleteRequest'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/deleteRequest'
       responses:
         "200":
           $ref: '#/responses/deleteResponse'
@@ -162,9 +163,10 @@ paths:
       description: returns all phonebook contacts
       operationId: fetch
       parameters:
-      - $ref: '#/definitions/fetchRequest'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/fetchRequest'
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
@@ -179,9 +181,10 @@ paths:
       description: Returns a session token
       operationId: login
       parameters:
-      - $ref: '#/definitions/LoginCredentials'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/LoginCredentials'
       responses:
         "200":
           $ref: '#/responses/loginResponse'
@@ -197,9 +200,10 @@ paths:
       description: logs the user out
       operationId: logout
       parameters:
-      - $ref: '#/definitions/Tk'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/Tk'
       responses:
         "200":
           $ref: '#/responses/logoutResponse'
@@ -213,9 +217,10 @@ paths:
     post:
       operationId: register
       parameters:
-      - $ref: '#/definitions/UserCredentials'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/UserCredentials'
       responses:
         "201":
           $ref: '#/responses/registerResponse'
@@ -230,9 +235,10 @@ paths:
       description: adds new contacts to a phoneBook
       operationId: update
       parameters:
-      - $ref: '#/definitions/updateRequest'
-        in: query
+      - in: body
         name: Body
+        schema:
+          $ref: '#/definitions/updateRequest'
       responses:
         "200":
           $ref: '#/responses/updateResponse'

@@ -29,7 +29,7 @@ import (
 
 // swagger:parameters login
 type loginRequestWrapper struct {
-	//in: query
+	// in: body
 	Body LoginCredentials
 }
 

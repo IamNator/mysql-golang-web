@@ -15,7 +15,7 @@ var Mutex sync.Mutex
 
 // swagger:parameters delete
 type deleteRequestWrapper struct {
-	// in: query
+	// in: body
 	Body deleteRequest
 }
 

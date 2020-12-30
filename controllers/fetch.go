@@ -9,7 +9,7 @@ import (
 
 // swagger:parameters fetch
 type fetchParamsWrapper struct {
-	// in: query
+	// in: body
 	Body fetchRequest
 }
 

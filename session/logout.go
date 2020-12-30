@@ -8,7 +8,7 @@ import (
 
 // swagger:parameters logout
 type logoutRequestWrapper struct {
-	//in: query
+	// in: body
 	Body Tk
 }
 

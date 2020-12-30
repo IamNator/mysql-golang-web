@@ -10,7 +10,7 @@ import (
 
 // swagger:parameters update
 type updateRequestWrapper struct {
-	// in: query
+	// in: body
 	Body updateRequest
 }
 
