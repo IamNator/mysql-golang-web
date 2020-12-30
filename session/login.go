@@ -29,7 +29,7 @@ import (
 
 // swagger:parameters idOfLoginEndpoint
 type loginRequestWrapper struct {
-	// in: body
+	// in: query
 	Body LoginCredentials
 }
 

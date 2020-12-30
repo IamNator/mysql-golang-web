@@ -44,7 +44,7 @@ type updateInternalErrorWrapper struct {
 
 
 
-// swagger:route PUT /api/update controllers idOfUpdateEnpoint
+// swagger:route PUT /api/update controllers idOfUpdateEndpoint
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse

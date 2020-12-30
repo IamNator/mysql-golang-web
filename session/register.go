@@ -35,7 +35,7 @@ type registerInternalErrorWrapper struct {
 
 // swagger:parameters idOfRegisterEndpoint
 type registerRequestWrapper struct {
-	// in: body
+	// in: query
 	Body models.UserCredentials
 }
 

@@ -5,13 +5,15 @@ import (
 	"net/http"
 )
 
-// swagger:parameters idOfLogoutEndpoint
+
+// swagger: parameters idOfLogoutEndpoint
 type logoutRequestWrapper struct {
-	// in: body
+	// in: query
 	Body struct {
 		Token string `json:"token"`
 	}
 }
+
 
 // swagger:response logoutResponse
 type logoutResponseWrapper struct {
