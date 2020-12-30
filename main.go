@@ -61,7 +61,7 @@ func main() {
 	//	Session:  nil,              //Session
 	//	SessionToken: make(map[string]models.UserCredentials),	// map[string]string
 	//}
-//What is going on??
+
 	DB := controllers.Controllersdb(dbGeneral)
 	db, _ := DB.OpenDB()
 	DB.Session = db
@@ -108,12 +108,16 @@ func main() {
 
 //Creates and fills up database tables if they don't exist
 func CreateAndFillDb(db controllers.Controllersdb) {
+
+	//package (mysql) injection happens here
 	dbMigration := migrations.Migrationdb(db)
 	dbSeeders := seeders.Seeddb(db)
 
+	//Create database tables
 	dbMigration.CreateUserDb()
 	dbMigration.CreatePhoneBookDb()
 
+	//fill up database with dummy data
 	dbSeeders.FillUserDb()
 	dbSeeders.FillDb()
 }
