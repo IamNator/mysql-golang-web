@@ -7,13 +7,17 @@ import (
 	"net/http"
 )
 
-// swagger:parameters fetchRequest
+// swagger:parameters fetch
 type fetchParamsWrapper struct {
-	// in: body
-	Body struct{
-		token string `json:"token"`
-	}
+	// in: query
+	Body fetchRequest
 }
+
+// swagger:model
+type fetchRequest struct{
+	Token string `json:"token"`
+}
+
 
 // swagger:response fetchResponse
 type fetchResponseWrapper struct {
@@ -40,7 +44,7 @@ type fetchInternalErrorWrapper struct {
 }
 
 
-// swagger:route POST /api/fetch controllers fetchRequest
+// swagger:route POST /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
 // 200: fetchResponse

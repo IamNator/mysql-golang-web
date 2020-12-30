@@ -6,14 +6,16 @@ import (
 )
 
 
-// swagger: parameters logout
+// swagger:parameters logout
 type logoutRequestWrapper struct {
-	// in: query
-	Body struct{
-		Token string `json:"token"`
-	}
+	//in: query
+	Body Tk
 }
 
+// swagger:model
+type Tk struct{
+Token string `json:"token"`
+}
 
 // swagger:response logoutResponse
 type logoutResponseWrapper struct {
@@ -43,9 +45,7 @@ type logoutInternalErrorWrapper struct {
 // 400: logoutBadRequest
 // 500: logoutInternalError
 func (db *Sessiondb) Logout(w http.ResponseWriter, req *http.Request) {
-	var user struct {
-		Token string `json:"token"`
-	}
+	var user Tk
 
 	err := json.NewDecoder(req.Body).Decode(&user) //fills up user from body
 	if err != nil {

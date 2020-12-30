@@ -13,6 +13,18 @@ import (
 
 var Mutex sync.Mutex
 
+// swagger:parameters delete
+type deleteRequestWrapper struct {
+	// in: query
+	Body deleteRequest
+}
+
+// swagger:model
+type deleteRequest struct {
+	Token string `json:"token"`
+	ID    string `json:"id"`
+}
+
 // delete successful
 // swagger:response deleteResponse
 type deleteResponseWrapper struct {
@@ -55,10 +67,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	var user struct {
-		Token string `json:"token"`
-		ID    string `json:"id"` //id to be deleted
-	}
+	var user deleteRequest
 
 	_ = json.NewDecoder(req.Body).Decode(&user)
 

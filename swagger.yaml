@@ -80,6 +80,13 @@ definitions:
         x-go-name: PhoneNumber
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/models
+  Tk:
+    properties:
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/session
   UserCredentials:
     description: For registering new users
     properties:
@@ -100,6 +107,32 @@ definitions:
         x-go-name: PassWord
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/models
+  deleteRequest:
+    properties:
+      id:
+        type: string
+        x-go-name: ID
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/controllers
+  fetchRequest:
+    properties:
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/controllers
+  updateRequest:
+    properties:
+      details:
+        $ref: '#/definitions/PhoneBookContact'
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/controllers
 info:
   contact:
     email: natverior1@gmail.com
@@ -111,6 +144,10 @@ paths:
     delete:
       description: delete contact from phone book
       operationId: delete
+      parameters:
+      - $ref: '#/definitions/deleteRequest'
+        in: query
+        name: Body
       responses:
         "200":
           $ref: '#/responses/deleteResponse'
@@ -123,12 +160,11 @@ paths:
   /api/fetch:
     post:
       description: returns all phonebook contacts
-      operationId: fetchRequest
+      operationId: fetch
       parameters:
-      - in: body
+      - $ref: '#/definitions/fetchRequest'
+        in: query
         name: Body
-        schema:
-          type: object
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
@@ -160,6 +196,10 @@ paths:
     post:
       description: logs the user out
       operationId: logout
+      parameters:
+      - $ref: '#/definitions/Tk'
+        in: query
+        name: Body
       responses:
         "200":
           $ref: '#/responses/logoutResponse'
@@ -188,18 +228,11 @@ paths:
   /api/update:
     put:
       description: adds new contacts to a phoneBook
-      operationId: idOfUpdateEndpoint
+      operationId: update
       parameters:
-      - in: body
+      - $ref: '#/definitions/updateRequest'
+        in: query
         name: Body
-        schema:
-          properties:
-            details:
-              $ref: '#/definitions/PhoneBookContact'
-            token:
-              type: string
-              x-go-name: Token
-          type: object
       responses:
         "200":
           $ref: '#/responses/updateResponse'

@@ -8,13 +8,16 @@ import (
 	"net/http"
 )
 
-// swagger:parameters idOfUpdateEndpoint
+// swagger:parameters update
 type updateRequestWrapper struct {
-	// in: body
-	Body struct {
-		Token   string                  `json:"token" validate:"required"`
-		Details models.PhoneBookContact `json:"details" validate:"required" `
-	}
+	// in: query
+	Body updateRequest
+}
+
+// swagger:model
+type updateRequest struct {
+	Token   string                  `json:"token" validate:"required"`
+	Details models.PhoneBookContact `json:"details" validate:"required" `
 }
 
 // update successful
@@ -44,7 +47,7 @@ type updateInternalErrorWrapper struct {
 
 
 
-// swagger:route PUT /api/update controllers idOfUpdateEndpoint
+// swagger:route PUT /api/update controllers update
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse
@@ -52,10 +55,7 @@ type updateInternalErrorWrapper struct {
 // 500: updateInternalError
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 
-	var reqBody struct {
-		Token   string                  `json:"token" validate:"required"`
-		Details models.PhoneBookContact `json:"details" validate:"required" `
-	}
+	var reqBody updateRequest
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
 	validator := validate.New()
