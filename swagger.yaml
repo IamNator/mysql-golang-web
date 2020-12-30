@@ -78,6 +78,26 @@ definitions:
         x-go-name: PhoneNumber
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/models
+  UserCredentials:
+    description: For registering new users
+    properties:
+      email:
+        type: string
+        x-go-name: Email
+      firstname:
+        type: string
+        x-go-name: FirstName
+      id:
+        type: string
+        x-go-name: ID
+      lastname:
+        type: string
+        x-go-name: LastName
+      password:
+        type: string
+        x-go-name: PassWord
+    type: object
+    x-go-package: github.com/IamNator/mysql-golang-web/models
 info:
   contact:
     email: natverior1@gmail.com
@@ -164,7 +184,7 @@ paths:
       - in: body
         name: Body
         schema:
-          type: object
+          $ref: '#/definitions/UserCredentials'
       responses:
         "201":
           $ref: '#/responses/registerResponse'

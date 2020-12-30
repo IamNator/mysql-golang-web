@@ -36,7 +36,7 @@ type registerInternalErrorWrapper struct {
 // swagger:parameters idOfRegisterEndpoint
 type registerRequestWrapper struct {
 	// in: body
-	Body struct models.UserCredentials
+	Body models.UserCredentials
 }
 
 // adds new user to user database
