@@ -27,6 +27,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 	"log"
 	"net/http"
 	"os"
@@ -41,13 +42,17 @@ import (
 */
 
 func main() {
+	config, err := LoadConfig(".")
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
 
 	dbGeneral := models.DBData{
-		DBType:       "mysql",                                 //Type
-		User:         "b7e0a0a81fef1f",                        //User
-		Password:     "2e02951d",                              //Password
-		Host:         "eu-cdbr-west-03.cleardb.net",           //Host 3306
-		DBName:       "heroku_31043c4e11d34ce",                //DBName
+		DBType:       config.DBType,                                 //Type
+		User:         config.User,                        //User
+		Password:     config.Password,                              //Password
+		Host:         config.Host,           //Host 3306
+		DBName:       config.DBName,                //DBName
 		Session:      nil,                                     //Session for db
 		SessionToken: make(map[string]models.UserCredentials), // map[string]struct [token]userDetails
 	}
@@ -120,4 +125,21 @@ func CreateAndFillDb(db controllers.Controllersdb) {
 	//fill up database with dummy data
 	dbSeeders.FillUserDb()
 	dbSeeders.FillDb()
+}
+//
+func LoadConfig(path string) (config models.DBData, err error) {
+
+	viper.AddConfigPath(path)
+	viper.SetConfigName("app")
+	viper.SetConfigType("env")
+
+	viper.AutomaticEnv()
+
+	err = viper.ReadInConfig()
+	if err != nil {
+		return
+	}
+	err = viper.Unmarshal(&config)
+
+	return
 }

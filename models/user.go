@@ -13,10 +13,15 @@ type PhoneBookContact struct {
 
 //Type
 type DBData struct {
-	DBType, User, Password, Host, DBName string
+	DBType string   `mapstructure:"DB_TYPE"`
+	User string     `mapstructure:"USER"`
+	Password string `mapstructure:"PASSWORD"`
+	Host string     `mapstructure:"HOST"`
+	DBName string	`mapstructure:"DB_NAME"`
 	Session                              *sql.DB
 	SessionToken                         map[string]UserCredentials
 }
+
 
 //For registering new users
 type UserCredentials struct {

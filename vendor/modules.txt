@@ -10,6 +10,8 @@ github.com/PuerkitoBio/urlesc
 github.com/asaskevich/govalidator
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 ## explicit
+# github.com/fsnotify/fsnotify v1.4.9
+github.com/fsnotify/fsnotify
 # github.com/go-openapi/analysis v0.19.16
 github.com/go-openapi/analysis
 github.com/go-openapi/analysis/internal
@@ -59,6 +61,17 @@ github.com/go-stack/stack
 # github.com/gorilla/mux v1.8.0
 ## explicit
 github.com/gorilla/mux
+# github.com/hashicorp/hcl v1.0.0
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
 # github.com/josharian/intern v1.0.0
 github.com/josharian/intern
 # github.com/kr/pretty v0.2.1
@@ -67,6 +80,7 @@ github.com/josharian/intern
 github.com/leodido/go-urn
 # github.com/magiconair/properties v1.8.4
 ## explicit
+github.com/magiconair/properties
 # github.com/mailru/easyjson v0.7.6
 github.com/mailru/easyjson/buffer
 github.com/mailru/easyjson/jlexer
@@ -75,13 +89,25 @@ github.com/mailru/easyjson/jwriter
 github.com/mitchellh/mapstructure
 # github.com/pelletier/go-toml v1.8.1
 ## explicit
+github.com/pelletier/go-toml
 # github.com/satori/go.uuid v1.2.0
 ## explicit
 github.com/satori/go.uuid
 # github.com/spf13/afero v1.5.1
 ## explicit
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.3.1
+github.com/spf13/cast
+# github.com/spf13/jwalterweatherman v1.1.0
+github.com/spf13/jwalterweatherman
+# github.com/spf13/pflag v1.0.5
+github.com/spf13/pflag
 # github.com/spf13/viper v1.7.1
 ## explicit
+github.com/spf13/viper
+# github.com/subosito/gotenv v1.2.0
+github.com/subosito/gotenv
 # go.mongodb.org/mongo-driver v1.4.4
 go.mongodb.org/mongo-driver/bson
 go.mongodb.org/mongo-driver/bson/bsoncodec
@@ -101,6 +127,8 @@ golang.org/x/net/idna
 # golang.org/x/sys v0.0.0-20201223074533-0d417f636930
 ## explicit
 golang.org/x/sys/cpu
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
 # golang.org/x/text v0.3.4
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
@@ -111,5 +139,6 @@ golang.org/x/text/width
 ## explicit
 # gopkg.in/ini.v1 v1.62.0
 ## explicit
+gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.4.0
 gopkg.in/yaml.v2
