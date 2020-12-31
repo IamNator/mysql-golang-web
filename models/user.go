@@ -11,7 +11,7 @@ type PhoneBookContact struct {
 	ID          string `json:"id"`
 }
 
-//For database connectio
+//For database connection
 type DBData struct {
 	DBType string   `mapstructure:"DB_TYPE"`
 	User string     `mapstructure:"USER"`
