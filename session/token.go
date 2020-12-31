@@ -8,7 +8,7 @@ import (
 
 var Mutex sync.Mutex
 
-//creates a token for a
+//creates a token for a user and
 func CreateToken(db *Sessiondb, user models.UserCredentials) (token string) {
 	token = uuid.NewV1().String()
 	Mutex.Lock()
