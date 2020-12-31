@@ -127,7 +127,7 @@ func CreateAndFillDb(db controllers.Controllersdb) {
 	dbSeeders.FillDb()
 }
 
-//extracts important information from app.env file { I should git
+//extracts important information from app.env file { I should gitigno
 func LoadConfig(path string) (config models.DBData, err error) {
 
 	viper.AddConfigPath(path)
