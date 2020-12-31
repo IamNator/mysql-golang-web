@@ -74,7 +74,7 @@ func main() {
 
 	dbUser := user.Sessiondb(DB) //session
 
-	// checks if
+	// checks if db
 	if !DB.DbExists() {
 		CreateAndFillDb(DB)
 		fmt.Println("Database created and updated")
