@@ -102,7 +102,7 @@ func main() {
 	myRouter.Handle("/docs", sh)
 	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
-	//Seems heroku has .env file {need to add DB credentials
+	//Seems heroku has .env file {need to add DB credentials to
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000"
