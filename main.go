@@ -126,6 +126,7 @@ func CreateAndFillDb(db controllers.Controllersdb) {
 	dbSeeders.FillUserDb()
 	dbSeeders.FillDb()
 }
+
 //
 func LoadConfig(path string) (config models.DBData, err error) {
 
