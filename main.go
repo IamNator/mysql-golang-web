@@ -102,7 +102,7 @@ func main() {
 	myRouter.Handle("/docs", sh)
 	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
-	//Seems heroku has .env file {need more
+	//Seems heroku has .env file {need more ch
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000"
