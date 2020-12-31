@@ -127,7 +127,7 @@ func CreateAndFillDb(db controllers.Controllersdb) {
 	dbSeeders.FillDb()
 }
 
-//extracts important
+//extracts important infor
 func LoadConfig(path string) (config models.DBData, err error) {
 
 	viper.AddConfigPath(path)
