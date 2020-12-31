@@ -95,7 +95,7 @@ func main() {
 	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")     //use dbData.Login_t to test
 
 	// "/auth/google/callback"
-	//renders
+	//renders doc file
 	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
 	sh := middleware.Redoc(opts, nil)
 
