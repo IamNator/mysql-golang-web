@@ -28,7 +28,6 @@ type fetchResponseWrapper struct {
 	}
 }
 
-
 // token not valid, login to get a new one
 // swagger:response fetchUnauthorized
 type fetchUnauthorizedWrapper struct {
