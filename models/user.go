@@ -4,7 +4,7 @@ import (
 	"database/sql"
 )
 
-//for
+//phone
 type PhoneBookContact struct {
 	FirstName   string `json:"firstname" validate:"required"`
 	LastName    string `json:"lastname" validate:"required"`
