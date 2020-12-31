@@ -8,7 +8,7 @@ import (
 
 var Mutex sync.Mutex
 
-//creates a token for a user { we should store user tokens in a reddis database
+//creates a token for a user { we should store user tokens in a reddis database }
 func CreateToken(db *Sessiondb, user models.UserCredentials) (token string) {
 	token = uuid.NewV1().String()
 	Mutex.Lock()
