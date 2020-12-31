@@ -99,6 +99,8 @@ func main() {
 	if port == "" {
 		port = "8000"
 	}
+	//go fmt.Printf("Number of CPU : %d \n", runtime.NumCPU())
+	//go fmt.Printf("Number of Goroutine : %d \n", runtime.NumGoroutine())
 	go fmt.Printf("server running...@localhost:%s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 
