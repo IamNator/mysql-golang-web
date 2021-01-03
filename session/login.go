@@ -144,7 +144,7 @@ func JsonError(w *http.ResponseWriter, ErrorMessage string, ErrorCode int) {
 		Status:  false,
 		Message: ErrorMessage,
 	}
-	json.NewEncoder(*w).Encode(res)
+	_ = json.NewEncoder(*w).Encode(res)
 }
 
 /* Request body received
