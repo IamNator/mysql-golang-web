@@ -15,3 +15,10 @@ A simple web interface. A phone book with the Backend built entirely on golang, 
    
 #### API DOCUMENTATION   
 https://mysql-golang-app.herokuapp.com/docs 
+
+#### Todo
+```
+1. Implement Google Oauth
+2. Implement Google Retrieve Contact API
+3. Implement iCloud Contact API
+```
