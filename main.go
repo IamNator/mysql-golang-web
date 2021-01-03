@@ -48,15 +48,14 @@ func main() {
 	}
 
 	dbGeneral := models.DBData{
-		DBType:       config.DBType,                                 //Type
-		User:         config.User,                        //User
-		Password:     config.Password,                              //Password
-		Host:         config.Host,           //Host 3306
-		DBName:       config.DBName,                //DBName
+		DBType:       config.DBType,                           //Type
+		User:         config.User,                             //User
+		Password:     config.Password,                         //Password
+		Host:         config.Host,                             //Host 3306
+		DBName:       config.DBName,                           //DBName
 		Session:      nil,                                     //Session for db
 		SessionToken: make(map[string]models.UserCredentials), // map[string]struct [token]userDetails
 	}
-
 
 	DB := controllers.Controllersdb(dbGeneral)
 	db, _ := DB.OpenDB()
@@ -78,8 +77,8 @@ func main() {
 	myRouter.HandleFunc("/", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("POST")      //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", DB.Update).Methods("PUT")   //use dbData.Update_t to test
+	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("POST")     //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/update", DB.Update).Methods("PUT")    //use dbData.Update_t to test
 	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE") //use dbData.Delete_t to test
 
 	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test

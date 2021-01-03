@@ -5,7 +5,6 @@ import (
 	"net/http"
 )
 
-
 // swagger:parameters logout
 type logoutRequestWrapper struct {
 	// in: body
@@ -13,8 +12,8 @@ type logoutRequestWrapper struct {
 }
 
 // swagger:model
-type Tk struct{
-Token string `json:"token"`
+type Tk struct {
+	Token string `json:"token"`
 }
 
 // swagger:response logoutResponse
@@ -36,7 +35,6 @@ type logoutInternalErrorWrapper struct {
 	// in: body
 	Body MyStdResp
 }
-
 
 // swagger:route POST /api/logout session logout
 // logs the user out

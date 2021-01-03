@@ -5,7 +5,7 @@ import "github.com/IamNator/mysql-golang-web/models"
 // swagger:model
 type LoginCredentials struct {
 	//user's email address
-	Email    string `json:"email"`
+	Email string `json:"email"`
 	//user's password
 	PassWord string `json:"password"`
 }
@@ -16,7 +16,7 @@ type Sessiondb models.DBData
 // swagger:model
 type MyStdResp struct {
 	// successful / not successful
-	Status bool	   `json:"status`
+	Status bool `json:"status`
 	// string
 	Message string `json:"message"`
 }

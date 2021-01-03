@@ -25,11 +25,10 @@ type updateRequest struct {
 type updateResponseWrapper struct {
 	// in: body
 	Body struct {
-		Status  bool        `json:"status"`
-		Message string	    `json:"message"`
+		Status  bool   `json:"status"`
+		Message string `json:"message"`
 	}
 }
-
 
 // token not valid, login to get a new one
 // swagger:response updateUnauthorized
@@ -44,8 +43,6 @@ type updateInternalErrorWrapper struct {
 	// in: body
 	Body MyStdResp
 }
-
-
 
 // swagger:route PUT /api/update controllers update
 // adds new contacts to a phoneBook
@@ -94,4 +91,3 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 }
-

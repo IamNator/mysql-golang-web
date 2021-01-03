@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-
 // user successfully created
 // swagger:response registerResponse
 type registerResponseWrapper struct {
@@ -31,7 +30,6 @@ type registerInternalErrorWrapper struct {
 	//	in:body
 	Body MyStdResp
 }
-
 
 // swagger:parameters register
 type registerRequestWrapper struct {
@@ -90,5 +88,3 @@ func (db *Sessiondb) Register(w http.ResponseWriter, req *http.Request) {
 		JsonError(&w, "User Already Exists, Please login", http.StatusFound)
 	}
 }
-
-

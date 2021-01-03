@@ -14,10 +14,9 @@ type fetchParamsWrapper struct {
 }
 
 // swagger:model
-type fetchRequest struct{
+type fetchRequest struct {
 	Token string `json:"token"`
 }
-
 
 // swagger:response fetchResponse
 type fetchResponseWrapper struct {
@@ -41,7 +40,6 @@ type fetchInternalErrorWrapper struct {
 	// in: body
 	Body MyStdResp
 }
-
 
 // swagger:route POST /api/fetch controllers fetch
 // returns all phonebook contacts
