@@ -108,17 +108,18 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&userDb.ID, &userDb.FirstName, &userDb.LastName, &userDb.Email, &userDb.PassWord)
+	var password string
+	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&userDb.ID, &userDb.FirstName, &userDb.LastName, &userDb.Email, &password)
 	if err != nil {
 		fmt.Printf("dbQuery Error %v \n", err)
-		JsonError(&w, "User Not Found", http.StatusNotFound)
+		JsonError(&w, "Username or Password Incorrect", http.StatusNotFound)
 		return
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(userDb.PassWord), []byte(user.PassWord))
+	err = bcrypt.CompareHashAndPassword([]byte(password), []byte(user.PassWord))
 	if err != nil {
 		fmt.Printf("CompareHashPassword Error %v \n", err)
-		JsonError(&w, "Password Incorrect", http.StatusNotFound)
+		JsonError(&w, "Username or Password Incorrect", http.StatusNotFound)
 		return
 	}
 
