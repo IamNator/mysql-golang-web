@@ -108,27 +108,35 @@
 </div>
 </p>
 <script type="text/javascript">
-    //Make the API call when window loads
-    token = window.localStorage.getItem("token")
-    console.log(token)
+    //Check for userData and Make the API call when window loads
     window.onload = () => {
+        var userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData === null) {
+            window.location.href = window.location.host;
+            return false
+        } 
+        console.log(userData)
+        var welcomeElement = document.getElementById("w_msg");
+        welcomeElement.innerText = 'Welcome 👋, ' + userData.message.firstname + " " + userData.message.lastname;  
+        var token = userData.token
         fetch("/api/fetch",{
             method: "POST",
             body: JSON.stringify({
-                "token": token.toString()
+                "token": token
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then((resp) =>
         {resp.json().then((data) => {
-                console.log(data.message)
+                //console.log(data.message)
                 populateTable(data)
             })
         },
         (err) => {console.log(err)} )
 
     }
+
     //Arrow function to create extra rows and append to the table after the api call has been successfull
     populateTable = (data) => {
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
@@ -140,6 +148,7 @@
             index++
         }
     }
+
     //The DOM Element for The Modal From To add to contacts
     var form = document.getElementById("update_form");
     form.onsubmit = (e) => {
