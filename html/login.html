@@ -58,7 +58,7 @@
     //checks if user data exists in localStorage and redirects to /index
     var userLoggedIn = localStorage.getItem("userData")
     if (userLoggedIn !== null) {
-        window.location.href = window.location.href + "/index"
+        window.location.href = window.location.protocol + "//" + window.location.host + "/index"
     }
 
     var form = document.getElementById("loginForm");
@@ -108,7 +108,7 @@
             //sets user data in localStorage
             if (JSON.parse(data).status == true){
                 localStorage.setItem("userData", data)
-                setTimeout(() => window.location.href=window.location.host+"/index", 1500)
+                setTimeout(() => window.location.href = window.location.protocol + "//" + window.location.host + "/index", 1500)
             }
         })
    }
