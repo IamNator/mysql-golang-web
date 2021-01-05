@@ -111,12 +111,11 @@
             }
         ).then( (data) => {
             console.log(data)
-            //     window.localStorage.setItem("token", tk )
-            //     console.log(data)
-            //     console.log("token added")
-            // //     window.location.replace("https://mysql-golang-app.herokuapp.com/index")
-            // }
-            //     )
+            //console.log(JSON.parse(data).status)
+            if (JSON.parse(data).status == true){
+                localStorage.setItem("userData", data)
+                setTimeout(() => window.location.href=window.location.host+"/index", 1500)
+            }
         })
    }
         //return true
