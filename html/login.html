@@ -55,13 +55,14 @@
 </div>
 
 <script type="text/javascript">
-    //Function to submit form to endpoint 
-    var form = document.getElementById("loginForm");
-    //var reg = document.getElementById("register");
-    
-    //handleApiResponse = (dat) => {
+    //checks if user data exists in localStorage and redirects to /index
+    var userLoggedIn = localStorage.getItem("userData")
+    if (userLoggedIn !== null) {
+        window.location.href = window.location.href + "/index"
+    }
 
-    //}
+    var form = document.getElementById("loginForm");
+
     displayFeedBack = (message, success) => {
         feedback = document.getElementById("login-feedback");
         if (success) {
@@ -70,7 +71,6 @@
             feedback.style.display = "Block"
         }
         else {
-            //console.log(feedback)
             feedback.children[0].innerText = message;
             feedback.style.display = "Block";
             setTimeout(()=>{feedback.style.display="None"}, 2000)
