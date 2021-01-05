@@ -77,19 +77,20 @@
         }
     }
 
-    //reg.onclick = () => {
-    //    window.location.replace("https://mysql-golang-app.herokuapp.com/register")
-    //}
-
     form.onsubmit = (e) => {
         e.preventDefault()
+
         var submitJson = {}
         var element
+
+        //prepare Json for submission
         for (element of form.elements) {
             if (element.id !== "") {
                 submitJson[element.id] = element.value;
             }
         }
+
+        //post json to the login endpoint
         fetch("api/login", {
             "method": "post",
             "body": JSON.stringify(submitJson)
@@ -104,6 +105,7 @@
                 return resp.text()
             }
         ).then( (data) => {
+            //sets user data in localStorage
             if (JSON.parse(data).status == true){
                 localStorage.setItem("userData", data)
                 setTimeout(() => window.location.href=window.location.host+"/index", 1500)
