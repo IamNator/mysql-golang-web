@@ -59,6 +59,12 @@
 </div>
 </p>
 <script type="text/javascript">
+    //Checks if user is LoggedIn
+    var userLoggedIn = localStorage.getItem("userData")
+    if (userLoggedIn !== null) {
+        window.location.href = window.location.protocol + "//" + window.location.host + "/index"
+    }
+
     //Function to submit form to endpoint 
     var form = document.getElementById("regForm");
     displayFeedBack = (message, success) => {
