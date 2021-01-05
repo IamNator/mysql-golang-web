@@ -48,11 +48,8 @@
                     <input type="password" name="password" class="form-control"  id="password" placeholder="password">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Login</button>
-                <button id="register" class="btn btn-dark btn-block">Register</button>
             </form>
         </div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <div class="col-md-3 text-center"></div>
     </div>
 </div>
 
@@ -92,36 +89,22 @@
                 submitJson[element.id] = element.value;
             }
         }
-        //console.log(submitJson)
+        console.log(submitJson)
         fetch("api/login", {
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(
             (resp) => {
-               // console.log(resp)
+                console.log(resp)
                 if (resp.status === 200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
-
-                    // Examine the text in the response
-                    resp.json().then(function(data) {
-                        tk = data
-                        console.log(tk);
-                        window.localStorage.setItem("token", tk.token )
-                        console.log("token added")
-                        window.location.replace("https://mysql-golang-app.herokuapp.com/index")
-                    });
-
-                    return {
-                        "status": true,
-                        "data": tk
-                    }
                 }
                 if (resp.status === 404) {
                     //console.log(resp)
                     displayFeedBack("Invalid Credentials", false)
                 }
-                //return resp.text()
+                return resp.text()
             }
         )//.then( (data) => {
             //     let tk = data.data
