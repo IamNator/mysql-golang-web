@@ -82,9 +82,7 @@
     //}
 
     form.onsubmit = (e) => {
-        //Prevent default occurrence when form is submitted e.g(reloading the page)
         e.preventDefault()
-        //The json to be posted to the api/login endpoint
         var submitJson = {}
         var element
         for (element of form.elements) {
@@ -92,43 +90,37 @@
                 submitJson[element.id] = element.value;
             }
         }
-        console.log(submitJson)
         fetch("api/login", {
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(
             (resp) => {
-                //console.log(resp)
                 if (resp.status === 200) {
-                    //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
                 }
                 if (resp.status === 404) {
-                    //console.log(resp)
                     displayFeedBack("Invalid Credentials", false)
                 }
                 return resp.text()
             }
         ).then( (data) => {
-            console.log(data)
-            //console.log(JSON.parse(data).status)
             if (JSON.parse(data).status == true){
                 localStorage.setItem("userData", data)
                 setTimeout(() => window.location.href=window.location.host+"/index", 1500)
             }
         })
    }
-        //return true
 
 
 
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
+
+    //function onSignIn(googleUser) {
+    //    var profile = googleUser.getBasicProfile();
+    //    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //    console.log('Name: ' + profile.getName());
+    //    console.log('Image URL: ' + profile.getImageUrl());
+    //    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    //}
 </script>
 </body>
 </html>
