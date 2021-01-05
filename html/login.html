@@ -35,11 +35,11 @@
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
             <form id="loginForm">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-feedback" style="display: None">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-feedback" style="display: None; ">
                     <strong>OOPS!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <!--button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button-->
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email">
@@ -49,6 +49,7 @@
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Login</button>
             </form>
+            <a href="/register" style="margin-top: 2rem; color: crimson">Don't Have An Account? Register.</a>
         </div>
     </div>
 </div>
@@ -56,7 +57,7 @@
 <script type="text/javascript">
     //Function to submit form to endpoint 
     var form = document.getElementById("loginForm");
-    var reg = document.getElementById("register");
+    //var reg = document.getElementById("register");
     
     //handleApiResponse = (dat) => {
 
@@ -69,14 +70,16 @@
             feedback.style.display = "Block"
         }
         else {
+            //console.log(feedback)
             feedback.children[0].innerText = message;
             feedback.style.display = "Block";
+            setTimeout(()=>{feedback.style.display="None"}, 2000)
         }
     }
 
-    reg.onclick = () => {
-        window.location.replace("https://mysql-golang-app.herokuapp.com/register")
-    }
+    //reg.onclick = () => {
+    //    window.location.replace("https://mysql-golang-app.herokuapp.com/register")
+    //}
 
     form.onsubmit = (e) => {
         //Prevent default occurrence when form is submitted e.g(reloading the page)
@@ -95,7 +98,7 @@
             "body": JSON.stringify(submitJson)
         }).then(
             (resp) => {
-                console.log(resp)
+                //console.log(resp)
                 if (resp.status === 200) {
                     //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
@@ -106,14 +109,15 @@
                 }
                 return resp.text()
             }
-        )//.then( (data) => {
-            //     let tk = data.data
+        ).then( (data) => {
+            console.log(data)
             //     window.localStorage.setItem("token", tk )
             //     console.log(data)
             //     console.log("token added")
             // //     window.location.replace("https://mysql-golang-app.herokuapp.com/index")
             // }
             //     )
+        })
    }
         //return true
 

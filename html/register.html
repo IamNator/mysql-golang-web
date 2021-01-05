@@ -35,9 +35,9 @@
             <form id="regForm" method="post" action="api/register">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: None" id="login-feedback">
                     <strong>OOPS!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <!--button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button-->
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp" placeholder="firstname">
@@ -89,14 +89,15 @@
             "body": JSON.stringify(submitJson)
         }).then(resp=>{
             if (resp.status === 302) {
-                displayFeedBack("User already exists!!. Please login!.", false);
+                displayFeedBack("User already exists!!. You will be redirected to login in a second!.", false);
+                setTimeout(_=>window.location.href=window.location.href.replace("register", ""), 1500);
             } else if (resp.status === 500) {
                 displayFeedBack("An Error Occurred!!. Please Try Again!.", false);
             } else if (resp.status === 201 ) {
                 //Display Success FeedBack Message
                 displayFeedBack("Registration was successful. You can now Login.", true);
                 //Delay Redirection To Login
-                setTimeout(_=>window.location.href=window.location.href.replace("register", "login"), 1500)
+                setTimeout(_=>window.location.href=window.location.href.replace("register", ""), 1500)
             }
             resp.text()
         }).then(dat=>console.log(dat))
