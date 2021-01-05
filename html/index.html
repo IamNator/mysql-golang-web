@@ -57,7 +57,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Add Contact</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="md-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -66,18 +66,18 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">FirstName</label>
                         <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp"
-                               placeholder="Enter FirstName">
+                               placeholder="Enter FirstName" required=true>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">LastName</label>
                         <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp"
-                               placeholder="Enter LastName">
+                               placeholder="Enter LastName" required=true>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Phone</label>
-                        <input type="text" class="form-control" id="phone_number" placeholder="Mobile">
+                        <input type="text" class="form-control" id="phone_number" placeholder="Mobile" required=true>
                     </div>
-                    <button type="submit"  formaction="/index"  class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add To PhoneBook</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -137,17 +137,19 @@
 
     }
 
+    var currentIndex = 1
+
     //Arrow function to create extra rows and append to the table after the api call has been successfull
     populateTable = (data) => {
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
-        var index = 1
         for (contact of data.message) {
-            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + index + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td></tr>"
+            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + currentIndex + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td></tr>"
             newRow = tableBody.insertRow(tableBody.rows.length);
             newRow.innerHTML = rowHtml
-            index++
+            currentIndex++
         }
     }
+
 
     //The DOM Element for The Modal From To add to contacts
     var form = document.getElementById("update_form");
@@ -162,21 +164,22 @@
                 submitJson[element.id] = element.value;
             }
         }
-
+        submitJson['id'] = "12345tdcvg";
+        console.log(submitJson);
+        var token = JSON.parse(localStorage.getItem("userData")).token
         let url = "/api/update"
         fetch(url, {
             method: "PUT",
             body: JSON.stringify({
-                token: token.toString(),
+                token: token,
                 details: submitJson,
             })
+        }).then( (result) => {
+            // do something with the result
+            populateTable({"message": [submitJson]});
+            var modalCloseButton = document.getElementById("md-close");
+            modalCloseButton.click();
         })
-            .then( (result) => {
-                // do something with the result
-                console.log("Completed with result:", result);
-            }, (err) => {
-                console.log(err);
-            });
     }
 </script>
 </body>
