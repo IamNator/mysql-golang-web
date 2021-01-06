@@ -11,7 +11,6 @@ import (
 	"net/http"
 )
 
-var Mutex sync.Mutex
 
 // swagger:parameters delete
 type deleteRequestWrapper struct {
@@ -76,9 +75,9 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	Mutex.Lock()
+	
 	masterID := db.SessionToken[user.Token] //The person authorizing the delete
-	Mutex.Unlock()
+	
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
