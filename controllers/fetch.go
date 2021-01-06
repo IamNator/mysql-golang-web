@@ -41,6 +41,8 @@ type fetchInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
+var Mutex sync.Mutex
+
 // swagger:route POST /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
@@ -53,9 +55,9 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	}
 	json.NewDecoder(req.Body).Decode(&reqBody)
 
-	Mutex.Lock()
+	
 	id, ok := db.SessionToken[reqBody.Token]
-	Mutex.Unlock()
+	
 
 	if !ok { //Check if user is logged in (id exists in the MAP)
 		session.JsonError(&w, "Unauthorized access", http.StatusUnauthorized)
