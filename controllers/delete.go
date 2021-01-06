@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/session"
 	"log"
-	"sync"
+	//"sync"
 
 	//"fmt"
 	"net/http"
