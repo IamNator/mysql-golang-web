@@ -78,12 +78,20 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 	} else {
+		rows, err := db.Session.Query(`SELECT id FROM phoneBook WHERE phoneNumber=` + reqBody.Details.PhoneNumber)
+			Check(err)
+
+			var userID string
+
+		err = rows.Scan(&userID)
+			Check(err)
+
 		resp := struct {
 			Status  bool   `json:"status"`
 			Message string `json:"message"`
 		}{
 			true,
-			"New contact Added to Phone Book",
+			userID,
 		}
 		err = json.NewEncoder(w).Encode(resp)
 		if err != nil {
