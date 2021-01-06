@@ -129,12 +129,18 @@
             }
         }).then((resp) =>
         {resp.json().then((data) => {
-                //console.log(data.message)
-                populateTable(data)
+                if (resp.status === 401){
+                    localStorage.setItem("userData", null);
+                    window.location.href = window.location.protocol + "//" + window.location.host;
+                } else {
+                    populateTable(data);
+                }
             })
         },
-        (err) => {console.log(err)} )
-
+        (err) => {
+            localStorage.setItem("userData", null);
+            window.location.href = window.location.protocol + "//" + window.location.host;
+        })
     }
 
     var currentIndex = 1
