@@ -41,7 +41,6 @@ type fetchInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
-var Mutex sync.Mutex
 
 // swagger:route POST /api/fetch controllers fetch
 // returns all phonebook contacts
