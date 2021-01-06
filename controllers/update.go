@@ -62,9 +62,9 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	Mutex.Lock()
+	
 	id, ok := db.SessionToken[reqBody.Token]
-	Mutex.Unlock()
+	
 
 	if !ok {
 		session.JsonError(&w, "Unauthorized Access, Please login", http.StatusUnauthorized)
