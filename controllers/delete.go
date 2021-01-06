@@ -91,7 +91,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	resp := MyStdResp{
 		Status:  true,
-		Message: "User with id ="+user.ID+"  Deleted",
+		Message: "User with id ="+user.ID+" Deleted",
 	}
 
 	err = json.NewEncoder(writer).Encode(resp)

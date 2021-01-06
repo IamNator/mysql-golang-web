@@ -49,13 +49,14 @@ type fetchInternalErrorWrapper struct {
 // 401: fetchUnauthorized
 // 500: fetchInternalError
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
-	var reqBody struct {
-		Token string `json:"token"`
-	}
-	json.NewDecoder(req.Body).Decode(&reqBody)
-
+	//var reqBody struct {
+	//	Token string `json:"token"`
+	//}
+	//json.NewDecoder(req.Body).Decode(&reqBody)
+	token := req.Header.Get("Authorization")
 	
-	id, ok := db.SessionToken[reqBody.Token]
+	//id, ok := db.SessionToken[reqBody.Token]
+	id, ok := db.SessionToken[token]
 	
 
 	if !ok { //Check if user is logged in (id exists in the MAP)
