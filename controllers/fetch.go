@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-// swagger:parameters fetch
-type fetchParamsWrapper struct {
-	// in: body
-	Body fetchRequest
-}
-
-// swagger:model
-type fetchRequest struct {
-	Token string `json:"token"`
-}
-
 // swagger:response fetchResponse
 type fetchResponseWrapper struct {
 	//in body
@@ -42,17 +31,14 @@ type fetchInternalErrorWrapper struct {
 }
 
 
-// swagger:route POST /api/fetch controllers fetch
+// swagger:route GET /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
 // 200: fetchResponse
 // 401: fetchUnauthorized
 // 500: fetchInternalError
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
-	//var reqBody struct {
-	//	Token string `json:"token"`
-	//}
-	//json.NewDecoder(req.Body).Decode(&reqBody)
+
 	token := req.Header.Get("Authorization")
 	
 	//id, ok := db.SessionToken[reqBody.Token]
