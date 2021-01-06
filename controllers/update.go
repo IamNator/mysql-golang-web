@@ -74,7 +74,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	var ph_no string
 	err = db.Session.QueryRow("SELECT phonenumber FROM phonebook WHERE phonenumber=?", reqBody.Details.PhoneNumber).Scan(&ph_no)
 	if err == nil {
-		session.JsonError(&w, "phone number already exists", http.StatusNotFound)
+		session.JsonError(&w, "phone number already exists", http.StatusConflict)
 		return
 	}
 
