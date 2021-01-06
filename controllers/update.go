@@ -71,6 +71,13 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	var ph_no string
+	err = db.Session.QueryRow("SELECT phonenumber FROM phonebook WHERE phonenumber=?", reqBody.Details.PhoneNumber).Scan(&ph_no)
+	if err == nil {
+		session.JsonError(&w, "phone number already exists", http.StatusNotFound)
+		return
+	}
+
 	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
