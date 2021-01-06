@@ -81,13 +81,16 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
+	if err != nil {
+		session.JsonError(&writer, err.Error(), http.StatusInternalServerError)
+	}
 	log.Println(res)
 	Check(err)
 
 	writer.Header().Set("Content-Type", "application/json")
 	resp := MyStdResp{
 		Status:  true,
-		Message: "User Deleted",
+		Message: "User with id ="+user.ID+"  Deleted",
 	}
 
 	err = json.NewEncoder(writer).Encode(resp)

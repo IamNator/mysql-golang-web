@@ -78,6 +78,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+
 	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
@@ -85,6 +86,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
 	} else {
+
 		rows, err := db.Session.Query(`SELECT id FROM phoneBook WHERE phoneNumber=` + reqBody.Details.PhoneNumber)
 			Check(err)
 
