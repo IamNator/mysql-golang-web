@@ -83,6 +83,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	res, err := stmt.Exec(user.ID, masterID)
 	if err != nil {
 		session.JsonError(&writer, err.Error(), http.StatusInternalServerError)
+		return
 	}
 	log.Println(res)
 	Check(err)
