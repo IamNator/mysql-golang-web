@@ -35,11 +35,11 @@
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
             <form id="loginForm">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-feedback" style="display: None">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="login-feedback" style="display: None; ">
                     <strong>OOPS!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <!--button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button-->
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email">
@@ -48,22 +48,21 @@
                     <input type="password" name="password" class="form-control"  id="password" placeholder="password">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Login</button>
-                <button id="register" class="btn btn-dark btn-block">Register</button>
             </form>
+            <a href="/register" style="margin-top: 2rem; color: crimson">Don't Have An Account? Register.</a>
         </div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <div class="col-md-3 text-center"></div>
     </div>
 </div>
 
 <script type="text/javascript">
-    //Function to submit form to endpoint 
-    var form = document.getElementById("loginForm");
-    var reg = document.getElementById("register");
-    
-    //handleApiResponse = (dat) => {
+    //checks if user data exists in localStorage and redirects to /index
+    var userLoggedIn = JSON.parse(localStorage.getItem("userData"))
+    if (userLoggedIn !== null) {
+        window.location.href = window.location.protocol + "//" + window.location.host + "/index"
+    }
 
-    //}
+    var form = document.getElementById("loginForm");
+
     displayFeedBack = (message, success) => {
         feedback = document.getElementById("login-feedback");
         if (success) {
@@ -74,75 +73,53 @@
         else {
             feedback.children[0].innerText = message;
             feedback.style.display = "Block";
+            setTimeout(()=>{feedback.style.display="None"}, 2000)
         }
     }
 
-    reg.onclick = () => {
-        window.location.replace("https://mysql-golang-app.herokuapp.com/register")
-    }
-
     form.onsubmit = (e) => {
-        //Prevent default occurrence when form is submitted e.g(reloading the page)
         e.preventDefault()
-        //The json to be posted to the api/login endpoint
+
         var submitJson = {}
         var element
+
+        //prepare Json for submission
         for (element of form.elements) {
             if (element.id !== "") {
                 submitJson[element.id] = element.value;
             }
         }
-        //console.log(submitJson)
+
+        //post json to the login endpoint
         fetch("api/login", {
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(
             (resp) => {
-               // console.log(resp)
                 if (resp.status === 200) {
-                    //window.location.href = window.location.href.replace("login", "")
                     displayFeedBack("Login successful", true);
-
-                    // Examine the text in the response
-                    resp.json().then(function(data) {
-                        tk = data
-                        console.log(tk);
-                        window.localStorage.setItem("token", tk.token )
-                        console.log("token added")
-                        window.location.replace("https://mysql-golang-app.herokuapp.com/index")
-                    });
-
-                    return {
-                        "status": true,
-                        "data": tk
-                    }
                 }
                 if (resp.status === 404) {
-                    //console.log(resp)
                     displayFeedBack("Invalid Credentials", false)
                 }
-                //return resp.text()
+                return resp.text()
             }
-        )//.then( (data) => {
-            //     let tk = data.data
-            //     window.localStorage.setItem("token", tk )
-            //     console.log(data)
-            //     console.log("token added")
-            // //     window.location.replace("https://mysql-golang-app.herokuapp.com/index")
-            // }
-            //     )
+        ).then( (data) => {
+            //sets user data in localStorage
+            if (JSON.parse(data).status == true){
+                localStorage.setItem("userData", data)
+                setTimeout(() => window.location.href = window.location.protocol + "//" + window.location.host + "/index", 1500)
+            }
+        })
    }
-        //return true
 
-
-
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
+    //function onSignIn(googleUser) {
+    //    var profile = googleUser.getBasicProfile();
+    //    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //    console.log('Name: ' + profile.getName());
+    //    console.log('Image URL: ' + profile.getImageUrl());
+    //    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    //}
 </script>
 </body>
 </html>
