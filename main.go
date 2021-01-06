@@ -77,7 +77,7 @@ func main() {
 	myRouter.HandleFunc("/", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("POST")     //use dbData.Fetch_t to test
+	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")     //use dbData.Fetch_t to test
 	myRouter.HandleFunc("/api/update", DB.Update).Methods("PUT")    //use dbData.Update_t to test
 	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE") //use dbData.Delete_t to test
 
