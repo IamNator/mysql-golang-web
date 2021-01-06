@@ -76,7 +76,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	}
 
 	
-	masterID := db.SessionToken[user.Token] //The person authorizing the delete
+	masterID := db.SessionToken[user.Token].ID //The person authorizing the delete
 	
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
