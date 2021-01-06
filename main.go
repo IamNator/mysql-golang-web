@@ -96,7 +96,7 @@ func main() {
 	//Seems heroku has .env file { need to add DB credentials to this file too }
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8000"
+		port = "8001"
 	}
 	//go fmt.Printf("Number of CPU : %d \n", runtime.NumCPU())
 	//go fmt.Printf("Number of Goroutine : %d \n", runtime.NumGoroutine())

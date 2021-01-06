@@ -151,15 +151,26 @@
     populateTable = (data) => {
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
         for (contact of data.message) {
-            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + currentIndex + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td><td>" + "<button class='btn btn-white' onclick=deleteContact()><i class='fas fa-trash-alt' style='color: red'></i></button>" + "</td></tr>"
+            rowHtml = "<tr id=" + contact.id + "><th scope='row'>" + currentIndex + "</th><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td><td>" + "<button class='btn btn-white' onclick=deleteContact(" + contact.id + ")><i class='fas fa-trash-alt' style='color: red'></i></button>" + "</td></tr>"
             newRow = tableBody.insertRow(tableBody.rows.length);
             newRow.innerHTML = rowHtml
             currentIndex++
         }
     }
 
-    const deleteContact = () => {
-        alert("Are you sure you want to delete this contact??")
+    const deleteContact = (id) => {
+        var token = JSON.parse(localStorage.getItem("userData")).token;
+        fetch("/api/delete",{
+            method: "DELETE",
+            body: JSON.stringify({
+                "token": token,
+                "id": id
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(resp=>{console.log(resp, resp.status); return resp.text()}).then(data=>console.log(data))
+        alert("Are you sure you want to delete this contact??" + id)
     }
 
 
