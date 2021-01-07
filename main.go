@@ -108,8 +108,8 @@ func main() {
 		Addr: ":"+port,
 		Handler: myRouter,
 		IdleTimeout: 20*time.Second,
-		ReadTimeout: 10*time.Second,
-		WriteTimeout: 10*time.Second,
+		ReadTimeout: 20*time.Second,
+		WriteTimeout: 45*time.Second,
 	}
 
 	go func(){
