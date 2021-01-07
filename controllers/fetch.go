@@ -36,7 +36,6 @@ type headerWrapper struct {
 	Authorization string
 }
 
-
 // swagger:route GET /api/fetch controllers fetch
 // returns all phonebook contacts
 // responses:
@@ -46,10 +45,9 @@ type headerWrapper struct {
 func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	token := req.Header.Get("Authorization")
-	
+
 	//id, ok := db.SessionToken[reqBody.Token]
 	id, ok := db.SessionToken[token]
-	
 
 	if !ok { //Check if user is logged in (id exists in the MAP)
 		session.JsonError(&w, "Unauthorized access", http.StatusUnauthorized)

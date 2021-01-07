@@ -111,7 +111,7 @@ func (db *Sessiondb) Login(w http.ResponseWriter, req *http.Request) {
 	var password string
 	err = db.Session.QueryRow("SELECT id, firstname, lastname, email, password FROM users WHERE email=?", user.Email).Scan(&userDb.ID, &userDb.FirstName, &userDb.LastName, &userDb.Email, &password)
 	if err != nil {
-		fmt.Printf("dbQuery Error %v \n", err)  //user does not exist in records
+		fmt.Printf("dbQuery Error %v \n", err) //user does not exist in records
 		JsonError(&w, "Username or Password Incorrect", http.StatusNotFound)
 		return
 	}

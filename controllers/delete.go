@@ -11,7 +11,6 @@ import (
 	"net/http"
 )
 
-
 // swagger:parameters delete
 type deleteRequestWrapper struct {
 	// in: body
@@ -75,9 +74,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	
 	masterID := db.SessionToken[user.Token].ID //The person authorizing the delete
-	
 
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
@@ -91,7 +88,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	resp := MyStdResp{
 		Status:  true,
-		Message: "User with id ="+user.ID+" Deleted",
+		Message: "User with id =" + user.ID + " Deleted",
 	}
 
 	err = json.NewEncoder(writer).Encode(resp)

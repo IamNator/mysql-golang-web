@@ -44,7 +44,6 @@ type updateInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
-
 // phone number already exists
 // swagger:response updateConflictError
 type updateConflictErrorWrapper struct {
@@ -71,9 +70,7 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	
 	id, ok := db.SessionToken[reqBody.Token]
-	
 
 	if !ok {
 		session.JsonError(&w, "Unauthorized Access, Please login", http.StatusUnauthorized)
@@ -87,7 +84,6 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-
 	stmt, err := db.Session.Prepare(`INSERT INTO phoneBook (userID, FirstName,LastName,phoneNumber)
 	VALUES (?,?,?,?)`)
 
@@ -97,12 +93,12 @@ func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 	} else {
 
 		rows, err := db.Session.Query(`SELECT id FROM phoneBook WHERE phoneNumber=` + reqBody.Details.PhoneNumber)
-			Check(err)
+		Check(err)
 
-			var userID string
+		var userID string
 
 		err = rows.Scan(&userID)
-			Check(err)
+		Check(err)
 
 		resp := struct {
 			Status  bool   `json:"status"`
