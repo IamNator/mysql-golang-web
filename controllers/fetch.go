@@ -30,6 +30,12 @@ type fetchInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
+// swagger:parameters fetch
+type headerWrapper struct {
+	// in: header
+	Authorization string
+}
+
 
 // swagger:route GET /api/fetch controllers fetch
 // returns all phonebook contacts

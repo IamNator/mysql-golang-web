@@ -65,6 +65,7 @@ definitions:
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/controllers
   PhoneBookContact:
+    description: phonebook struct
     properties:
       firstname:
         type: string
@@ -117,13 +118,6 @@ definitions:
         x-go-name: Token
     type: object
     x-go-package: github.com/IamNator/mysql-golang-web/controllers
-  fetchRequest:
-    properties:
-      token:
-        type: string
-        x-go-name: Token
-    type: object
-    x-go-package: github.com/IamNator/mysql-golang-web/controllers
   updateRequest:
     properties:
       details:
@@ -159,14 +153,13 @@ paths:
       tags:
       - controllers
   /api/fetch:
-    post:
+    get:
       description: returns all phonebook contacts
       operationId: fetch
       parameters:
-      - in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/fetchRequest'
+      - in: header
+        name: Authorization
+        type: string
       responses:
         "200":
           $ref: '#/responses/fetchResponse'
