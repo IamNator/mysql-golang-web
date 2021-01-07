@@ -32,6 +32,7 @@ type fetchInternalErrorWrapper struct {
 
 // swagger:parameters fetch
 type headerWrapper struct {
+	// token
 	// in: header
 	Authorization string
 }

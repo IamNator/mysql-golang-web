@@ -157,7 +157,8 @@ paths:
       description: returns all phonebook contacts
       operationId: fetch
       parameters:
-      - in: header
+      - description: token
+        in: header
         name: Authorization
         type: string
       responses:
