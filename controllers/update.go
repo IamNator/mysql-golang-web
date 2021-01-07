@@ -44,11 +44,20 @@ type updateInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
+
+// phone number already exists
+// swagger:response updateConflictError
+type updateConflictErrorWrapper struct {
+	// in: body
+	Body MyStdResp
+}
+
 // swagger:route PUT /api/update controllers update
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse
 // 401: updateUnauthorized
+// 409: updateConflictError
 // 500: updateInternalError
 func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
 

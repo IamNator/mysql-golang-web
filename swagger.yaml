@@ -237,6 +237,8 @@ paths:
           $ref: '#/responses/updateResponse'
         "401":
           $ref: '#/responses/updateUnauthorized'
+        "409":
+          $ref: '#/responses/updateConflictError'
         "500":
           $ref: '#/responses/updateInternalError'
       tags:
@@ -319,6 +321,10 @@ responses:
       $ref: '#/definitions/MyStdResp'
   registerUserExist:
     description: when a user already exists
+    schema:
+      $ref: '#/definitions/MyStdResp'
+  updateConflictError:
+    description: phone number already exists
     schema:
       $ref: '#/definitions/MyStdResp'
   updateInternalError:
