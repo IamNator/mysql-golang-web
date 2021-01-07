@@ -107,7 +107,7 @@ func main() {
 	myserver := http.Server{
 		Addr: ":"+port,
 		Handler: myRouter,
-		IdleTimeout: 20*time.Second,
+		IdleTimeout: 20*time.Second, //increase this esp when running as a microservice
 		ReadTimeout: 20*time.Second,
 		WriteTimeout: 45*time.Second,
 	}
