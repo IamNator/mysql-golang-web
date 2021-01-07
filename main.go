@@ -123,8 +123,8 @@ func main() {
 
 	sig :=<- sigChan
 	log.Println("Received terminate, graceful shutdown", sig)
-	td := time.Now().Add(30*time.Second)
-	tc, _ := context.WithDeadline(context.Background(), td)
+
+	tc, _ := context.WithTimeout(context.Background(), 30*time.Second)
 	myserver.Shutdown(tc)
 	close(sigChan)
 
