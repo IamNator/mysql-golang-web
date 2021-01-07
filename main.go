@@ -17,6 +17,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/IamNator/mysql-golang-web/controllers"
 	"github.com/IamNator/mysql-golang-web/database/migrations"
@@ -31,6 +32,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
+	"time"
 )
 
 /*
@@ -100,8 +103,30 @@ func main() {
 	}
 	//go fmt.Printf("Number of CPU : %d \n", runtime.NumCPU())
 	//go fmt.Printf("Number of Goroutine : %d \n", runtime.NumGoroutine())
-	go fmt.Printf("server running...@localhost:%s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, myRouter))
+
+	myserver := http.Server{
+		Addr: ":"+port,
+		Handler: myRouter,
+		IdleTimeout: 20*time.Second,
+		ReadTimeout: 10*time.Second,
+		WriteTimeout: 10*time.Second,
+	}
+
+	go func(){
+		go fmt.Printf("server running...@localhost:%s\n", port)
+		log.Fatal(myserver.ListenAndServe())
+	}()
+
+	sigChan := make(chan os.Signal)
+	signal.Notify(sigChan, os.Interrupt)
+	signal.Notify(sigChan, os.Kill)
+
+	sig :=<- sigChan
+	log.Println("Received terminate, graceful shutdown", sig)
+	td := time.Now().Add(30*time.Second)
+	tc, _ := context.WithDeadline(context.Background(), td)
+	myserver.Shutdown(tc)
+	close(sigChan)
 
 }
 
