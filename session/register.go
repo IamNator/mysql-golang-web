@@ -38,7 +38,7 @@ type registerRequestWrapper struct {
 }
 
 // adds new user to user database
-// swagger:route POST /api/register session register
+// swagger:route POST /user/register session register
 // responses:
 // 201: registerResponse
 // 302: registerUserExist

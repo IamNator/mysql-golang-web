@@ -36,7 +36,7 @@ type logoutInternalErrorWrapper struct {
 	Body MyStdResp
 }
 
-// swagger:route POST /api/logout session logout
+// swagger:route POST /user/logout session logout
 // logs the user out
 // responses:
 // 200: logoutResponse

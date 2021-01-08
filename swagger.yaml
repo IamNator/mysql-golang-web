@@ -134,7 +134,7 @@ info:
   title: mysql-golang-web API
   version: 1.0.0
 paths:
-  /api/delete:
+  /api/contacts:
     delete:
       description: delete contact from phone book
       operationId: delete
@@ -152,7 +152,6 @@ paths:
           $ref: '#/responses/deleteInternalError'
       tags:
       - controllers
-  /api/fetch:
     get:
       description: returns all phonebook contacts
       operationId: fetch
@@ -170,61 +169,6 @@ paths:
           $ref: '#/responses/fetchInternalError'
       tags:
       - controllers
-  /api/login:
-    post:
-      description: Returns a session token
-      operationId: login
-      parameters:
-      - in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/LoginCredentials'
-      responses:
-        "200":
-          $ref: '#/responses/loginResponse'
-        "400":
-          $ref: '#/responses/loginBadRequest'
-        "404":
-          $ref: '#/responses/loginIncorrectPassword'
-          description: '&& loginNotFound'
-      tags:
-      - session
-  /api/logout:
-    post:
-      description: logs the user out
-      operationId: logout
-      parameters:
-      - in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/Tk'
-      responses:
-        "200":
-          $ref: '#/responses/logoutResponse'
-        "400":
-          $ref: '#/responses/logoutBadRequest'
-        "500":
-          $ref: '#/responses/logoutInternalError'
-      tags:
-      - session
-  /api/register:
-    post:
-      operationId: register
-      parameters:
-      - in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/UserCredentials'
-      responses:
-        "201":
-          $ref: '#/responses/registerResponse'
-        "302":
-          $ref: '#/responses/registerUserExist'
-        "500":
-          $ref: '#/responses/registerInternalError'
-      tags:
-      - session
-  /api/update:
     put:
       description: adds new contacts to a phoneBook
       operationId: update
@@ -244,6 +188,60 @@ paths:
           $ref: '#/responses/updateInternalError'
       tags:
       - controllers
+  /user/login:
+    post:
+      description: Returns a session token
+      operationId: login
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/LoginCredentials'
+      responses:
+        "200":
+          $ref: '#/responses/loginResponse'
+        "400":
+          $ref: '#/responses/loginBadRequest'
+        "404":
+          $ref: '#/responses/loginIncorrectPassword'
+          description: '&& loginNotFound'
+      tags:
+      - session
+  /user/logout:
+    post:
+      description: logs the user out
+      operationId: logout
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/Tk'
+      responses:
+        "200":
+          $ref: '#/responses/logoutResponse'
+        "400":
+          $ref: '#/responses/logoutBadRequest'
+        "500":
+          $ref: '#/responses/logoutInternalError'
+      tags:
+      - session
+  /user/register:
+    post:
+      operationId: register
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/UserCredentials'
+      responses:
+        "201":
+          $ref: '#/responses/registerResponse'
+        "302":
+          $ref: '#/responses/registerUserExist'
+        "500":
+          $ref: '#/responses/registerInternalError'
+      tags:
+      - session
 produces:
 - application/json
 responses:

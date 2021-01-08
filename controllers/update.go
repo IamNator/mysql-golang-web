@@ -51,7 +51,7 @@ type updateConflictErrorWrapper struct {
 	Body MyStdResp
 }
 
-// swagger:route PUT /api/update controllers update
+// swagger:route PUT /api/contacts controllers update
 // adds new contacts to a phoneBook
 // responses:
 // 200: updateResponse

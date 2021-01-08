@@ -37,7 +37,7 @@ type headerWrapper struct {
 	Authorization string
 }
 
-// swagger:route GET /api/fetch controllers fetch
+// swagger:route GET /api/contacts controllers fetch
 // returns all phonebook contacts
 // responses:
 // 200: fetchResponse

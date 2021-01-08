@@ -80,13 +80,13 @@ func main() {
 	myRouter.HandleFunc("/", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
-	myRouter.HandleFunc("/api/fetch", DB.Fetch).Methods("GET")      //use dbData.Fetch_t to test
-	myRouter.HandleFunc("/api/update", DB.Update).Methods("PUT")    //use dbData.Update_t to test
-	myRouter.HandleFunc("/api/delete", DB.Delete).Methods("DELETE") //use dbData.Delete_t to test
+	myRouter.HandleFunc("/api/contacts", DB.Fetch).Methods("GET")      //fetches contact informations
+	myRouter.HandleFunc("/api/contacts", DB.Update).Methods("PUT")    // adds new contact informations
+	myRouter.HandleFunc("/api/contacts", DB.Delete).Methods("DELETE") // delete a contact
 
-	myRouter.HandleFunc("/api/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
-	myRouter.HandleFunc("/api/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
-	myRouter.HandleFunc("/api/logout", dbUser.Logout).Methods("POST")     //use dbData.Login_t to test
+	myRouter.HandleFunc("/user/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test
+	myRouter.HandleFunc("/user/login", dbUser.Login).Methods("POST")       //use dbData.Login_t to test
+	myRouter.HandleFunc("/user/logout", dbUser.Logout).Methods("POST")     //use dbData.Login_t to test
 
 	// "/auth/google/callback"
 	//reads swagger.yaml doc file for APIs

@@ -86,7 +86,7 @@ type LoginResponse struct {
 	Token string `json:"token"`
 }
 
-// swagger:route POST /api/login session login
+// swagger:route POST /user/login session login
 // Returns a session token
 // responses:
 // 200: loginResponse
