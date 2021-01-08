@@ -90,7 +90,7 @@
             }
         }
         //console.log(submitJson)
-        fetch("/api/register", {
+        fetch("/user/register", {
             "method": "post",
             "body": JSON.stringify(submitJson)
         }).then(resp=>{

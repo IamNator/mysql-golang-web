@@ -5,7 +5,7 @@
     <!--script>
         function signOut() {
             token = window.localStorage.getItem("token")
-            fetch("/api/logout", {
+            fetch("/api/contacts", {
                 method: "POST",
                 body: JSON.stringify(
                     {
@@ -121,7 +121,7 @@
         var welcomeElement = document.getElementById("w_msg");
         welcomeElement.innerText = 'Welcome 👋, ' + userData.message.firstname + " " + userData.message.lastname;  
         var token = userData.token
-        fetch("/api/fetch",{
+        fetch("/api/contacts",{
             method: "GET",
             // body: JSON.stringify({
             //     "token": token
@@ -161,7 +161,7 @@
 
     const deleteContact = (id) => {
         var token = JSON.parse(localStorage.getItem("userData")).token;
-        fetch("/api/delete",{
+        fetch("/api/contacts",{
             method: "DELETE",
             body: JSON.stringify({
                 "token": token,
@@ -198,7 +198,7 @@
         submitJson['id'] = "12345tdcvg";
         console.log(submitJson);
         var token = JSON.parse(localStorage.getItem("userData")).token
-        let url = "/api/update"
+        let url = "/api/contacts"
         fetch(url, {
             method: "PUT",
             body: JSON.stringify({

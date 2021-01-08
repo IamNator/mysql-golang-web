@@ -21,13 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/delete.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/fetch.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/fetch.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/update.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/session/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/session/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/session/logout.go" beforeDir="false" afterPath="$PROJECT_DIR$/session/logout.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/session/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/session/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
