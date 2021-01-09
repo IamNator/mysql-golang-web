@@ -17,16 +17,16 @@ type db models.DBData
 type respBody struct {
 
 	Connections []struct{
-	  Person []struct{
+	  Person struct{
 	  	Name []struct{
-			FamilyName string `json:"familyName"`
-			GivenName string `json:"givenName"`
-			MiddleName string `json:"middleName"`
-		}
+			FamilyName string 		`json:"familyName"`
+			GivenName string 		`json:"givenName"`
+			MiddleName string 		`json:"middleName"`
+		}							`json:"names"`
 		PhoneNumber []struct{
-			Value string `json:"value"`
-		}
-	  }
+			Value string 			`json:"value"`
+		}							`json:"phoneNumbers"`
+	  }                             `json:"person"`
 	}					 			`json:"connections"`
 	NextPageToken string		    `json:"nextPageToken"`
 	NextSyncToken string			`json:"nextSyncToken"`
