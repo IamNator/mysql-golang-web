@@ -14,6 +14,27 @@ import (
 
 type db models.DBData
 
+type respBody struct {
+
+	Connections []struct{
+	  Person []struct{
+	  	Name []struct{
+			FamilyName string `json:"familyName"`
+			GivenName string `json:"givenName"`
+			MiddleName string `json:"middleName"`
+		}
+		PhoneNumber []struct{
+			Value string `json:"value"`
+		}
+	  }
+	}					 			`json:"connections"`
+	NextPageToken string		    `json:"nextPageToken"`
+	NextSyncToken string			`json:"nextSyncToken"`
+	TotalPeople int64				`json:"totalPeople"`
+	TotalItems int64				`json:"totalItems"`
+
+}
+
 func (db *db) getContact(){
 
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Duration(5 * time.Second))
