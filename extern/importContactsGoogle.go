@@ -18,16 +18,17 @@ type db models.DBData
 type respBody struct {
 
 	Connections []struct{
-	  Person struct{
-	  	Name []struct{
+		ResourceName string         `json:"resourceName"`
+		Etag 		 string 		`json:"etag"`
+	  	Names []struct{
 			FamilyName string 		`json:"familyName"`
 			GivenName string 		`json:"givenName"`
 			MiddleName string 		`json:"middleName"`
 		}							`json:"names"`
-		PhoneNumber []struct{
+		PhoneNumbers []struct{
 			Value string 			`json:"value"`
 		}							`json:"phoneNumbers"`
-	  }                             `json:"person"`
+
 	}					 			`json:"connections"`
 	NextPageToken string		    `json:"nextPageToken"`
 	NextSyncToken string			`json:"nextSyncToken"`
@@ -35,6 +36,45 @@ type respBody struct {
 	TotalItems int64				`json:"totalItems"`
 
 }
+
+// [
+//   {
+//      "resourceName": "people/c5239008832403875235",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxUNjQrRDhoUmpHMD0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "48b4b2c68e9125a3"
+//            }
+//          },
+//          "displayName": "Abibat Janey Laws Friend SelfCrush",
+//          "familyName": "SelfCrush",
+//          "givenName": "Abibat Janey Laws",
+//          "middleName": "Friend",
+//          "displayNameLastFirst": "SelfCrush, Abibat Janey Laws Friend",
+//          "unstructuredName": "Abibat Janey Laws Friend SelfCrush"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "48b4b2c68e9125a3"
+//            }
+//          },
+//          "value": "+234 708 740 4908",
+//          "canonicalForm": "+2347087404908",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
+//   }
+// ]
 
 func (db *db) getContact(){
 
@@ -90,83 +130,262 @@ func setURL( apiKey, resourceName, pageToken, pageSize, personFields, requestMas
 //Client ID - 745773636757-afhodihnn83bva8rlhssapo98onb7qvt.apps.googleusercontent.com
 //Client Secret - zhMJZ2SWYKq-PM6zintdwYmo
 
-
 //{
-//  "contactGroups": [
+//  "connections": [
 //    {
-//      "resourceName": "contactGroups/65189743883aabaf",
-//      "etag": "UPTmggxWH8g=",
-//      "metadata": {
-//        "updateTime": "2020-03-25T12:25:13.787Z"
-//      },
-//      "groupType": "USER_CONTACT_GROUP",
-//      "name": "ICE",
-//      "formattedName": "ICE",
-//      "memberCount": 1
+//      "resourceName": "people/c5588552881752772955",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxzY05YOERaSEllRT0=",
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "4d8e873c8d5c115b"
+//            }
+//          },
+//          "value": "+2348100642925",
+//          "canonicalForm": "+2348100642925",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/844909808499f0a",
-//      "etag": "c8EKNg24QFk=",
-//      "metadata": {
-//        "updateTime": "2020-03-03T22:06:17.806Z"
-//      },
-//      "groupType": "USER_CONTACT_GROUP",
-//      "name": "Bae",
-//      "formattedName": "Bae"
+//      "resourceName": "people/c4795508802158220279",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxNbDZuSEQvQSs2RT0=",
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "428d11d90de653f7"
+//            }
+//          },
+//          "value": "+2348132090452",
+//          "canonicalForm": "+2348132090452",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/chatBuddies",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "chatBuddies",
-//      "formattedName": "Chat contacts"
+//      "resourceName": "people/c7842939431841336216",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxNbmVWUG1Mamt4ST0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "6cd7b7dc0dce8b98"
+//            }
+//          },
+//          "displayName": "Mr. Abba",
+//          "familyName": "Abba",
+//          "honorificPrefix": "Mr.",
+//          "displayNameLastFirst": "Abba, Mr.",
+//          "unstructuredName": "Mr. Abba"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "6cd7b7dc0dce8b98"
+//            }
+//          },
+//          "value": "08150759317",
+//          "canonicalForm": "+2348150759317",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/all",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "all",
-//      "formattedName": "All Contacts",
-//      "memberCount": 595
+//      "resourceName": "people/c5239008832403875235",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxUNjQrRDhoUmpHMD0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "48b4b2c68e9125a3"
+//            }
+//          },
+//          "displayName": "Abibat Janey Laws Friend SelfCrush",
+//          "familyName": "SelfCrush",
+//          "givenName": "Abibat Janey Laws",
+//          "middleName": "Friend",
+//          "displayNameLastFirst": "SelfCrush, Abibat Janey Laws Friend",
+//          "unstructuredName": "Abibat Janey Laws Friend SelfCrush"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "48b4b2c68e9125a3"
+//            }
+//          },
+//          "value": "+234 708 740 4908",
+//          "canonicalForm": "+2347087404908",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/myContacts",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "myContacts",
-//      "formattedName": "My Contacts",
-//      "memberCount": 594
+//      "resourceName": "people/c6605848926967772260",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxuUHBWMkxoOWhURT0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "5bacb0998bcf3464"
+//            }
+//          },
+//          "displayName": "Abiola Friend Indy Stalite First Squat",
+//          "familyName": "Squat",
+//          "givenName": "Abiola Friend Indy Stalite",
+//          "middleName": "First",
+//          "displayNameLastFirst": "Squat, Abiola Friend Indy Stalite First",
+//          "unstructuredName": "Abiola Friend Indy Stalite First Squat"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "5bacb0998bcf3464"
+//            }
+//          },
+//          "value": "0705 966 5200",
+//          "canonicalForm": "+2347059665200",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/friends",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "friends",
-//      "formattedName": "Friends"
+//      "resourceName": "people/c4572580199681882533",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxJMTYxSFBMT21pOD0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "3f7511770d05f9a5"
+//            }
+//          },
+//          "displayName": "Dr. Ade EEE Lecturer",
+//          "familyName": "Lecturer",
+//          "givenName": "Ade",
+//          "middleName": "EEE",
+//          "honorificPrefix": "Dr.",
+//          "displayNameLastFirst": "Lecturer, Dr. Ade EEE",
+//          "unstructuredName": "Dr. Ade EEE Lecturer "
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "3f7511770d05f9a5"
+//            }
+//          },
+//          "value": "+234 805 801 5437",
+//          "canonicalForm": "+2348058015437",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/family",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "family",
-//      "formattedName": "Family"
+//      "resourceName": "people/c5536759787340758547",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgx0RTMwRTAzWGpjUT0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "4cd685b10b1cfe13"
+//            }
+//          },
+//          "displayName": "Ade Micheals Friend Secondary school Ecwa",
+//          "familyName": "Ecwa",
+//          "givenName": "Ade Micheals Friend Secondary",
+//          "middleName": "school",
+//          "displayNameLastFirst": "Ecwa, Ade Micheals Friend Secondary school",
+//          "unstructuredName": "Ade Micheals Friend Secondary school Ecwa"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "4cd685b10b1cfe13"
+//            }
+//          },
+//          "value": "+234 816 764 9977",
+//          "canonicalForm": "+2348167649977",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    },
 //    {
-//      "resourceName": "contactGroups/coworkers",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "coworkers",
-//      "formattedName": "Coworkers"
-//    },
-//    {
-//      "resourceName": "contactGroups/blocked",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "blocked",
-//      "formattedName": "Blocked"
-//    },
-//    {
-//      "resourceName": "contactGroups/starred",
-//      "groupType": "SYSTEM_CONTACT_GROUP",
-//      "name": "starred",
-//      "formattedName": "Starred"
+//      "resourceName": "people/c5066568094512725021",
+//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgwrM2hLRjFnaVJhTT0=",
+//      "names": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "465010d68fc23c1d"
+//            }
+//          },
+//          "displayName": "Ade Tailor Friend AGBOWO",
+//          "familyName": "AGBOWO",
+//          "givenName": "Ade Tailor",
+//          "middleName": "Friend",
+//          "displayNameLastFirst": "AGBOWO, Ade Tailor Friend",
+//          "unstructuredName": "Ade Tailor Friend AGBOWO"
+//        }
+//      ],
+//      "phoneNumbers": [
+//        {
+//          "metadata": {
+//            "primary": true,
+//            "source": {
+//              "type": "CONTACT",
+//              "id": "465010d68fc23c1d"
+//            }
+//          },
+//          "value": "0704 574 1427",
+//          "canonicalForm": "+2347045741427",
+//          "type": "mobile",
+//          "formattedType": "Mobile"
+//        }
+//      ]
 //    }
-//  ],
-//  "totalItems": 10,
-//  "nextSyncToken": "EJ6I9Pzwj-4C"
 //}
 
 //addresses,ageRanges,biographies,birthdays,calendarUrls,clientData,coverPhotos,events,externalIds,genders,imClients,interests,locales,locations,memberships,metadata,miscKeywords,nicknames,occupations,organizations,photos,relations,sipAddresses,skills,urls,userDefined
