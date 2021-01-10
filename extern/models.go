@@ -40,16 +40,25 @@ type RespBody struct {
 }
 
 
+type sortOrfder struct {
+	FIRST_NAME_ASCENDING,
+	LAST_NAME_ASCENDING,
+	LAST_MODIFIED_ASCENDING,
+	LAST_MODIFIED_DESCENDING string
+}
 
-type sortOrder string
-const (
-	FIRST_NAME_ASCENDING = sortOrder("FIRST_NAME_ASCENDING")
-	LAST_NAME_ASCENDING = sortOrder("LAST_NAME_ASCENDING")
-	LAST_MODIFIED_ASCENDING = sortOrder("LAST_MODIFIED_ASCENDING")
-	LAST_MODIFIED_DESCENDING = sortOrder("LAST_MODIFIED_DESCENDING")
-)
+var SortOrder = sortOrfder{ "FIRST_NAME_ASCENDING", "LAST_NAME_ASCENDING", "LAST_MODIFIED_ASCENDING", "LAST_MODIFIED_DESCENDING",
+}
 
-var SortOrder = [4]sortOrder{ FIRST_NAME_ASCENDING, LAST_NAME_ASCENDING, LAST_MODIFIED_ASCENDING, LAST_MODIFIED_DESCENDING,
+
+type source struct {
+	READ_SOURCE_TYPE_UNSPECIFIED,
+	READ_SOURCE_TYPE_PROFILE,
+	READ_SOURCE_TYPE_CONTACT,
+	READ_SOURCE_TYPE_DOMAIN_CONTACT string
+}
+
+var Source = source{ "READ_SOURCE_TYPE_UNSPECIFIED", "READ_SOURCE_TYPE_PROFILE", "READ_SOURCE_TYPE_CONTACT", "READ_SOURCE_TYPE_DOMAIN_CONTACT",
 }
 
 
@@ -63,22 +72,23 @@ type QueryParameters struct {
 	PersonFields string  			    `json:"personFields"    validate:"required"`
 	RequestMaskIncludeField string		`json:"requestMask.includeField"`
 	RequestSyncToken string 			`json:"requestSyncToken"`
-	SortOrder sortOrder 				`json:"sortOrder"        validate:"required"`
+	SortOrder string  	 				`json:"sortOrder"        validate:"required"`
 	Sources string 						`json:"sources"`
 	SyncToken string					`json:"syncToken"`
 }
 
 
 
-func (qp QueryParameters) setURL() (*url.URL, error) {
+func (qp *QueryParameters) SetURL() (string, error) {
 	url, err := url.Parse("https://people.googleapis.com/v1/%5BcontactGroups/all%5D/connections?key=[YOUR_API_KEY]")
 	if err != nil {
 		fmt.Println(err)
-		return nil, err
+		return "", err
 	}
 
-	//url.Scheme = "https"
-	//url.Host = "people.googleapis.com"
+	url.Scheme = "https"
+	url.Host = "people.googleapis.com"
+	url.Path = "v1/"
 	q := url.Query()
 	q.Set("key", qp.ApiKey)
 	q.Set("resourceName", qp.ResourceName)
@@ -91,5 +101,5 @@ func (qp QueryParameters) setURL() (*url.URL, error) {
 	q.Set("sources", qp.Sources)
 	q.Set("syncToken", qp.SyncToken)
 
-	return url, nil
+	return url.String(), nil
 }

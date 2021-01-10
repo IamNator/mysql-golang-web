@@ -1,9 +1,6 @@
 package extern
 
-//GET https://people.googleapis.com/v1/%5BRESOURCENAME%5D/connections?key=[YOUR_API_KEY] HTTP/1.1
-//
-//Authorization: Bearer [YOUR_ACCESS_TOKEN]
-//Accept: application/json
+
 import (
 	"context"
 	"fmt"
@@ -14,16 +11,26 @@ import (
 
 type db models.DBData
 
+var qp = QueryParameters{
+	ApiKey: "AIzaSyAEuBpVzf3vDyaJ_tIwf_sLiIHDFOy8EGM",
+	ResourceName: "people/me",
+	PageSize: "1000",
+	PersonFields: "names,phoneNumbers",
+	RequestMaskIncludeField: SortOrder.FIRST_NAME_ASCENDING,
+}
+
 func (db *db) getContact(){
 
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Duration(5 * time.Second))
 	defer cancelFunc()
 
+	url, err := qp.SetURL()
 	req, err := http.NewRequestWithContext(
 		ctx,
 		"GET",
-		"https://people.googleapis.com/v1/%5BRESOURCENAME%5D/connections?key=[YOUR_API_KEY] HTTP/1.1",
+		url,
 		nil,
+
 		)
 
 	client := http.Client{}

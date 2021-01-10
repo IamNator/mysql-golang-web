@@ -1,6 +1,11 @@
 
+//GET https://people.googleapis.com/v1/%5BRESOURCENAME%5D/connections?key=[YOUR_API_KEY] HTTP/1.1
+//
+//Authorization: Bearer [YOUR_ACCESS_TOKEN]
+//Accept: application/json
 // Api key - AIzaSyAEuBpVzf3vDyaJ_tIwf_sLiIHDFOy8EGM
 //
+
 //OAuth2.0
 //Client ID - 745773636757-afhodihnn83bva8rlhssapo98onb7qvt.apps.googleusercontent.com
 //Client Secret - zhMJZ2SWYKq-PM6zintdwYmo
