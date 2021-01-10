@@ -1,4 +1,5 @@
 package google
+
 //
 //import (
 //	"context"
@@ -10,22 +11,22 @@ package google
 //	"time"
 //)
 //
-////https://www.googleapis.com/auth/contacts.readonly
+//https://www.googleapis.com/auth/contacts.readonly
+
+//#define GOOGLE_AUTH_URL "https://accounts.google.com/o/oauth2/device/code"
+//#define GOOGLE_AUTH_POST "client_id="GOOGLE_AUTH_CLIENT_ID"&scope=email profile https://www.googleapis.com/auth/contacts.readonly"
 //
-////#define GOOGLE_AUTH_URL "https://accounts.google.com/o/oauth2/device/code"
-////#define GOOGLE_AUTH_POST "client_id="GOOGLE_AUTH_CLIENT_ID"&scope=email profile https://www.googleapis.com/auth/contacts.readonly"
-////
-////int main(void) {
-////    char * res = handle_url(GOOGLE_AUTH_URL,GOOGLE_AUTH_POST); // use curl to make a POST
-////
-////    if (res==NULL) {
-////        Report("Error");
-////        return -1;
-////    }
-////    cJSON *obj = cJSON_Parse(res);
-////    printf("Result=%s\n",cJSON_Print(obj));
-////    return 0;
-////}
+//int main(void) {
+//    char * res = handle_url(GOOGLE_AUTH_URL,GOOGLE_AUTH_POST); // use curl to make a POST
+//
+//    if (res==NULL) {
+//        Report("Error");
+//        return -1;
+//    }
+//    cJSON *obj = cJSON_Parse(res);
+//    printf("Result=%s\n",cJSON_Print(obj));
+//    return 0;
+//}
 //
 //func setUrl() string {
 //	u_rl, _ := url.ParseRequestURI("https://www.googleapis.com/auth/contacts.readonly")
@@ -72,4 +73,4 @@ package google
 //
 //}
 //
-
+//
