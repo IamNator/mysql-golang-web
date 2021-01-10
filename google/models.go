@@ -4,7 +4,6 @@ import (
 	"github.com/spf13/viper"
 	"log"
 	"net/url"
-	"fmt"
 )
 
 type Metadata struct{
@@ -82,7 +81,7 @@ type QueryParameters struct {
 
 
 func (qp *QueryParameters) SetApiKey(){
-	config, err := loadConfig(".")
+	config, err := loadConfig("C:/gocode/src/github.com/IamNator/mysql-golang-web/" )
 	if err != nil {
 		log.Fatal("cannot load config:", err)
 	}
@@ -111,27 +110,28 @@ func loadConfig(path string) (config QueryParameters, err error) {
 
 
 func (qp *QueryParameters) SetURL() (string, error) {
-	url, err := url.Parse("https://people.googleapis.com/v1/%5BcontactGroups/all%5D/connections?key=[YOUR_API_KEY]")
-	if err != nil {
-		fmt.Println(err)
-		return "", err
+	 var urL = url.URL{
+			 Scheme: "https",
+			 Host: "people.googleapis.com",
+			 Path: "v1/people/me/connections",
 	}
 
-	url.Scheme = "https"
-	url.Host = "people.googleapis.com"
-	url.Path = "v1/"
-	q := url.Query()
-	q.Set("key", qp.ApiKey)
-	q.Set("resourceName", qp.ResourceName)
-	q.Set("pageToken", qp.PageToken)
-	q.Set("pageSize", qp.PageSize)
-	q.Set("personFields", qp.PersonFields)
-	q.Set("requestMask.includeField", qp.RequestMaskIncludeField)
-	q.Set("requestSyncToken", qp.RequestSyncToken)
-	q.Set("sortOrder", string(qp.SortOrder) )
-	q.Set("sources", qp.Sources)
-	q.Set("syncToken", qp.SyncToken)
+	//https://people.googleapis.com/v1/{resourceName=people/*}/connections
 
-	return url.String(), nil
+	q := urL.Query()
+	q.Add("key", qp.ApiKey)
+	q.Set("resourceName", qp.ResourceName)
+	q.Add("pageToken", qp.PageToken)
+	q.Add("pageSize", qp.PageSize)
+	q.Add("personFields", qp.PersonFields)
+	q.Add("requestMask.includeField", qp.RequestMaskIncludeField)
+	q.Add("requestSyncToken", qp.RequestSyncToken)
+	q.Add("sortOrder", string(qp.SortOrder) )
+	q.Add("sources", qp.Sources)
+	q.Add("syncToken", qp.SyncToken)
+
+	urL.RawQuery = q.Encode()
+	u_rl :=  urL.String()
+	return u_rl, nil
 }
 

@@ -5,6 +5,16 @@ import (
 	"testing"
 )
 
-func TEST_GetContacts(T *testing.T){
-	google.GetContacts()
+func TestGetContacts(t *testing.T){
+
+
+	var resp google.RespBody
+	google.GetContacts(&resp)
+	//fmt.Println(resp)
+	i:=1
+	if i == 1 {
+		t.Log(resp)
+		t.Error(resp)
+	}
+
 }
