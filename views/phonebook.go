@@ -11,7 +11,3 @@ func PhoneBook(w http.ResponseWriter, req *http.Request) {
 	_ = tpl.Execute(w, nil)
 }
 
-func Insert(w http.ResponseWriter, _ *http.Request) {
-	tpl := template.Must(template.ParseFiles("html/insert.html"))
-	_ = tpl.Execute(w, nil)
-}
