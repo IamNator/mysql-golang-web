@@ -1,6 +1,7 @@
 package extern
 
 import (
+	"log"
 	"net/url"
 	"fmt"
 )
@@ -65,7 +66,7 @@ var Source = source{ "READ_SOURCE_TYPE_UNSPECIFIED", "READ_SOURCE_TYPE_PROFILE",
 
 
 type QueryParameters struct {
-	ApiKey string           			`json:"apiKey" validate:"required"`
+	ApiKey string           			`json:"apiKey" validate:"required" viper:"API_KEY"`
 	ResourceName string     			`json:"resourceName"    validate:"required"`
 	PageToken string       			    `json:"pageToken"`
 	PageSize string 					`json:"pageSize"        validate:"required"`
@@ -75,8 +76,17 @@ type QueryParameters struct {
 	SortOrder string  	 				`json:"sortOrder"        validate:"required"`
 	Sources string 						`json:"sources"`
 	SyncToken string					`json:"syncToken"`
+	PrettyPrint string                  `json:"prettyPrint"`
 }
 
+
+func (qp *QueryParameters) SetApiKey(){
+	config, err := LoadConfig(".")
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
+	qp.ApiKey = config.ApiKey
+}
 
 
 func (qp *QueryParameters) SetURL() (string, error) {
