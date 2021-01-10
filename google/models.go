@@ -116,7 +116,7 @@ func (qp *QueryParameters) SetURL() (string, error) {
 			 Path: "v1/people/me/connections",
 	}
 
-	//https://people.googleapis.com/v1/{resourceName=people/*}/connections
+	//https://accounts.google.com/o/oauth2/auth?response_type=permission%20id_token&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcontacts.readonly&openid.realm=&authuser=0&redirect_uri=storagerelay%3A%2F%2Fhttps%2Fexplorer.apis.google.com%3Fid%3Dauth791925&client_id=292824132082.apps.googleusercontent.com&ss_domain=https%3A%2F%2Fexplorer.apis.google.com&gsiwebsdk=shim
 
 	q := urL.Query()
 	q.Add("key", qp.ApiKey)
@@ -135,3 +135,5 @@ func (qp *QueryParameters) SetURL() (string, error) {
 	return u_rl, nil
 }
 
+
+//https://developers.google.com/people/api/rest/v1/people.connections/list?apix_params=%7B%22resourceName%22%3A%22people%2Fme%22%2C%22pageSize%22%3A1000%2C%22personFields%22%3A%22names%2CphoneNumbers%22%2C%22sortOrder%22%3A%22FIRST_NAME_ASCENDING%22%2C%22sources%22%3A%5B%22READ_SOURCE_TYPE_CONTACT%22%5D%2C%22prettyPrint%22%3Atrue%7D#authorization-scopes

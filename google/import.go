@@ -49,6 +49,11 @@ func GetContacts(response *RespBody) {
 		   nil,
 		)
 
+	if req == nil {
+		fmt.Println(" Error : nil request object" )
+		return
+	}
+
 
 	client := http.Client{}
 	req.Header.Set("Authorization", "Bearer [YOUR_ACCESS_TOKEN]")
