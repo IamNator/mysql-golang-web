@@ -16,18 +16,18 @@ import (
 type db models.DBData
 
 type Metadata struct{
-	Primary bool	    `json:"primary"` //true if verified and false if otherwise
+	Primary bool	    `json:"primary"` // "true" if verified and "false" if otherwise
 	Source struct{
 		Type string		`json:"type"`    //"CONTACT"
 		ID string 		`json:"id"`      //"48b4b2c68e9125a3"
 	}					`json:"source"`
 }
 
-type respBody struct {
+type RespBody struct {
 
 	Connections []struct{
-		ResourceName string         `json:"resourceName"`
-		Etag 		 string 		`json:"etag"`
+		ResourceName string         `json:"resourceName"` // e.g "people/c5239008832403875235"
+		Etag 		 string 		`json:"etag"`   // e.g "%EgcBAj0LPzcuGgQBAgUHIgxUNjQrRDhoUmpHMD0="
 	  	Names []struct{
 	  		Metadata                `json:"metadata"`
 	  		DisplayName string      `json:"displayName"`
@@ -37,8 +37,8 @@ type respBody struct {
 		}							`json:"names"`
 		PhoneNumbers []struct{
 			Metadata                `json:"metadata"`
-			CanonicalForm string 	`json:"canonicalForm"`  //"+2347087404908"
-			Type string 			`json:"type"`			//"mobile"
+			CanonicalForm string 	`json:"canonicalForm"`  // e.g "+2347087404908"
+			Type string 			`json:"type"`			// e.g "mobile"
 		}							`json:"phoneNumbers"`
 
 	}					 			`json:"connections"`
@@ -48,45 +48,6 @@ type respBody struct {
 	TotalItems int64				`json:"totalItems"`
 
 }
-
-// [
-//   {
-//      "resourceName": "people/c5239008832403875235",
-//      "etag": "%EgcBAj0LPzcuGgQBAgUHIgxUNjQrRDhoUmpHMD0=",
-//      "names": [
-//        {
-//          "metadata": {
-//            "primary": true,
-//            "source": {
-//              "type": "CONTACT",
-//              "id": "48b4b2c68e9125a3"
-//            }
-//          },
-//          "displayName": "Abibat Janey Laws Friend SelfCrush",
-//          "familyName": "SelfCrush",
-//          "givenName": "Abibat Janey Laws",
-//          "middleName": "Friend",
-//          "displayNameLastFirst": "SelfCrush, Abibat Janey Laws Friend",
-//          "unstructuredName": "Abibat Janey Laws Friend SelfCrush"
-//        }
-//      ],
-//      "phoneNumbers": [
-//        {
-//          "metadata": {
-//            "primary": true,
-//            "source": {
-//              "type": "CONTACT",
-//              "id": "48b4b2c68e9125a3"
-//            }
-//          },
-//          "value": "+234 708 740 4908",
-//          "canonicalForm": "+2347087404908",
-//          "type": "mobile",
-//          "formattedType": "Mobile"
-//        }
-//      ]
-//   }
-// ]
 
 func (db *db) getContact(){
 
@@ -112,25 +73,39 @@ func (db *db) getContact(){
 	fmt.Println(resp.Body)
 }
 
-func setURL( apiKey, resourceName, pageToken, pageSize, personFields, requestMask_includeField, requestSyncToken, sortOrder, sources, syncToken string) (*url.URL, error) {
+type QueryParameters struct {
+	ApiKey,
+	ResourceName,
+	PageToken,
+	PageSize,
+	PersonFields,
+	RequestMaskIncludeField,
+	RequestSyncToken,
+	SortOrder,
+	Sources,
+	SyncToken string
+}
+
+func setURL(qp QueryParameters) (*url.URL, error) {
 	url, err := url.Parse("https://people.googleapis.com/v1/%5BcontactGroups/all%5D/connections?key=[YOUR_API_KEY]")
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
 	}
+
 	//url.Scheme = "https"
 	//url.Host = "people.googleapis.com"
 	q := url.Query()
-	q.Set("key", apiKey)
-	q.Set("resourceName", resourceName)
-	q.Set("pageToken", pageToken)
-	q.Set("pageSize", pageSize)
-	q.Set("personFields", personFields)
-	q.Set("requestMask.includeField", requestMask_includeField)
-	q.Set("requestSyncToken", requestSyncToken)
-	q.Set("sortOrder", sortOrder)
-	q.Set("sources", sources)
-	q.Set("syncToken", syncToken)
+	q.Set("key", qp.apiKey)
+	q.Set("resourceName", qp.resourceName)
+	q.Set("pageToken", qp.pageToken)
+	q.Set("pageSize", qp.pageSize)
+	q.Set("personFields", qp.personFields)
+	q.Set("requestMask.includeField", qp.requestMask_includeField)
+	q.Set("requestSyncToken", qp.requestSyncToken)
+	q.Set("sortOrder", qp.sortOrder)
+	q.Set("sources", qp.sources)
+	q.Set("syncToken", qp.syncToken)
 
 	return url, nil
 }
