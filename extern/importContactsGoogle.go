@@ -15,18 +15,30 @@ import (
 
 type db models.DBData
 
+type Metadata struct{
+	Primary bool	    `json:"primary"` //true if verified and false if otherwise
+	Source struct{
+		Type string		`json:"type"`    //"CONTACT"
+		ID string 		`json:"id"`      //"48b4b2c68e9125a3"
+	}					`json:"source"`
+}
+
 type respBody struct {
 
 	Connections []struct{
 		ResourceName string         `json:"resourceName"`
 		Etag 		 string 		`json:"etag"`
 	  	Names []struct{
+	  		Metadata                `json:"metadata"`
+	  		DisplayName string      `json:"displayName"`
 			FamilyName string 		`json:"familyName"`
 			GivenName string 		`json:"givenName"`
 			MiddleName string 		`json:"middleName"`
 		}							`json:"names"`
 		PhoneNumbers []struct{
-			Value string 			`json:"value"`
+			Metadata                `json:"metadata"`
+			CanonicalForm string 	`json:"canonicalForm"`  //"+2347087404908"
+			Type string 			`json:"type"`			//"mobile"
 		}							`json:"phoneNumbers"`
 
 	}					 			`json:"connections"`
