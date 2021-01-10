@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func Index(w http.ResponseWriter, req *http.Request) {
+func PhoneBook(w http.ResponseWriter, req *http.Request) {
 	tpl := template.Must(template.ParseFiles("html/index.html"))
 	_ = tpl.Execute(w, nil)
 }

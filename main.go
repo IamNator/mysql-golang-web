@@ -76,7 +76,7 @@ func main() {
 	myRouter := mux.NewRouter()
 	myRouter.HandleFunc("/home", views.Home).Methods("GET")
 	myRouter.HandleFunc("/insert", views.Insert).Methods("GET")
-	myRouter.HandleFunc("/index", views.Index).Methods("GET")
+	myRouter.HandleFunc("/index", views.PhoneBook).Methods("GET")
 	myRouter.HandleFunc("/", views.Login).Methods("GET")
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
