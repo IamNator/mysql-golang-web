@@ -81,7 +81,7 @@ func main() {
 	myRouter.HandleFunc("/register", views.Register).Methods("GET")
 
 	myRouter.HandleFunc("/api/contacts", DB.Fetch).Methods("GET")      //fetches contact informations
-	myRouter.HandleFunc("/api/contacts", DB.Update).Methods("PUT")    // adds new contact informations
+	myRouter.HandleFunc("/api/contacts", DB.Add).Methods("PUT")    // adds new contact informations
 	myRouter.HandleFunc("/api/contacts", DB.Delete).Methods("DELETE") // delete a contact
 
 	myRouter.HandleFunc("/user/register", dbUser.Register).Methods("POST") //use dbData.Register_t to test

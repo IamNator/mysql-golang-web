@@ -58,7 +58,7 @@ type updateConflictErrorWrapper struct {
 // 401: updateUnauthorized
 // 409: updateConflictError
 // 500: updateInternalError
-func (db *Controllersdb) Update(w http.ResponseWriter, req *http.Request) {
+func (db *Controllersdb) Add(w http.ResponseWriter, req *http.Request) {
 
 	var reqBody updateRequest
 	json.NewDecoder(req.Body).Decode(&reqBody)
