@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -26,12 +27,17 @@ import (
 //    return 0;
 //}
 
+func setUrl() string {
+	u_rl, _ := url.ParseRequestURI("https://www.googleapis.com/auth/contacts.readonly")
+
+
+	return u_rl.String()
+}
 
 
 func GetToken(){
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Duration(5 * time.Second))
 	defer cancelFunc()
-
 
 	req, err := http.NewRequestWithContext(
 		ctx,

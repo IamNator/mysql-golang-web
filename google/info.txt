@@ -6,10 +6,7 @@
 // Api key - AIzaSyAEuBpVzf3vDyaJ_tIwf_sLiIHDFOy8EGM
 //
 
-//OAuth2.0
-//Client ID - 745773636757-afhodihnn83bva8rlhssapo98onb7qvt.apps.googleusercontent.com
-//Client Secret - zhMJZ2SWYKq-PM6zintdwYmo
-
+/
 //{
 //  "connections": [
 //    {

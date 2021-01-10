@@ -56,7 +56,7 @@ func GetContacts(response *RespBody) {
 
 
 	client := http.Client{}
-	req.Header.Set("Authorization", "Bearer [YOUR_ACCESS_TOKEN]")
+	req.Header.Set("Authorization", "")
 	req.Header.Set("Accept", "application/json")
 
 
