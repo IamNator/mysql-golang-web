@@ -98,13 +98,15 @@ func main() {
 	//Seems heroku has .env file { need to add DB credentials to this file too }
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8001"
+		port = `8001`
 	}
+	port = `:`+port
+
 	//go fmt.Printf("Number of CPU : %d \n", runtime.NumCPU())
 	//go fmt.Printf("Number of Goroutine : %d \n", runtime.NumGoroutine())
 
 	myserver := http.Server{
-		Addr: ":"+port,
+		Addr: port,
 		Handler: myRouter,
 		IdleTimeout: 20*time.Second, //increase this esp when running as a microservice
 		ReadTimeout: 20*time.Second,
@@ -112,7 +114,7 @@ func main() {
 	}
 
 	go func(){
-		go fmt.Printf("server running...@localhost:%s\n", port)
+		go fmt.Printf("server running...@localhost%s\n", port)
 		log.Fatal(myserver.ListenAndServe())
 	}()
 
