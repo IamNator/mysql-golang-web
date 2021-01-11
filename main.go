@@ -93,7 +93,7 @@ func main() {
 	sh := middleware.Redoc(opts, nil)
 
 	myRouter.Handle("/docs", sh)
-	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
+	myRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./api")))
 
 	//Seems heroku has .env file { need to add DB credentials to this file too }
 	port := os.Getenv("PORT")
