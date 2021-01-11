@@ -14,7 +14,7 @@
 // - application/json
 //
 // swagger:meta
-package session
+package user
 
 import (
 	"encoding/json"

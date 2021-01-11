@@ -23,7 +23,7 @@ import (
 	"github.com/IamNator/mysql-golang-web/database/migrations"
 	"github.com/IamNator/mysql-golang-web/database/seeders"
 	"github.com/IamNator/mysql-golang-web/models"
-	user "github.com/IamNator/mysql-golang-web/session"
+	"github.com/IamNator/mysql-golang-web/user"
 	"github.com/IamNator/mysql-golang-web/views"
 	"github.com/go-openapi/runtime/middleware"
 	_ "github.com/go-sql-driver/mysql"
