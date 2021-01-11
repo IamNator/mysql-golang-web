@@ -7,6 +7,6 @@ import (
 )
 
 func Home(w http.ResponseWriter, _ *http.Request) {
-	tpl := template.Must(template.ParseFiles("html/home.html"))
+	tpl := template.Must(template.ParseFiles("web/home.html"))
 	_ = tpl.Execute(w, nil)
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, _ *http.Request) {
-	tpl := template.Must(template.ParseFiles("html/login.html"))
+	tpl := template.Must(template.ParseFiles("web/login.html"))
 	err := tpl.Execute(w, nil)
 	if err != nil {
 		log.Println(err)

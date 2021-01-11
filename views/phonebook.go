@@ -7,7 +7,7 @@ import (
 )
 
 func PhoneBook(w http.ResponseWriter, req *http.Request) {
-	tpl := template.Must(template.ParseFiles("html/index.html"))
+	tpl := template.Must(template.ParseFiles("web/index.html"))
 	_ = tpl.Execute(w, nil)
 }
 
