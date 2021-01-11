@@ -19,21 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB">
-      <change afterPath="$PROJECT_DIR$/api/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/phonebook.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/phonebook.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/views/register.go" afterDir="false" />
-    </list>
+    <list default="true" id="39072c32-5360-4aca-b238-ad2f21832ea1" name="Default Changelist" comment="Trying to connect to DB" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
