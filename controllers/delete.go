@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	session "github.com/IamNator/mysql-golang-web/user"
+	"github.com/IamNator/jsonWriter"
 	"log"
 	//"sync"
 
@@ -60,17 +60,18 @@ type MyStdResp struct {
 // 500: deleteInternalError
 func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	if err := req.ParseForm(); err != nil {
-		session.JsonError(&writer, fmt.Sprintf("ParseForm()  err : %v", err), http.StatusBadRequest)
+		jsonWriter.Error(&writer, fmt.Sprintf("ParseForm()  err : %v", err), http.StatusBadRequest)
 		//fmt.Fprintf(writer, "ParseForm() err: %v", err)
 		return
 	}
+
 
 	var user deleteRequest
 
 	_ = json.NewDecoder(req.Body).Decode(&user)
 
 	if _, ok := db.SessionToken[user.Token]; !ok {
-		session.JsonError(&writer, "Unauthorized access please login", http.StatusUnauthorized)
+		jsonWriter.Error(&writer, "Unauthorized access please login", http.StatusUnauthorized)
 		return
 	}
 
@@ -79,7 +80,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 	stmt, err := db.Session.Prepare(`DELETE FROM phoneBook WHERE id = ? AND userID = ? ;`)
 	res, err := stmt.Exec(user.ID, masterID)
 	if err != nil {
-		session.JsonError(&writer, err.Error(), http.StatusInternalServerError)
+		jsonWriter.Error(&writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	log.Println(res)
@@ -93,7 +94,7 @@ func (db *Controllersdb) Delete(writer http.ResponseWriter, req *http.Request) {
 
 	err = json.NewEncoder(writer).Encode(resp)
 	if err != nil {
-		session.JsonError(&writer, err.Error(), http.StatusInternalServerError)
+		jsonWriter.Error(&writer, err.Error(), http.StatusInternalServerError)
 	}
 
 }
