@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/IamNator/jsonWriter"
 	"github.com/IamNator/mysql-golang-web/models"
-	session "github.com/IamNator/mysql-golang-web/user"
 	"net/http"
 )
 
@@ -51,7 +51,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 	id, ok := db.SessionToken[token]
 
 	if !ok { //Check if user is logged in (id exists in the MAP)
-		session.JsonError(&w, "Unauthorized access", http.StatusUnauthorized)
+		jsonWriter.Error(w, "Unauthorized access", http.StatusUnauthorized)
 		return
 	}
 
@@ -79,7 +79,7 @@ func (db *Controllersdb) Fetch(w http.ResponseWriter, req *http.Request) {
 
 	err = json.NewEncoder(w).Encode(resp)
 	if err != nil {
-		session.JsonError(&w, err.Error(), http.StatusInternalServerError)
+		jsonWriter.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
 }

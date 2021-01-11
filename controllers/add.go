@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
-	"github.com/IamNator/mysql-golang-web/session"
+	"github.com/IamNator/jsonWriter"
 	validate "github.com/go-playground/validator/v10"
 	"net/http"
 )
@@ -66,21 +66,21 @@ func (db *Controllersdb) Add(w http.ResponseWriter, req *http.Request) {
 	validator := validate.New()
 	err := validator.Struct(reqBody)
 	if err != nil {
-		session.JsonError(&w, err.Error(), http.StatusBadRequest)
+		jsonWriter.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	id, ok := db.SessionToken[reqBody.Token]
 
 	if !ok {
-		session.JsonError(&w, "Unauthorized Access, Please login", http.StatusUnauthorized)
+		jsonWriter.Error(w, "Unauthorized Access, Please login", http.StatusUnauthorized)
 		return
 	}
 
 	var ph_no string
 	err = db.Session.QueryRow("SELECT phonenumber FROM phonebook WHERE phonenumber=?", reqBody.Details.PhoneNumber).Scan(&ph_no)
 	if err == nil {
-		session.JsonError(&w, "phone number already exists", http.StatusConflict)
+		jsonWriter.Error(w, "phone number already exists", http.StatusConflict)
 		return
 	}
 
@@ -89,7 +89,7 @@ func (db *Controllersdb) Add(w http.ResponseWriter, req *http.Request) {
 
 	_, err = stmt.Exec(id.ID, reqBody.Details.FirstName, reqBody.Details.LastName, reqBody.Details.PhoneNumber)
 	if err != nil {
-		session.JsonError(&w, "Unable to create user Database Error", http.StatusInternalServerError)
+		jsonWriter.Error(w, "Unable to create user Database Error", http.StatusInternalServerError)
 	} else {
 
 		rows, err := db.Session.Query(`SELECT id FROM phoneBook WHERE phoneNumber=` + reqBody.Details.PhoneNumber)
@@ -109,7 +109,7 @@ func (db *Controllersdb) Add(w http.ResponseWriter, req *http.Request) {
 		}
 		err = json.NewEncoder(w).Encode(resp)
 		if err != nil {
-			session.JsonError(&w, err.Error(), http.StatusInternalServerError)
+			jsonWriter.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	}
 }
