@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/IamNator/mysql-golang-web/session"
+	session "github.com/IamNator/mysql-golang-web/user"
 	"log"
 	//"sync"
 

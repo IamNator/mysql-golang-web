@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/IamNator/mysql-golang-web/models"
-	"github.com/IamNator/mysql-golang-web/session"
+	session "github.com/IamNator/mysql-golang-web/user"
 	"net/http"
 )
 
