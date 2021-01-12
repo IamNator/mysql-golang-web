@@ -148,7 +148,7 @@ func MigrateUp(db controllers.Controllersdb) {
 	dbSeeders.FillDb()
 }
 
-//
+//fda
 //extracts important information from app.env file { I should gitignore this file}
 func LoadConfig(path string) (config models.DBData, err error) {
 
