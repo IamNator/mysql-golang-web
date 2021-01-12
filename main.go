@@ -69,7 +69,7 @@ func main() {
 
 	// checks if DB table exist
 	if !DB.DbExists() {
-		CreateAndFillDb(DB)
+		MigrateUp(DB)
 		fmt.Println("Database created and updated")
 	}
 
@@ -133,7 +133,7 @@ func main() {
 }
 
 //Creates and fills up database tables if they don't exist
-func CreateAndFillDb(db controllers.Controllersdb) {
+func MigrateUp(db controllers.Controllersdb) {
 
 	//package (mysql) injection happens here
 	dbMigration := migrations.Migrationdb(db)
