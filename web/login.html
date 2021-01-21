@@ -102,12 +102,13 @@
                 if (resp.status === 404) {
                     displayFeedBack("Invalid Credentials", false)
                 }
-                return resp.text()
+                return resp.json()
             }
         ).then( (data) => {
             //sets user data in localStorage
-            if (JSON.parse(data).status == true){
-                localStorage.setItem("userData", data)
+            if (data.status === true){
+                localStorage.setItem("userData", JSON.stringify(data))
+                localStorage.setItem("Authorization", data.token)
                 setTimeout(() => window.location.href = window.location.protocol + "//" + window.location.host + "/index", 1500)
             }
         })

@@ -113,6 +113,7 @@
     //Check for userData and Make the API call when window loads
     window.onload = () => {
         var userData = JSON.parse(localStorage.getItem("userData"));
+        var token = localStorage.getItem("Authorization");
         if (userData === null) {
             window.location.href = window.location.protocol + "//" + window.location.host;
             return false
@@ -120,12 +121,9 @@
         //console.log(userData)
         var welcomeElement = document.getElementById("w_msg");
         welcomeElement.innerText = 'Welcome 👋, ' + userData.message.firstname + " " + userData.message.lastname;  
-        var token = userData.token
+
         fetch("/api/contacts",{
             method: "GET",
-            // body: JSON.stringify({
-            //     "token": token
-            // }),
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -142,6 +140,7 @@
         },
         (err) => {
             localStorage.setItem("userData", null);
+            localStorage.setItem("Authorization", null)
             window.location.href = window.location.protocol + "//" + window.location.host;
         })
     }
@@ -152,7 +151,7 @@
     populateTable = (data) => {
         var tableBody = document.getElementById("ctable").getElementsByTagName("tbody")[0]
         for (contact of data.message) {
-            rowHtml = "<tr id=" + contact.id + "><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td><td>" + "<button class='btn btn-white' onclick=deleteContact(" + contact.id + ")><i class='fas fa-trash-alt' style='color: red'></i></button>" + "</td></tr>"
+            rowHtml = "<tr id=" + contact.id + "><td>" + contact.firstname + "</td><td>" + contact.lastname + "</td><td>" + contact.phone_number + "</td><td>" + "<button class='btn btn-white' onclick=deleteContact(" + contact.id + ")><i class='fas fa-trash-alt' style='color: #ff0000'></i></button>" + "</td></tr>"
             newRow = tableBody.insertRow(tableBody.rows.length);
             newRow.innerHTML = rowHtml
             currentIndex++
@@ -160,7 +159,7 @@
     }
 
     const deleteContact = (id) => {
-        var token = JSON.parse(localStorage.getItem("userData")).token;
+        var token = localStorage.getItem("Authorization");
         fetch("/api/contacts",{
             method: "DELETE",
             body: JSON.stringify({
@@ -168,16 +167,17 @@
                 "id": id
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": token
             }
-        }).then(resp=>{console.log(resp, resp.status); return resp.text()}).then(
+        }).then(resp=>{console.log(resp, resp.status); return resp.json()}).then(
             data=>{
-                var dat = JSON.parse(data);
-                if (dat.status === true) {
+
+                if (data.status === true) {
                     window.location.reload()
                 }
             }
-        )
+        ).catch((rej)=>console.log(rej))
         alert("Are you sure you want to delete this contact?" + id)
     }
 
@@ -185,7 +185,7 @@
     //The DOM Element for The Modal From To add to contacts
     var form = document.getElementById("update_form");
     form.onsubmit = (e) => {
-        //Prevent default occurence when form is submitted e.g(reloading the page)
+        //Prevent default occurrence when form is submitted e.g(reloading the page)
         e.preventDefault()
         //The json to be posted to the api/update endpoint
         var submitJson = {}
